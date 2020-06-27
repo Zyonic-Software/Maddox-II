@@ -1,5 +1,5 @@
 /*
- * 2020. Zyonic Software - 2020. - Tobias Rempe
+ * Zyonic Software - 2020 - Tobias Rempe
  * This File, its contents and by extention the corresponding project may be used freely in compliance with the Apache 2.0 License.
  *
  * tobiasrempe@zyonicsoftware.com
@@ -11,22 +11,21 @@ import com.zyonicsoftware.maddox.main.Maddox;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
 
-import javax.swing.plaf.nimbus.AbstractRegionPainter;
 import java.util.HashMap;
 
 public class CommandHandler {
 
-    private Maddox maddox;
+    private final Maddox maddox;
     private HashMap<String, Command> commands;
     private HashMap<String, Command> specificPrefixCommands;
 
-    public CommandHandler(Maddox maddox){
+    public CommandHandler(Maddox maddox) {
         this.maddox = maddox;
     }
 
 
-    public void registerCommand(Command command){
-        if(command.getSpecificPrefix() == null) {
+    public void registerCommand(Command command) {
+        if (command.getSpecificPrefix() == null) {
             commands.put(command.getName(), command);
         } else {
             specificPrefixCommands.put(command.getSpecificPrefix() + command.getName(), command);
@@ -34,9 +33,9 @@ public class CommandHandler {
     }
 
 
-    public void handle(GuildMessageReceivedEvent event, String prefix, String messageContent){
+    public void handle(GuildMessageReceivedEvent event, String prefix, String messageContent) {
 
-        if(messageContent.startsWith(prefix + " ")){
+        if (messageContent.startsWith(prefix + " ")) {
             String[] seperatedStrings = messageContent.substring(prefix.length() + 1).split(" ");
 
             Command selectedCommand = commands.get(seperatedStrings[0]);
@@ -45,7 +44,7 @@ public class CommandHandler {
 
             seperatedStrings = null;
             selectedCommand = null;
-        } else if(messageContent.startsWith(prefix)) {
+        } else if (messageContent.startsWith(prefix)) {
 
             String[] seperatedStrings = messageContent.substring(prefix.length()).split(" ");
 
@@ -58,7 +57,7 @@ public class CommandHandler {
         } else {
             String[] seperatedStrings = messageContent.split(" ");
             Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0]);
-            if(selectedCommand != null){
+            if (selectedCommand != null) {
                 selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
             }
 

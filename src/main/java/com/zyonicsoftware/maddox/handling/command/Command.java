@@ -1,5 +1,5 @@
 /*
- * 2020. Zyonic Software - 2020. - Tobias Rempe
+ * Zyonic Software - 2020 - Tobias Rempe
  * This File, its contents and by extention the corresponding project may be used freely in compliance with the Apache 2.0 License.
  *
  * tobiasrempe@zyonicsoftware.com
@@ -9,13 +9,13 @@ package com.zyonicsoftware.maddox.handling.command;
 
 public abstract class Command {
 
-    private String name;
+    private final String name;
     private String description;
     private String syntax;
     private String specificPrefix;
     private boolean allowExecutionOnMessageEdit;
 
-    public Command(String name){
+    public Command(String name) {
         this.name = name;
     }
 

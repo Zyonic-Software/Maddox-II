@@ -1,5 +1,5 @@
 /*
- * 2020. Zyonic Software - 2020. - Tobias Rempe
+ * Zyonic Software - 2020 - Tobias Rempe
  * This File, its contents and by extention the corresponding project may be used freely in compliance with the Apache 2.0 License.
  *
  * tobiasrempe@zyonicsoftware.com
@@ -7,23 +7,21 @@
 
 package com.zyonicsoftware.maddox.handling.command;
 
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class CommandEvent {
 
-    private Command command;
+    private final Command command;
     private GuildMessageReceivedEvent receivedEvent;
     private GuildMessageUpdateEvent updateEvent;
-    private String prefix;
+    private final String prefix;
 
 
     //Constructors Differenciating between Events, Command Event also gets Triggered on MessageEdit, if enabled in Command
@@ -33,7 +31,7 @@ public class CommandEvent {
         this.prefix = prefix;
     }
 
-    public CommandEvent(Command command, GuildMessageUpdateEvent updateEvent, String prefix){
+    public CommandEvent(Command command, GuildMessageUpdateEvent updateEvent, String prefix) {
         this.command = command;
         this.updateEvent = updateEvent;
         this.prefix = prefix;
@@ -80,8 +78,8 @@ public class CommandEvent {
         }
     }
 
-    public Guild getGuild(){
-        if(receivedEvent != null){
+    public Guild getGuild() {
+        if (receivedEvent != null) {
             return receivedEvent.getGuild();
         } else {
             return updateEvent.getGuild();
@@ -243,12 +241,12 @@ public class CommandEvent {
         return textChannels;
     }
 
-    public List<Role> getRoleMentions(){
+    public List<Role> getRoleMentions() {
         List<String> roleIDs = new ArrayList<>();
         List<Role> roles = new ArrayList<>();
 
         this.getArguments().forEach(argument -> {
-            if(argument.startsWith("<@&") && argument.endsWith(">")){
+            if (argument.startsWith("<@&") && argument.endsWith(">")) {
                 argument = argument.replace("<@&", "").replace(">", "").replace("!", "");
                 roleIDs.add(argument);
             }
@@ -257,7 +255,8 @@ public class CommandEvent {
         roleIDs.forEach(roleid -> {
             try {
                 roles.add(this.getGuild().getRoleById(roleid));
-            } catch (Exception e){}
+            } catch (Exception e) {
+            }
         });
 
         return roles;
