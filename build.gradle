@@ -1,0 +1,32 @@
+/*
+ * 2020. Zyonic Software - 2020. - Tobias Rempe
+ * This File, its contents and by extention the corresponding project may be used freely in compliance with the Apache 2.0 License.
+ *
+ * tobiasrempe@zyonicsoftware.com
+ */
+
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+
+    maven {
+        url = uri('https://github.com/AzraAnimating/CustomPrefixAPI/raw/mvn-repo/')
+    }
+
+    maven {
+        url = uri('https://github.com/tuddydevelopment/tuddylib/raw/mvn')
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'net.dv8tion:JDA:4.1.1_166'
+    implementation 'com.esotericsoftware.yamlbeans:yamlbeans:1.14'
+}
