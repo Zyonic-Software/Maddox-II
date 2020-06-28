@@ -5,11 +5,11 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.startup;
+package com.zyonicsoftware.maddox.core.startup;
 
 import com.zyonicsoftware.maddox.config.BaseValueConfig;
-import com.zyonicsoftware.maddox.engine.yaml.YMLReader;
-import com.zyonicsoftware.maddox.main.Maddox;
+import com.zyonicsoftware.maddox.core.engine.yaml.YMLInterpreter;
+import com.zyonicsoftware.maddox.core.main.Maddox;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
@@ -27,14 +27,26 @@ public class PreLoader {
     }
 
     public void loadConfigFile(BaseValueConfig config) {
-        YMLReader ymlReader = new YMLReader();
+        YMLInterpreter ymlInterpreter = new YMLInterpreter();
 
-        Map baseValueConfigMap = ymlReader.readYML("config.yml");
+        try {
+            Map baseValueConfigMap = ymlInterpreter.readYML("config.yml");
 
-        config.setToken(baseValueConfigMap.get("token"));
-        config.setAmountShards(baseValueConfigMap.get("amountShards"));
-        config.setDefaultPrefix(baseValueConfigMap.get("defaultPrefix"));
-        config.setDefaultColor(baseValueConfigMap.get("defaultColor"));
+            if(baseValueConfigMap != null) {
+
+                config.setToken(baseValueConfigMap.get("token"));
+                config.setAmountShards(baseValueConfigMap.get("amountShards"));
+                config.setDefaultPrefix(baseValueConfigMap.get("defaultPrefix"));
+                config.setDefaultColor(baseValueConfigMap.get("defaultColor"));
+                config.setDefaultBotName(baseValueConfigMap.get("defaultBotName"));
+
+            } else {
+                ymlInterpreter.createYML("config.yml");
+                return;
+            }
+        } catch (Exception e){
+
+        }
     }
 
     public ShardManager loadShards(int amountOfShards, String token, ListenerAdapter... listenerAdapters) {

@@ -7,26 +7,39 @@
 
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'org.example'
-version '1.0-SNAPSHOT'
+version '0.1'
+
+mainClassName = 'com.zyonicsoftware.maddox.core.startup.Initializer'
 
 repositories {
     mavenCentral()
     jcenter()
-
-    maven {
-        url = uri('https://github.com/AzraAnimating/CustomPrefixAPI/raw/mvn-repo/')
-    }
-
-    maven {
-        url = uri('https://github.com/tuddydevelopment/tuddylib/raw/mvn')
-    }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'net.dv8tion:JDA:4.1.1_166'
-    implementation 'com.esotericsoftware.yamlbeans:yamlbeans:1.14'
+    compile 'com.esotericsoftware.yamlbeans:yamlbeans:1.14'
+}
+
+jar {
+    baseName("Maddox")
+    version("0.0.1a")
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        compile 'net.dv8tion:JDA:4.1.1_166'
+        compile 'com.esotericsoftware.yamlbeans:yamlbeans:1.14'
+    }
+
+    manifest {
+        attributes 'Implimentation-Title': project.name
+    }
 }

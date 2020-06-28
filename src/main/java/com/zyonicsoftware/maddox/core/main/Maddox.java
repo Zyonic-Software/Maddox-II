@@ -5,14 +5,14 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.main;
+package com.zyonicsoftware.maddox.core.main;
 
 import com.zyonicsoftware.maddox.config.BaseValueConfig;
-import com.zyonicsoftware.maddox.engine.handling.command.CommandHandler;
-import com.zyonicsoftware.maddox.engine.handling.privatemessage.PrivateMessageCommandHandler;
-import com.zyonicsoftware.maddox.listener.MessageReceivedListener;
-import com.zyonicsoftware.maddox.listener.MessageUpdateListener;
-import com.zyonicsoftware.maddox.startup.PreLoader;
+import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
+import com.zyonicsoftware.maddox.core.engine.handling.privatemessage.PrivateMessageCommandHandler;
+import com.zyonicsoftware.maddox.modules.listener.MessageReceivedListener;
+import com.zyonicsoftware.maddox.modules.listener.MessageUpdateListener;
+import com.zyonicsoftware.maddox.core.startup.PreLoader;
 import net.dv8tion.jda.api.sharding.ShardManager;
 
 import java.awt.*;
@@ -24,12 +24,16 @@ public class Maddox {
     private ShardManager shardManager;
     private String defaultPrefix;
     private Color defaultColor;
+    private String name;
 
 
     public void startup(int amountShards, BaseValueConfig config, PreLoader preLoader) {
 
-        shardManager = this.initShards(amountShards, config, preLoader);
         this.loadConfigValues(config);
+
+        System.out.println("Startup " + this.name);
+
+        shardManager = this.initShards(amountShards, config, preLoader);
 
         commandHandler = new CommandHandler(this);
 
@@ -47,6 +51,7 @@ public class Maddox {
     private void loadConfigValues(BaseValueConfig config) {
         this.defaultPrefix = config.getDefaultPrefix();
         this.defaultColor = config.getDefaultColor();
+        this.name = config.getDefaultBotName();
     }
 
 

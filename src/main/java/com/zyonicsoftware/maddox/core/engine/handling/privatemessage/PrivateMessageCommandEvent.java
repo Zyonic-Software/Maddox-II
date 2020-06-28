@@ -5,9 +5,9 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.engine.handling.privatemessage;
+package com.zyonicsoftware.maddox.core.engine.handling.privatemessage;
 
-import com.zyonicsoftware.maddox.main.Maddox;
+import com.zyonicsoftware.maddox.core.main.Maddox;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;

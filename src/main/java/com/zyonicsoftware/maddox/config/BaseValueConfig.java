@@ -14,6 +14,7 @@ public class BaseValueConfig {
     int amountShards;
     String defaultPrefix;
     Color defaultColor;
+    String defaultBotName;
 
     public void setToken(Object token) {
         this.token = (String) token;
@@ -31,6 +32,10 @@ public class BaseValueConfig {
         this.defaultPrefix = (String) defaultPrefix;
     }
 
+    public void setDefaultBotName(Object defaultBotName) {
+        this.defaultBotName = (String) defaultBotName;
+    }
+
     public String getToken() {
         return token;
     }
@@ -45,5 +50,9 @@ public class BaseValueConfig {
 
     public Color getDefaultColor() {
         return defaultColor;
+    }
+
+    public String getDefaultBotName() {
+        return defaultBotName;
     }
 }

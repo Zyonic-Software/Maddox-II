@@ -5,7 +5,7 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.engine.handling.command;
+package com.zyonicsoftware.maddox.core.engine.handling.command;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.*;
@@ -189,11 +189,11 @@ public class CommandEvent {
         }
     }
 
-    public String getExecutorAvatar() {
+    public String getExecutorAvatar(int imageDimension) {
         if (receivedEvent != null) {
-            return "https://cdn.discordapp.com/avatars/" + receivedEvent.getMember().getId() + "/" + receivedEvent.getMember().getUser().getAvatarId() + ".png?size=2048";
+            return "https://cdn.discordapp.com/avatars/" + receivedEvent.getMember().getId() + "/" + receivedEvent.getMember().getUser().getAvatarId() + ".png?size=" + imageDimension;
         } else {
-            return "https://cdn.discordapp.com/avatars/" + updateEvent.getMember().getId() + "/" + updateEvent.getMember().getUser().getAvatarId() + ".png?size=2048";
+            return "https://cdn.discordapp.com/avatars/" + updateEvent.getMember().getId() + "/" + updateEvent.getMember().getUser().getAvatarId() + ".png?size=" + imageDimension;
         }
     }
 

@@ -5,9 +5,9 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.engine.handling.privatemessage;
+package com.zyonicsoftware.maddox.core.engine.handling.command;
 
-public abstract class PrivateMessageCommand {
+public abstract class Command {
 
     private String name;
     private String description;
@@ -55,6 +55,5 @@ public abstract class PrivateMessageCommand {
         return allowExecutionOnMessageEdit;
     }
 
-    protected abstract void execute(PrivateMessageCommandEvent event);
-
+    protected abstract void execute(CommandEvent event);
 }

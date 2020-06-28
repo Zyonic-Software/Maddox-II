@@ -5,9 +5,9 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.engine.handling.command;
+package com.zyonicsoftware.maddox.core.engine.handling.command;
 
-import com.zyonicsoftware.maddox.main.Maddox;
+import com.zyonicsoftware.maddox.core.main.Maddox;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
 

@@ -5,10 +5,10 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.startup;
+package com.zyonicsoftware.maddox.core.startup;
 
 import com.zyonicsoftware.maddox.config.BaseValueConfig;
-import com.zyonicsoftware.maddox.main.Maddox;
+import com.zyonicsoftware.maddox.core.main.Maddox;
 
 public class Initializer {
 

@@ -5,9 +5,9 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.listener;
+package com.zyonicsoftware.maddox.modules.listener;
 
-import com.zyonicsoftware.maddox.main.Maddox;
+import com.zyonicsoftware.maddox.core.main.Maddox;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 

@@ -5,10 +5,10 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.management;
+package com.zyonicsoftware.maddox.core.management;
 
-import com.zyonicsoftware.maddox.engine.handling.command.CommandHandler;
-import com.zyonicsoftware.maddox.main.Maddox;
+import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
+import com.zyonicsoftware.maddox.core.main.Maddox;
 
 public class CommandManager {
 
