@@ -7,13 +7,16 @@
 
 plugins {
     id 'java'
-    id 'application'
 }
 
-group 'org.example'
-version '0.1'
+apply plugin: 'java'
 
-mainClassName = 'com.zyonicsoftware.maddox.core.startup.Initializer'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group 'com.zyonic'
+version '0.0.1a'
+
 
 repositories {
     mavenCentral()
@@ -21,25 +24,26 @@ repositories {
 }
 
 dependencies {
-    compile 'net.dv8tion:JDA:4.1.1_166'
-    compile 'com.esotericsoftware.yamlbeans:yamlbeans:1.14'
+    compile(group: 'net.dv8tion', name: 'JDA', version: '4.1.1_166')
+    compile(group: 'com.esotericsoftware.yamlbeans', name: 'yamlbeans', version: '1.14')
+    compile(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.4.1')
 }
 
 jar {
     baseName("Maddox")
-    version("0.0.1a")
+    version(project.version)
 
-    repositories {
-        mavenCentral()
-        jcenter()
+    /*from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+    exclude("META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA")*/
 
-    dependencies {
-        compile 'net.dv8tion:JDA:4.1.1_166'
-        compile 'com.esotericsoftware.yamlbeans:yamlbeans:1.14'
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
     }
 
     manifest {
-        attributes 'Implimentation-Title': project.name
+        attributes["Implimentation-Title"] = project.name
+        attributes["Main-Class"] = "com.zyonicsoftware.maddox.core.startup.Initializer"
     }
 }

@@ -36,11 +36,11 @@ public class YMLInterpreter {
             new File(filename);
             YamlWriter yamlWriter = new YamlWriter(new FileWriter(filename));
 
-            yamlWriter.write("token: ");
-            yamlWriter.write("amountShards: ");
-            yamlWriter.write("defaultPrefix: ");
-            yamlWriter.write("defaultColor: ");
-            yamlWriter.write("defaultBotName: ");
+            yamlWriter.write("token: \n");
+            yamlWriter.write("amountShards: \n");
+            yamlWriter.write("defaultPrefix: \n");
+            yamlWriter.write("defaultColor: \n");
+            yamlWriter.write("defaultBotName: \n");
 
             yamlWriter.close();
         } catch (Exception e) {
