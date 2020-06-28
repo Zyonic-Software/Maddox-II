@@ -5,7 +5,7 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.handling.command;
+package com.zyonicsoftware.maddox.engine.handling.command;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.*;
@@ -278,6 +278,22 @@ public class CommandEvent {
             receivedEvent.getChannel().sendMessage(messageEmbed).queue();
         } else {
             updateEvent.getChannel().sendMessage(messageEmbed).queue();
+        }
+    }
+
+    public Message returnReply(String pMessage) {
+        if (receivedEvent != null) {
+            return receivedEvent.getChannel().sendMessage(pMessage).complete();
+        } else {
+            return updateEvent.getChannel().sendMessage(pMessage).complete();
+        }
+    }
+
+    public Message returnReply(MessageEmbed messageEmbed) {
+        if (receivedEvent != null) {
+            return receivedEvent.getChannel().sendMessage(messageEmbed).complete();
+        } else {
+            return updateEvent.getChannel().sendMessage(messageEmbed).complete();
         }
     }
 

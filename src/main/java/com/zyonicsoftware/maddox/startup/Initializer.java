@@ -20,6 +20,15 @@ public class Initializer {
         preLoader.loadConfigFile(config);
 
         maddox.startup(config.getAmountShards(), config, preLoader);
+
+
+        //ShutdownHook
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                System.out.println("Shutdown Starting");
+                System.out.println("Application Termiating ...");
+            }
+        });
     }
 
 }

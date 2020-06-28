@@ -8,7 +8,8 @@
 package com.zyonicsoftware.maddox.main;
 
 import com.zyonicsoftware.maddox.config.BaseValueConfig;
-import com.zyonicsoftware.maddox.handling.command.CommandHandler;
+import com.zyonicsoftware.maddox.engine.handling.command.CommandHandler;
+import com.zyonicsoftware.maddox.engine.handling.privatemessage.PrivateMessageCommandHandler;
 import com.zyonicsoftware.maddox.listener.MessageReceivedListener;
 import com.zyonicsoftware.maddox.listener.MessageUpdateListener;
 import com.zyonicsoftware.maddox.startup.PreLoader;
@@ -19,6 +20,7 @@ import java.awt.*;
 public class Maddox {
 
     private CommandHandler commandHandler;
+    private PrivateMessageCommandHandler privateMessageCommandHandler;
     private ShardManager shardManager;
     private String defaultPrefix;
     private Color defaultColor;
@@ -28,6 +30,8 @@ public class Maddox {
 
         shardManager = this.initShards(amountShards, config, preLoader);
         this.loadConfigValues(config);
+
+        commandHandler = new CommandHandler(this);
 
     }
 
@@ -48,6 +52,10 @@ public class Maddox {
 
     public CommandHandler getCommandHandler() {
         return commandHandler;
+    }
+
+    public PrivateMessageCommandHandler getPrivateMessageCommandHandler() {
+        return privateMessageCommandHandler;
     }
 
     public ShardManager getShardManager() {

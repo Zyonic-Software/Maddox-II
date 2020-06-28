@@ -5,17 +5,17 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.handling.command;
+package com.zyonicsoftware.maddox.engine.handling.command;
 
 public abstract class Command {
 
-    private final String name;
+    private String name;
     private String description;
     private String syntax;
     private String specificPrefix;
     private boolean allowExecutionOnMessageEdit;
 
-    public Command(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
@@ -51,7 +51,7 @@ public abstract class Command {
         this.allowExecutionOnMessageEdit = allowExecutionOnMessageEdit;
     }
 
-    public boolean isAllowExecutionOnMessageEdit() {
+    public boolean isExecutionOnMessageEdit() {
         return allowExecutionOnMessageEdit;
     }
 
