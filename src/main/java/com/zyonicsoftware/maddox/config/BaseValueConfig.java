@@ -10,11 +10,12 @@ package com.zyonicsoftware.maddox.config;
 import java.awt.*;
 
 public class BaseValueConfig {
-    String token;
-    int amountShards;
-    String defaultPrefix;
-    Color defaultColor;
-    String defaultBotName;
+    private String token;
+    private int amountShards;
+    private String defaultPrefix;
+    private Color defaultColor;
+    private String defaultBotName;
+    private boolean isMysql;
 
     public void setToken(Object token) {
         this.token = (String) token;
@@ -36,6 +37,10 @@ public class BaseValueConfig {
         this.defaultBotName = (String) defaultBotName;
     }
 
+    public void setMysql(Object mysql) {
+        isMysql = (boolean) mysql;
+    }
+
     public String getToken() {
         return token;
     }
@@ -54,5 +59,9 @@ public class BaseValueConfig {
 
     public String getDefaultBotName() {
         return defaultBotName;
+    }
+
+    public boolean isMysql() {
+        return isMysql;
     }
 }

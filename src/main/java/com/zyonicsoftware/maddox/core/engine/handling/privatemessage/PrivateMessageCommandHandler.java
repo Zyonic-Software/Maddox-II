@@ -38,9 +38,6 @@ public class PrivateMessageCommandHandler {
 
                 if (selectedCommand != null) {
                     selectedCommand.execute(new PrivateMessageCommandEvent(selectedCommand, event, this.maddox));
-
-                    seperatedStrings = null;
-                    selectedCommand = null;
                 }
             }
         } else if (messageContent.startsWith(prefix + " ")) {
@@ -55,9 +52,6 @@ public class PrivateMessageCommandHandler {
 
                     if (selectedCommand != null) {
                         selectedCommand.execute(new PrivateMessageCommandEvent(selectedCommand, event, this.maddox));
-
-                        seperatedStrings = null;
-                        selectedCommand = null;
                     }
                 }
             }

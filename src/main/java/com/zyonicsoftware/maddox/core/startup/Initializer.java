@@ -8,6 +8,7 @@
 package com.zyonicsoftware.maddox.core.startup;
 
 import com.zyonicsoftware.maddox.config.BaseValueConfig;
+import com.zyonicsoftware.maddox.config.MySQLConfig;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 
 public class Initializer {
@@ -16,10 +17,11 @@ public class Initializer {
         Maddox maddox = new Maddox();
         PreLoader preLoader = new PreLoader(maddox);
         BaseValueConfig config = new BaseValueConfig();
+        MySQLConfig mySQLConfig = new MySQLConfig();
 
-        preLoader.loadConfigFile(config);
+        preLoader.loadConfigFile(config, mySQLConfig);
 
-        maddox.startup(config.getAmountShards(), config, preLoader);
+        maddox.startup(config.getAmountShards(), config, mySQLConfig, preLoader);
 
 
         //ShutdownHook

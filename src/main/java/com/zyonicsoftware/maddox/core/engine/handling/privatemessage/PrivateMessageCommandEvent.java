@@ -20,9 +20,9 @@ import java.util.Arrays;
 
 public class PrivateMessageCommandEvent {
 
-    private PrivateMessageReceivedEvent event;
-    private PrivateMessageCommand command;
-    private Maddox maddox;
+    private final PrivateMessageReceivedEvent event;
+    private final PrivateMessageCommand command;
+    private final Maddox maddox;
 
     public PrivateMessageCommandEvent(PrivateMessageCommand command, PrivateMessageReceivedEvent event, Maddox maddox) {
         this.event = event;

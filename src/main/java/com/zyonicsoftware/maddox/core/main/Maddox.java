@@ -8,11 +8,13 @@
 package com.zyonicsoftware.maddox.core.main;
 
 import com.zyonicsoftware.maddox.config.BaseValueConfig;
+import com.zyonicsoftware.maddox.config.MySQLConfig;
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
 import com.zyonicsoftware.maddox.core.engine.handling.privatemessage.PrivateMessageCommandHandler;
+import com.zyonicsoftware.maddox.core.mysql.MySQLHandler;
+import com.zyonicsoftware.maddox.core.startup.PreLoader;
 import com.zyonicsoftware.maddox.modules.listener.MessageReceivedListener;
 import com.zyonicsoftware.maddox.modules.listener.MessageUpdateListener;
-import com.zyonicsoftware.maddox.core.startup.PreLoader;
 import net.dv8tion.jda.api.sharding.ShardManager;
 
 import java.awt.*;
@@ -21,17 +23,24 @@ public class Maddox {
 
     private CommandHandler commandHandler;
     private PrivateMessageCommandHandler privateMessageCommandHandler;
+    private MySQLHandler mySQLHandler;
     private ShardManager shardManager;
     private String defaultPrefix;
     private Color defaultColor;
     private String name;
 
 
-    public void startup(int amountShards, BaseValueConfig config, PreLoader preLoader) {
+    public void startup(int amountShards, BaseValueConfig config, MySQLConfig mySQLConfig, PreLoader preLoader) {
 
         this.loadConfigValues(config);
 
         System.out.println("Startup " + this.name);
+
+        if (mySQLConfig.isEnabled()) {
+            mySQLHandler = new MySQLHandler(this);
+
+            mySQLHandler.connectToMysql(mySQLConfig.getHostname(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUser(), mySQLConfig.getPassword());
+        }
 
         shardManager = this.initShards(amountShards, config, preLoader);
 

@@ -248,3 +248,4 @@ gradle-app.setting
 
 # maddox config (You hoped you could get the token, didn't you? ;))
 config.yml
+mysqlconfig.yml

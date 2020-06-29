@@ -16,8 +16,8 @@ import java.util.HashMap;
 public class CommandHandler {
 
     private final Maddox maddox;
-    private HashMap<String, Command> commands;
-    private HashMap<String, Command> specificPrefixCommands;
+    private final HashMap<String, Command> commands;
+    private final HashMap<String, Command> specificPrefixCommands;
 
     public CommandHandler(Maddox maddox) {
         this.maddox = maddox;
@@ -48,9 +48,6 @@ public class CommandHandler {
 
                 if (selectedCommand != null) {
                     selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
-
-                    seperatedStrings = null;
-                    selectedCommand = null;
                 }
             }
         } else if (messageContent.startsWith(prefix)) {
@@ -63,9 +60,6 @@ public class CommandHandler {
 
                 if (selectedCommand != null) {
                     selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
-
-                    seperatedStrings = null;
-                    selectedCommand = null;
                 }
             }
         } else {
@@ -77,9 +71,6 @@ public class CommandHandler {
                 if (selectedCommand != null) {
                     selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
                 }
-
-                seperatedStrings = null;
-                selectedCommand = null;
             }
         }
     }

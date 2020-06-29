@@ -21,11 +21,14 @@ version '0.0.1a'
 repositories {
     mavenCentral()
     jcenter()
+    maven {
+        url 'https://jitpack.io'
+    }
 }
 
 dependencies {
     compile(group: 'net.dv8tion', name: 'JDA', version: '4.1.1_166')
-    compile(group: 'com.esotericsoftware.yamlbeans', name: 'yamlbeans', version: '1.14')
+    compile('com.github.Zyonic-Software:JavaMySQLAPI:v1.0.4a')
     compile(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.4.1')
 }
 

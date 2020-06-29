@@ -8,15 +8,16 @@
 package com.zyonicsoftware.maddox.core.startup;
 
 import com.zyonicsoftware.maddox.config.BaseValueConfig;
-import com.zyonicsoftware.maddox.core.engine.yaml.YMLInterpreter;
+import com.zyonicsoftware.maddox.config.MySQLConfig;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
+import org.simpleyaml.configuration.file.YamlConfiguration;
 
 import javax.security.auth.login.LoginException;
-import java.util.Map;
+import java.io.File;
 
 public class PreLoader {
 
@@ -26,26 +27,84 @@ public class PreLoader {
         this.maddox = maddox;
     }
 
-    public void loadConfigFile(BaseValueConfig config) {
-        YMLInterpreter ymlInterpreter = new YMLInterpreter();
+    public void loadConfigFile(BaseValueConfig config, MySQLConfig mySQLConfig) {
 
         try {
-            Map baseValueConfigMap = ymlInterpreter.readYML("config.yml");
 
-            if(baseValueConfigMap != null) {
+            //Config
+            File configFile = new File("config.yml");
 
-                config.setToken(baseValueConfigMap.get("token"));
-                config.setAmountShards(baseValueConfigMap.get("amountShards"));
-                config.setDefaultPrefix(baseValueConfigMap.get("defaultPrefix"));
-                config.setDefaultColor(baseValueConfigMap.get("defaultColor"));
-                config.setDefaultBotName(baseValueConfigMap.get("defaultBotName"));
+            if (!configFile.createNewFile()) {
+
+                YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(configFile);
+
+                config.setToken(yamlConfiguration.get("token"));
+                config.setAmountShards(yamlConfiguration.get("amountShards"));
+                config.setDefaultPrefix(yamlConfiguration.get("defaultPrefix"));
+                config.setDefaultColor(yamlConfiguration.get("defaultColor"));
+                config.setDefaultBotName(yamlConfiguration.get("defaultBotName"));
+                config.setMysql(yamlConfiguration.get("mysql"));
 
             } else {
-                ymlInterpreter.createYML("config.yml");
-                return;
-            }
-        } catch (Exception e){
 
+                YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(configFile);
+
+                yamlConfiguration.createSection("token");
+                yamlConfiguration.createSection("amountShards");
+                yamlConfiguration.createSection("defaultPrefix");
+                yamlConfiguration.createSection("defaultColor");
+                yamlConfiguration.createSection("defaultBotName");
+                yamlConfiguration.createSection("mysql");
+
+                yamlConfiguration.save(configFile);
+
+                yamlConfiguration.set("token", "token");
+                yamlConfiguration.set("amountShards", "1");
+                yamlConfiguration.set("defaultPrefix", "!");
+                yamlConfiguration.set("defaultColor", "#0231a8");
+                yamlConfiguration.set("defaultBotName", "Maddox");
+                yamlConfiguration.set("mysql", "false '[Remove this before use]#config will be generated on activation[Remove this before use]'");
+
+                yamlConfiguration.save(configFile);
+            }
+
+            if (config.isMysql()) {
+
+                File mysqlFile = new File("mysqlconfig.yml");
+
+                if (!mysqlFile.createNewFile()) {
+
+                    YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(mysqlFile);
+
+                    mySQLConfig.setHostname(yamlConfiguration.get("hostname"));
+                    mySQLConfig.setPort(yamlConfiguration.get("port"));
+                    mySQLConfig.setDatabase(yamlConfiguration.get("database"));
+                    mySQLConfig.setUser(yamlConfiguration.get("user"));
+                    mySQLConfig.setPassword(yamlConfiguration.get("password"));
+
+                } else {
+
+                    YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(mysqlFile);
+
+                    yamlConfiguration.createSection("hostname");
+                    yamlConfiguration.createSection("port");
+                    yamlConfiguration.createSection("database");
+                    yamlConfiguration.createSection("user");
+                    yamlConfiguration.createSection("password");
+
+                    yamlConfiguration.save(mysqlFile);
+
+                    yamlConfiguration.set("hostname", "localhost");
+                    yamlConfiguration.set("port", "3306");
+                    yamlConfiguration.set("database", "Maddox");
+                    yamlConfiguration.set("user", "maddox");
+                    yamlConfiguration.set("password", "maddox_is_cool_please_use_a_safe_password_i_beg_you");
+
+                    yamlConfiguration.save(mysqlFile);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
