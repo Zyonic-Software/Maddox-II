@@ -88,9 +88,6 @@ public class CommandHandler {
 
                 if (selectedCommand != null) {
                     selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
-
-                    seperatedStrings = null;
-                    selectedCommand = null;
                 }
             }
         } else if (messageContent.startsWith(prefix)) {
@@ -103,9 +100,6 @@ public class CommandHandler {
 
                 if (selectedCommand != null) {
                     selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
-
-                    seperatedStrings = null;
-                    selectedCommand = null;
                 }
             }
         } else {
@@ -117,10 +111,15 @@ public class CommandHandler {
                 if (selectedCommand != null) {
                     selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
                 }
-
-                seperatedStrings = null;
-                selectedCommand = null;
             }
         }
+    }
+
+    public HashMap<String, Command> getCommands() {
+        return commands;
+    }
+
+    public HashMap<String, Command> getSpecificPrefixCommands() {
+        return specificPrefixCommands;
     }
 }

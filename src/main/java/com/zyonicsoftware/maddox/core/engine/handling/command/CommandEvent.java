@@ -7,6 +7,7 @@
 
 package com.zyonicsoftware.maddox.core.engine.handling.command;
 
+import com.zyonicsoftware.maddox.core.engine.objects.Sender;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -62,11 +63,11 @@ public class CommandEvent {
         }
     }
 
-    public Member getMember() {
+    public Sender getMaddoxMember() {
         if (receivedEvent != null) {
-            return receivedEvent.getMember();
+            return new Sender(receivedEvent.getMember());
         } else {
-            return updateEvent.getMember();
+            return new Sender(updateEvent.getMember());
         }
     }
 

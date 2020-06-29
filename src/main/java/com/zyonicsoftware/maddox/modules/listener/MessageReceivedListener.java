@@ -30,11 +30,16 @@ public class MessageReceivedListener extends ListenerAdapter {
 
         if (!event.getAuthor().equals(event.getJDA().getSelfUser())) {
 
-            String prefix = maddox.getDefaultPrefix();
+            String prefix;
+
+            if(this.maddox.isMySQLConnected()) {
+                prefix = "!";//ToDo
+            } else {
+                prefix = maddox.getDefaultPrefix();
+            }
 
             this.maddox.getCommandHandler().handle(event, prefix, event.getMessage().getContentRaw());
 
-            prefix = null;
         }
 
     }

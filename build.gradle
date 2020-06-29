@@ -15,7 +15,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 group 'com.zyonic'
-version '0.0.1a'
+version 'A-0.1.0a'
 
 
 repositories {
@@ -28,13 +28,16 @@ repositories {
 
 dependencies {
     compile(group: 'net.dv8tion', name: 'JDA', version: '4.1.1_166')
-    compile('com.github.Zyonic-Software:JavaMySQLAPI:v1.0.4a')
+    compile('com.github.Daschi1:JavaMySQLAPI:v1.0.5a')
     compile(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.4.1')
 }
+
+compileJava.options.encoding = 'UTF-8'
 
 jar {
     baseName("Maddox")
     version(project.version)
+
 
     /*from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }

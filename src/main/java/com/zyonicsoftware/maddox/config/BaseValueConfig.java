@@ -15,7 +15,9 @@ public class BaseValueConfig {
     private String defaultPrefix;
     private Color defaultColor;
     private String defaultBotName;
+    private String botAdministrator;
     private boolean isMysql;
+    private boolean commandsToggleable;
 
     public void setToken(Object token) {
         this.token = (String) token;
@@ -38,7 +40,15 @@ public class BaseValueConfig {
     }
 
     public void setMysql(Object mysql) {
-        isMysql = (boolean) mysql;
+        isMysql = Boolean.getBoolean((String) mysql);
+    }
+
+    public void setBotAdministrator(Object botAdministrator) {
+        this.botAdministrator = (String) botAdministrator;
+    }
+
+    public void setCommandsToggleable(Object commandsToggleable) {
+        this.commandsToggleable = Boolean.getBoolean((String) commandsToggleable);
     }
 
     public String getToken() {
@@ -61,7 +71,15 @@ public class BaseValueConfig {
         return defaultBotName;
     }
 
+    public String getBotAdministrator() {
+        return botAdministrator;
+    }
+
     public boolean isMysql() {
         return isMysql;
+    }
+
+    public boolean areCommandsToggleable() {
+        return commandsToggleable;
     }
 }

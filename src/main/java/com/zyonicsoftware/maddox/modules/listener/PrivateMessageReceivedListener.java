@@ -20,7 +20,12 @@ public class PrivateMessageReceivedListener extends ListenerAdapter {
     }
 
     public void onPrivateMessageReceived(PrivateMessageReceivedEvent event) {
+        if(event.getAuthor().equals(event.getAuthor().getJDA().getSelfUser())){
 
+            String prefix = this.maddox.getDefaultPrefix();
+
+            this.maddox.getPrivateMessageCommandHandler().handle(event, prefix, event.getMessage().getContentRaw());
+        }
     }
 
 }

@@ -7,16 +7,22 @@
 
 package com.zyonicsoftware.maddox.core.engine.handling.command;
 
+import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
+
 public abstract class Command {
 
     private String name;
     private String description;
     private String syntax;
     private String specificPrefix;
+    private String category = "none";
     private boolean allowExecutionOnMessageEdit;
+    private boolean showInHelp;
+    private boolean toggleable;
+    private int commandHelpViewPermission = 0;
 
     protected void setName(String name) {
-        this.name = name;
+        this.name = name.toLowerCase();
     }
 
     public String getName() {
@@ -26,7 +32,7 @@ public abstract class Command {
     protected void setDescription(String description) {
         this.description = description;
     }
-
+    
     public String getDescription() {
         return description;
     }
@@ -53,6 +59,63 @@ public abstract class Command {
 
     public boolean isExecutionOnMessageEdit() {
         return allowExecutionOnMessageEdit;
+    }
+
+    protected void setShowInHelp(boolean showInHelp) {
+        this.showInHelp = showInHelp;
+    }
+
+    public boolean ShowInHelp() {
+        return showInHelp;
+    }
+
+    protected void setToggleable(boolean isToggleable) {
+        this.toggleable = isToggleable;
+    }
+
+    public boolean isToggleable() {
+        return toggleable;
+    }
+
+    protected void setCommandHelpViewPermission(CommandHelpViewPermission commandHelpViewPermission) {
+        switch (commandHelpViewPermission){
+            case EVERYONE:
+                this.commandHelpViewPermission = 0;
+                break;
+            case MANAGE_MESSAGE:
+                this.commandHelpViewPermission = 1;
+                break;
+            case MANAGE_CHANNEL:
+                this.commandHelpViewPermission = 2;
+                break;
+            case MEMBER_KICK:
+                this.commandHelpViewPermission = 3;
+                break;
+            case MEMBER_BAN:
+                this.commandHelpViewPermission = 4;
+                break;
+            case MANAGE_ROLE:
+                this.commandHelpViewPermission = 5;
+                break;
+            case MANAGE_SERVER:
+                this.commandHelpViewPermission = 6;
+                break;
+            case ADMINISTRATOR:
+                this.commandHelpViewPermission = 7;
+                break;
+        }
+    }
+
+    public int getCommandHelpViewPermission() {
+        return commandHelpViewPermission;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     protected abstract void execute(CommandEvent event);

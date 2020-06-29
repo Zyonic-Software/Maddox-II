@@ -15,13 +15,13 @@ public class Initializer {
 
     public static void main(String[] args) {
         Maddox maddox = new Maddox();
-        PreLoader preLoader = new PreLoader(maddox);
+        PreStartupLoader preStartupLoader = new PreStartupLoader(maddox);
         BaseValueConfig config = new BaseValueConfig();
         MySQLConfig mySQLConfig = new MySQLConfig();
 
-        preLoader.loadConfigFile(config, mySQLConfig);
+        preStartupLoader.loadConfigFile(config, mySQLConfig);
 
-        maddox.startup(config.getAmountShards(), config, mySQLConfig, preLoader);
+        maddox.startup(config.getAmountShards(), config, mySQLConfig);
 
 
         //ShutdownHook
