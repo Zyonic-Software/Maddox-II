@@ -5,21 +5,22 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.modules.command.settings;
+package com.zyonicsoftware.maddox.modules.command.settings.system;
 
 import com.zyonicsoftware.maddox.core.engine.handling.command.Command;
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandEvent;
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
 import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
 import com.zyonicsoftware.maddox.core.engine.objects.Sender;
+import net.dv8tion.jda.api.Permission;
 
-public class LanguageCommand extends Command {
+public class SetPrefixCommand extends Command {
 
-    public LanguageCommand(){
-        this.setName("lang");
-        this.setCategory("Language-Category");
-        this.setSyntax("Language-Syntax");
-        this.setDescription("Language-Desc");
+    public SetPrefixCommand(){
+        this.setName("setprefix");
+        this.setCategory("SetPrefix-Category");
+        this.setSyntax("SetPrefix-Syntax");
+        this.setDescription("SetPrefix-Desc");
         this.setAllowExecutionOnMessageEdit(true);
         this.setCommandHelpViewPermission(CommandHelpViewPermission.ADMINISTRATOR);
         this.setGetValuesFromLanguageYAML(true);
@@ -28,6 +29,12 @@ public class LanguageCommand extends Command {
 
     @Override
     protected void execute(CommandEvent event, Sender sender, DiscordServer server) {
-
+        if(sender.hasPermission(Permission.ADMINISTRATOR)){
+            if(!event.getArguments().isEmpty()){
+                server.setPrefix(event.getArguments().get(0));
+            }
+        } else {
+            event.deleteEventMessage();
+        }
     }
 }

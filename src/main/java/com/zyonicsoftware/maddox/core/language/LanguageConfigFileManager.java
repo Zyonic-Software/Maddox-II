@@ -30,11 +30,15 @@ public class LanguageConfigFileManager {
             if (file.createNewFile()) {
                 LanguageAPI.setValue("Help-Category", "Information", "EN");
                 LanguageAPI.setValue("Help-Desc", "Shows helpful Information", "EN");
-                LanguageAPI.setValue("Help-Syntax", "help <command>", "EN");
+                LanguageAPI.setValue("Help-Syntax", "help <Command>", "EN");
 
                 LanguageAPI.setValue("Language-Category", "Settings", "EN");
                 LanguageAPI.setValue("Language-Desc", "Command for switching Language-Settings", "EN");
                 LanguageAPI.setValue("Language-Syntax", "lang <Language>", "EN");
+
+                LanguageAPI.setValue("SetPrefix-Category", "Settings", "EN");
+                LanguageAPI.setValue("SetPrefix-Desc", "This Commands enables you to choose a server-specific prefix for " + maddox.getName() + ".", "EN");
+                LanguageAPI.setValue("SetPrefix-Syntax", "setprefix <new Prefix>", "EN");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,12 +52,16 @@ public class LanguageConfigFileManager {
 
             if (file.createNewFile()) {
                 LanguageAPI.setValue("Help-Category", "Informationen", "DE");
-                LanguageAPI.setValue("Help-Desc", "Zeigt hilfreiche Informationen", "DE");
+                LanguageAPI.setValue("Help-Desc", "Zeigt hilfreiche Informationen.", "DE");
                 LanguageAPI.setValue("Help-Syntax", "help <command>", "DE");
 
                 LanguageAPI.setValue("Language-Category", "Einstellungen", "DE");
-                LanguageAPI.setValue("Language-Desc", "Command um die Sprache umzustellen", "DE");
+                LanguageAPI.setValue("Language-Desc", "Command um die Sprache umzustellen.", "DE");
                 LanguageAPI.setValue("Language-Syntax", "lang <Sprache>", "DE");
+
+                LanguageAPI.setValue("SetPrefix-Category", "Einstellungen", "DE");
+                LanguageAPI.setValue("SetPrefix-Desc", "Dieser Command ermöglicht es dir einen Serverspezifischen Prefix für " + maddox.getName() + " zu setzen.", "DE");
+                LanguageAPI.setValue("SetPrefix-Syntax", "setprefix <new Prefix>", "DE");
             }
         } catch (Exception e) {
             e.printStackTrace();

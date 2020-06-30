@@ -15,7 +15,7 @@ public class DiscordServer {
 
     private final Guild guild;
     private String prefix;
-    private final String language;
+    private String language;
     private MySQLHandler mySQLHandler;
 
     public DiscordServer(Guild guild, String prefix) {
@@ -47,8 +47,9 @@ public class DiscordServer {
         return language;
     }
 
-    public void setLanguage() {
-
+    public void setLanguage(String language) {
+        mySQLHandler.setLanguage(language, this.guild.getId());
+        this.language = language;
     }
 
     public String getPrefix() {

@@ -10,6 +10,7 @@ package com.zyonicsoftware.maddox.core.mysql;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import de.daschi.core.MySQL;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MySQLHandler {
@@ -42,12 +43,32 @@ public class MySQLHandler {
         }
     }
 
-    public void setServerLanguage(String language, String guildID) {
-        //ToDo
+    public void setLanguage(String language, String guildID) {
+        try {
+            mySQL.executeQuery("UPDATE Server_Settings SET language = "+ language + " WHERE ServerID = " + guildID + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public String getPrefix(String guildID) {
-        return "!";//ToDo
+    public String getLanguage(String guildID) {
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT language FROM Server_Settings WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("language");
+            }
+        } catch (Exception e){ }
+        return " ";
+    }
+
+    public String getPrefix(String guildID){
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT language FROM Server_Settings WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("language");
+            }
+        } catch (Exception e){ }
+        return " ";
     }
 
     public void setPrefix(String prefix, String guildID) {

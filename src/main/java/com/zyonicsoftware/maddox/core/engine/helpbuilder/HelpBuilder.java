@@ -126,7 +126,7 @@ public class HelpBuilder {
         return embedBuilder.build();
     }
 
-    public MessageEmbed generateCommandHelp(Command command, String prefix) {
+    public MessageEmbed generateCommandHelp(Command command, String prefix, Sender sender) {
 
         if (command.isGetValuesFromLanguageYaml()) {
             return new EmbedBuilder()
@@ -139,6 +139,7 @@ public class HelpBuilder {
                     .setTitle("**" + command.getName() + " Help**")
                     .setColor(this.maddox.getDefaultColor())
                     .addField(prefix + command.getSyntax(), command.getDescription(), false)
+                    .setThumbnail(sender.getCurrentJDA().getSelfUser().getAvatarUrl())
                     .build();
         }
     }

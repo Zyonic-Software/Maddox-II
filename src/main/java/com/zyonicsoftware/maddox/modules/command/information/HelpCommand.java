@@ -34,7 +34,7 @@ public class HelpCommand extends Command {
         if (event.getArguments().isEmpty()) {
             event.reply(maddox.getHelpBuilder().assembleHelp(sender, server.getPrefix(), server.getLanguage()));
         } else if (event.getArguments().size() > 0 && this.maddox.getCommandHandler().getCommands().containsKey(event.getArguments().get(0).toLowerCase())) {
-            event.reply(this.maddox.getHelpBuilder().generateCommandHelp(this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0).toLowerCase()), server.getPrefix()));
+            event.reply(this.maddox.getHelpBuilder().generateCommandHelp(this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0).toLowerCase()), server.getPrefix(), sender));
         }
     }
 }
