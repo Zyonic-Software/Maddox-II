@@ -49,20 +49,27 @@ public class Maddox {
 
         System.out.println("Startup " + this.name);
 
-        System.out.println("Bot-Administrator ID(s): " + config.getBotAdministrator());
 
         //If MySQL-Module is Enabled, this will automatically connect to the specified Database Server
-        if (mySQLConfig.isEnabled()) {
-            mySQLHandler = new MySQLHandler(this);
-
-            try {
-                mySQLHandler.connectToMysql(mySQLConfig.getHostname(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUser(), mySQLConfig.getPassword());
-            } catch (Exception e){
-                System.out.println("MySQL connection failed, aborting");
+        if (config.isMysql()){
+            if(mySQLConfig.getPassword() != null && !mySQLConfig.getPassword().equals("maddox_is_cool_please_use_a_safe_password_i_beg_you")) {
+                mySQLHandler = new MySQLHandler(this);
+                try {
+                    mySQLHandler.connectToMysql(mySQLConfig.getHostname(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUser(), mySQLConfig.getPassword());
+                    System.out.println("MySQL enabled");
+                    isMySQL = true;
+                } catch (Exception e) {
+                    System.out.println("MySQL connection failed, aborting");
+                    return;
+                }
+            } else {
+                System.out.println("Please enter your info in 'mysqlconfig.yml' for the MySQL module to work, aborting.");
                 return;
             }
-            isMySQL = true;
         }
+
+
+        System.out.println("Bot-Administrator ID(s): " + config.getBotAdministrator());
 
         shardManager = this.initShards(amountShards, config, startupLoader);
 

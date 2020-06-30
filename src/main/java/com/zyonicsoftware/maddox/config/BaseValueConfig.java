@@ -24,7 +24,7 @@ public class BaseValueConfig {
     }
 
     public void setAmountShards(Object amountShards) {
-        this.amountShards = Integer.parseInt((String) amountShards);
+        this.amountShards = (int) amountShards;
     }
 
     public void setDefaultColor(Object defaultColor) {
@@ -40,7 +40,7 @@ public class BaseValueConfig {
     }
 
     public void setMysql(Object mysql) {
-        isMysql = Boolean.getBoolean((String) mysql);
+        isMysql = (boolean) mysql;
     }
 
     public void setBotAdministrator(Object botAdministrator) {
@@ -48,7 +48,7 @@ public class BaseValueConfig {
     }
 
     public void setCommandsToggleable(Object commandsToggleable) {
-        this.commandsToggleable = Boolean.getBoolean((String) commandsToggleable);
+        this.commandsToggleable = (boolean) commandsToggleable;
     }
 
     public String getToken() {

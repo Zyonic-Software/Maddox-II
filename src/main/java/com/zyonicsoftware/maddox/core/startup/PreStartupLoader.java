@@ -64,13 +64,13 @@ public class PreStartupLoader {
                 yamlConfiguration.save(configFile);
 
                 yamlConfiguration.set("token", "your_bots_token_goes_here");
-                yamlConfiguration.set("amountShards", "1");
+                yamlConfiguration.set("amountShards", 1);
                 yamlConfiguration.set("defaultPrefix", "!");
                 yamlConfiguration.set("defaultColor", "#0231a8");
                 yamlConfiguration.set("defaultBotName", "Maddox");
                 yamlConfiguration.set("botAdministrator", "309007975060602882,498077062775570432");
-                yamlConfiguration.set("mysql", "false");
-                yamlConfiguration.set("commandsToggleable", "false");
+                yamlConfiguration.set("mysql", false);
+                yamlConfiguration.set("commandsToggleable", false);
 
                 yamlConfiguration.save(configFile);
             }
@@ -107,15 +107,17 @@ public class PreStartupLoader {
                 yamlConfiguration.save(mysqlFile);
 
                 yamlConfiguration.set("hostname", "localhost");
-                yamlConfiguration.set("port", "3306");
+                yamlConfiguration.set("port", 3306);
                 yamlConfiguration.set("database", "Maddox");
                 yamlConfiguration.set("user", "maddox");
                 yamlConfiguration.set("password", "maddox_is_cool_please_use_a_safe_password_i_beg_you");
 
                 yamlConfiguration.save(mysqlFile);
+
+                System.out.println("Generated mySQL config, please enter your Information and restart");
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
