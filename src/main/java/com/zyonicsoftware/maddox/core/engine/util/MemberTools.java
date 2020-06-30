@@ -12,8 +12,8 @@ import net.dv8tion.jda.api.entities.Member;
 
 public class MemberTools {
 
-    private Maddox maddox;
-    private Member member;
+    private final Maddox maddox;
+    private final Member member;
 
     public MemberTools(Maddox maddox, Member member) {
         this.maddox = maddox;

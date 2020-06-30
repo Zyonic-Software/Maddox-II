@@ -219,8 +219,8 @@ public class Sender {
         }
     }
 
-    public int getCommandHelpViewPermissionValue(){
-        switch (this.getCommandHelpViewPermission()){
+    public int getCommandHelpViewPermissionValue() {
+        switch (this.getCommandHelpViewPermission()) {
             case EVERYONE:
                 return 0;
             case MANAGE_MESSAGE:

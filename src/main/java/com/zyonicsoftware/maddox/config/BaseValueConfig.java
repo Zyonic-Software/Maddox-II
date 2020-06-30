@@ -15,6 +15,7 @@ public class BaseValueConfig {
     private String defaultPrefix;
     private Color defaultColor;
     private String defaultBotName;
+    private String defaultLanguage;
     private String botAdministrator;
     private boolean isMysql;
     private boolean commandsToggleable;
@@ -37,6 +38,10 @@ public class BaseValueConfig {
 
     public void setDefaultBotName(Object defaultBotName) {
         this.defaultBotName = (String) defaultBotName;
+    }
+
+    public void setDefaultLanguage(Object defaultLanguage) {
+        this.defaultLanguage = (String) defaultLanguage;
     }
 
     public void setMysql(Object mysql) {
@@ -69,6 +74,10 @@ public class BaseValueConfig {
 
     public String getDefaultBotName() {
         return defaultBotName;
+    }
+
+    public String getDefaultLanguage() {
+        return defaultLanguage;
     }
 
     public String getBotAdministrator() {

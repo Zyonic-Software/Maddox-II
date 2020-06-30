@@ -7,6 +7,8 @@
 
 package com.zyonicsoftware.maddox.core.engine.handling.command;
 
+import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
+import com.zyonicsoftware.maddox.core.engine.objects.Sender;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
@@ -47,7 +49,11 @@ public class CommandHandler {
                 Command selectedCommand = commands.get(seperatedStrings[0].toLowerCase());
 
                 if (selectedCommand != null) {
-                    selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
+                    if (this.maddox.isMySQLConnected()) {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                    } else {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix));
+                    }
                 }
             }
         } else if (messageContent.startsWith(prefix)) {
@@ -59,7 +65,11 @@ public class CommandHandler {
                 Command selectedCommand = commands.get(seperatedStrings[0].toLowerCase());
 
                 if (selectedCommand != null) {
-                    selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
+                    if (this.maddox.isMySQLConnected()) {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                    } else {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix));
+                    }
                 }
             }
         } else {
@@ -69,7 +79,11 @@ public class CommandHandler {
 
                 Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
-                    selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
+                    if (this.maddox.isMySQLConnected()) {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                    } else {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix));
+                    }
                 }
             }
         }
@@ -87,7 +101,11 @@ public class CommandHandler {
                 Command selectedCommand = commands.get(seperatedStrings[0].toLowerCase());
 
                 if (selectedCommand != null) {
-                    selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
+                    if (this.maddox.isMySQLConnected()) {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                    } else {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix));
+                    }
                 }
             }
         } else if (messageContent.startsWith(prefix)) {
@@ -99,7 +117,11 @@ public class CommandHandler {
                 Command selectedCommand = commands.get(seperatedStrings[0].toLowerCase());
 
                 if (selectedCommand != null) {
-                    selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
+                    if (this.maddox.isMySQLConnected()) {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                    } else {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix));
+                    }
                 }
             }
         } else {
@@ -109,7 +131,11 @@ public class CommandHandler {
 
                 Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
-                    selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix));
+                    if (this.maddox.isMySQLConnected()) {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                    } else {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new Sender(event.getMember()), new DiscordServer(event.getGuild(), prefix));
+                    }
                 }
             }
         }

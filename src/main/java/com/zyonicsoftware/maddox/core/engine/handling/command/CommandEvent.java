@@ -7,6 +7,7 @@
 
 package com.zyonicsoftware.maddox.core.engine.handling.command;
 
+import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
 import com.zyonicsoftware.maddox.core.engine.objects.Sender;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.*;
@@ -22,6 +23,7 @@ public class CommandEvent {
     private final Command command;
     private GuildMessageReceivedEvent receivedEvent;
     private GuildMessageUpdateEvent updateEvent;
+    private final DiscordServer server;
     private final String prefix;
 
 
@@ -30,12 +32,14 @@ public class CommandEvent {
         this.command = command;
         this.receivedEvent = receivedEvent;
         this.prefix = prefix;
+        server = new DiscordServer(receivedEvent.getGuild(), prefix);
     }
 
     public CommandEvent(Command command, GuildMessageUpdateEvent updateEvent, String prefix) {
         this.command = command;
         this.updateEvent = updateEvent;
         this.prefix = prefix;
+        server = new DiscordServer(updateEvent.getGuild(), prefix);
     }
 
 
@@ -63,7 +67,7 @@ public class CommandEvent {
         }
     }
 
-    public Sender getMaddoxMember() {
+    public Sender getSender() {
         if (receivedEvent != null) {
             return new Sender(receivedEvent.getMember());
         } else {
@@ -306,4 +310,7 @@ public class CommandEvent {
         }
     }
 
+    public DiscordServer getServer() {
+        return server;
+    }
 }

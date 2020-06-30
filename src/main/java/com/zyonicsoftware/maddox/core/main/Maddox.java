@@ -12,6 +12,7 @@ import com.zyonicsoftware.maddox.config.MySQLConfig;
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
 import com.zyonicsoftware.maddox.core.engine.handling.privatemessage.PrivateMessageCommandHandler;
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.HelpBuilder;
+import com.zyonicsoftware.maddox.core.language.LanguageLoader;
 import com.zyonicsoftware.maddox.core.management.CommandManager;
 import com.zyonicsoftware.maddox.core.mysql.MySQLHandler;
 import com.zyonicsoftware.maddox.core.startup.StartupLoader;
@@ -25,10 +26,12 @@ public class Maddox {
 
     private PrivateMessageCommandHandler privateMessageCommandHandler;
     private CommandHandler commandHandler;
+    private LanguageLoader languageLoader;
     private MySQLHandler mySQLHandler;
     private ShardManager shardManager;
     private HelpBuilder helpBuilder;
     private String botAdministrator;
+    private String defaultLanguage;
     private String defaultPrefix;
     private Color defaultColor;
     private boolean isMySQL;
@@ -51,8 +54,8 @@ public class Maddox {
 
 
         //If MySQL-Module is Enabled, this will automatically connect to the specified Database Server
-        if (config.isMysql()){
-            if(mySQLConfig.getPassword() != null && !mySQLConfig.getPassword().equals("maddox_is_cool_please_use_a_safe_password_i_beg_you")) {
+        if (config.isMysql()) {
+            if (mySQLConfig.getPassword() != null && !mySQLConfig.getPassword().equals("maddox_is_cool_please_use_a_safe_password_i_beg_you")) {
                 mySQLHandler = new MySQLHandler(this);
                 try {
                     mySQLHandler.connectToMysql(mySQLConfig.getHostname(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUser(), mySQLConfig.getPassword());
@@ -67,6 +70,10 @@ public class Maddox {
                 return;
             }
         }
+
+        this.languageLoader = new LanguageLoader(this);
+
+        this.languageLoader.initLanguages();
 
 
         System.out.println("Bot-Administrator ID(s): " + config.getBotAdministrator());
@@ -97,6 +104,7 @@ public class Maddox {
         this.defaultColor = config.getDefaultColor();
         this.name = config.getDefaultBotName();
         this.botAdministrator = config.getBotAdministrator();
+        this.defaultLanguage = config.getDefaultLanguage();
     }
 
 
@@ -134,5 +142,13 @@ public class Maddox {
 
     public boolean isMySQLConnected() {
         return isMySQL;
+    }
+
+    public MySQLHandler getMySQLHandler() {
+        return mySQLHandler;
+    }
+
+    public String getDefaultLanguage() {
+        return defaultLanguage;
     }
 }

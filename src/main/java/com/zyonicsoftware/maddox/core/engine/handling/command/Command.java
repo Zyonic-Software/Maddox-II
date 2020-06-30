@@ -8,6 +8,8 @@
 package com.zyonicsoftware.maddox.core.engine.handling.command;
 
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
+import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
+import com.zyonicsoftware.maddox.core.engine.objects.Sender;
 
 public abstract class Command {
 
@@ -19,6 +21,7 @@ public abstract class Command {
     private boolean allowExecutionOnMessageEdit;
     private boolean showInHelp;
     private boolean toggleable;
+    private boolean getValuesFromLanguage;
     private int commandHelpViewPermission = 0;
 
     protected void setName(String name) {
@@ -32,7 +35,7 @@ public abstract class Command {
     protected void setDescription(String description) {
         this.description = description;
     }
-    
+
     public String getDescription() {
         return description;
     }
@@ -78,7 +81,7 @@ public abstract class Command {
     }
 
     protected void setCommandHelpViewPermission(CommandHelpViewPermission commandHelpViewPermission) {
-        switch (commandHelpViewPermission){
+        switch (commandHelpViewPermission) {
             case EVERYONE:
                 this.commandHelpViewPermission = 0;
                 break;
@@ -110,7 +113,7 @@ public abstract class Command {
         return commandHelpViewPermission;
     }
 
-    public void setCategory(String category) {
+    protected void setCategory(String category) {
         this.category = category;
     }
 
@@ -118,5 +121,13 @@ public abstract class Command {
         return category;
     }
 
-    protected abstract void execute(CommandEvent event);
+    protected void setGetValuesFromLanguageYAML(boolean getValuesFromLanguage) {
+        this.getValuesFromLanguage = getValuesFromLanguage;
+    }
+
+    public boolean isGetValuesFromLanguageYaml() {
+        return getValuesFromLanguage;
+    }
+
+    protected abstract void execute(CommandEvent event, Sender sender, DiscordServer server);
 }

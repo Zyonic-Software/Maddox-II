@@ -10,6 +10,7 @@ package com.zyonicsoftware.maddox.core.management;
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import com.zyonicsoftware.maddox.modules.command.information.HelpCommand;
+import com.zyonicsoftware.maddox.modules.command.settings.LanguageCommand;
 
 public class CommandManager {
 
@@ -20,6 +21,12 @@ public class CommandManager {
     }
 
     public void registerCommands(CommandHandler commandHandler) {
+
+        //Sys-Admin Commands
+
+        //Guild-Admin Commands
+
+        commandHandler.registerCommand(new LanguageCommand());
 
         //Standard Commands
 

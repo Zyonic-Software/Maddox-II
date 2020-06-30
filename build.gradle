@@ -15,7 +15,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 group 'com.zyonic'
-version 'V2-A-0.1.0b'
+version 'V2-A-0.1.1a'
 
 
 repositories {
@@ -29,6 +29,7 @@ repositories {
 dependencies {
     compile(group: 'net.dv8tion', name: 'JDA', version: '4.1.1_166')
     compile('com.github.Daschi1:JavaMySQLAPI:v1.0.5a')
+    compile('com.github.Daschi1:JavaLanguageAPI:v1.0.0a')
     compile(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.4.1')
 }
 
