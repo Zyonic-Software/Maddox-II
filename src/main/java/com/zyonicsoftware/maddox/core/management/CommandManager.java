@@ -12,6 +12,7 @@ import com.zyonicsoftware.maddox.core.main.Maddox;
 import com.zyonicsoftware.maddox.modules.command.information.HelpCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.LanguageCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.system.SetPrefixCommand;
+import com.zyonicsoftware.maddox.modules.command.sysadmin.ForceAddCommand;
 
 public class CommandManager {
 
@@ -23,11 +24,13 @@ public class CommandManager {
 
     public void registerCommands(CommandHandler commandHandler) {
 
-        //Sys-Admin Commands
+        //Sys-Admin Comman
+
+        commandHandler.registerCommand(new ForceAddCommand(this.maddox));
 
         //Guild-Admin Commands
 
-        commandHandler.registerCommand(new LanguageCommand());
+        commandHandler.registerCommand(new LanguageCommand(this.maddox));
         commandHandler.registerCommand(new SetPrefixCommand());
 
         //Standard Commands

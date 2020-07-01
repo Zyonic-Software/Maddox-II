@@ -16,7 +16,7 @@ import net.dv8tion.jda.api.Permission;
 
 public class SetPrefixCommand extends Command {
 
-    public SetPrefixCommand(){
+    public SetPrefixCommand() {
         this.setName("setprefix");
         this.setCategory("SetPrefix-Category");
         this.setSyntax("SetPrefix-Syntax");
@@ -29,8 +29,8 @@ public class SetPrefixCommand extends Command {
 
     @Override
     protected void execute(CommandEvent event, Sender sender, DiscordServer server) {
-        if(sender.hasPermission(Permission.ADMINISTRATOR)){
-            if(!event.getArguments().isEmpty()){
+        if (sender.hasPermission(Permission.ADMINISTRATOR)) {
+            if (!event.getArguments().isEmpty()) {
                 server.setPrefix(event.getArguments().get(0));
             }
         } else {

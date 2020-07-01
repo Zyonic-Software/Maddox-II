@@ -11,10 +11,15 @@ import com.zyonicsoftware.maddox.core.engine.handling.command.CommandEvent;
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
 import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
 import com.zyonicsoftware.maddox.core.engine.objects.Sender;
+import com.zyonicsoftware.maddox.core.main.Maddox;
+import de.daschi.javalanguageapi.api.LanguageAPI;
+import net.dv8tion.jda.api.Permission;
 
 public class LanguageCommand extends Command {
 
-    public LanguageCommand(){
+    private final Maddox maddox;
+
+    public LanguageCommand(Maddox maddox) {
         this.setName("lang");
         this.setCategory("Language-Category");
         this.setSyntax("Language-Syntax");
@@ -23,10 +28,23 @@ public class LanguageCommand extends Command {
         this.setCommandHelpViewPermission(CommandHelpViewPermission.ADMINISTRATOR);
         this.setGetValuesFromLanguageYAML(true);
         this.setShowInHelp(true);
+        this.maddox = maddox;
     }
 
     @Override
     protected void execute(CommandEvent event, Sender sender, DiscordServer server) {
-
+        if (sender.hasPermission(Permission.ADMINISTRATOR)) {
+            if (!event.getArguments().isEmpty()) {
+                if (event.getArguments().get(0).equalsIgnoreCase("list")) {
+                    //toDo
+                } else if (this.maddox.getSupportedLanguages().contains(event.getArguments().get(0).toUpperCase())) {
+                    String selectedLanguage = event.getArguments().get(0).toUpperCase();
+                    server.setLanguage(event.getArguments().get(0));
+                    event.reply(LanguageAPI.getValue("Language-Set-1", selectedLanguage) + server.getServerName() + LanguageAPI.getValue("Language-Set-2", selectedLanguage) + selectedLanguage + LanguageAPI.getValue("Language-Set-3", selectedLanguage));
+                }
+            }
+        } else {
+            event.deleteEventMessage();
+        }
     }
 }

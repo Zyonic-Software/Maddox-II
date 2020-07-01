@@ -45,6 +45,7 @@ public class PreStartupLoader {
                 config.setDefaultColor(yamlConfiguration.get("defaultColor"));
                 config.setDefaultBotName(yamlConfiguration.get("defaultBotName"));
                 config.setDefaultLanguage(yamlConfiguration.get("defaultLanguage"));
+                config.setSupportedLanguages(yamlConfiguration.get("supportedLanguages"));
                 config.setBotAdministrator(yamlConfiguration.get("botAdministrator"));
                 config.setMysql(yamlConfiguration.get("mysql"));
                 config.setCommandsToggleable(yamlConfiguration.get("commandsToggleable"));
@@ -59,6 +60,7 @@ public class PreStartupLoader {
                 yamlConfiguration.createSection("defaultColor");
                 yamlConfiguration.createSection("defaultBotName");
                 yamlConfiguration.createSection("defaultLanguage");
+                yamlConfiguration.createSection("supportedLanguages");
                 yamlConfiguration.createSection("botAdministrator");
                 yamlConfiguration.createSection("mysql");
                 yamlConfiguration.createSection("commandsToggleable");
@@ -71,6 +73,7 @@ public class PreStartupLoader {
                 yamlConfiguration.set("defaultColor", "#0231a8");
                 yamlConfiguration.set("defaultBotName", "Maddox");
                 yamlConfiguration.set("defaultLanguage", "EN");
+                yamlConfiguration.set("supportedLanguages", "DE,EN");
                 yamlConfiguration.set("botAdministrator", "309007975060602882,498077062775570432");
                 yamlConfiguration.set("mysql", false);
                 yamlConfiguration.set("commandsToggleable", false);

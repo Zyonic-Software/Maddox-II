@@ -29,6 +29,7 @@ public class Maddox {
     private LanguageLoader languageLoader;
     private MySQLHandler mySQLHandler;
     private ShardManager shardManager;
+    private String supportedLanguages;
     private HelpBuilder helpBuilder;
     private String botAdministrator;
     private String defaultLanguage;
@@ -43,9 +44,9 @@ public class Maddox {
         //Get Values from Primary Config (config.yml)
         this.loadConfigValues(config);
 
-        StartupLoader startupLoader = new StartupLoader();
+        StartupLoader startupLoader = new StartupLoader();//Used to Init Shards
 
-        if (config.getToken() == null || config.getToken().equals("your_bots_token_goes_here")) {
+        if (config.getToken() == null || config.getToken().equals("your_bots_token_goes_here")) {//Checks if token has been insertet
             System.out.println("Please enter your Bot's Token into the generated 'config.yml'");
             return;
         }
@@ -73,7 +74,7 @@ public class Maddox {
 
         this.languageLoader = new LanguageLoader(this);
 
-        this.languageLoader.initLanguages();
+        this.languageLoader.initLanguages();//Loads languages from config files (and generates them)
 
 
         System.out.println("Bot-Administrator ID(s): " + config.getBotAdministrator());
@@ -105,6 +106,7 @@ public class Maddox {
         this.name = config.getDefaultBotName();
         this.botAdministrator = config.getBotAdministrator();
         this.defaultLanguage = config.getDefaultLanguage();
+        this.supportedLanguages = config.getSupportedLanguages();
     }
 
 
@@ -150,5 +152,9 @@ public class Maddox {
 
     public String getDefaultLanguage() {
         return defaultLanguage;
+    }
+
+    public String getSupportedLanguages() {
+        return supportedLanguages;
     }
 }

@@ -48,8 +48,10 @@ public class DiscordServer {
     }
 
     public void setLanguage(String language) {
-        mySQLHandler.setLanguage(language, this.guild.getId());
-        this.language = language;
+        if (mySQLHandler != null) {
+            mySQLHandler.setLanguage(language, this.guild.getId());
+            this.language = language;
+        }
     }
 
     public String getPrefix() {
@@ -57,7 +59,9 @@ public class DiscordServer {
     }
 
     public void setPrefix(String prefix) {
-        this.prefix = prefix;
-        mySQLHandler.setPrefix(prefix, this.getID());
+        if (mySQLHandler != null) {
+            this.prefix = prefix;
+            mySQLHandler.setPrefix(prefix, this.getID());
+        }
     }
 }
