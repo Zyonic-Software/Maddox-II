@@ -42,6 +42,9 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("SetPrefix-Category", "Settings", "EN");
                 LanguageAPI.setValue("SetPrefix-Desc", "This Commands enables you to choose a server-specific prefix for " + maddox.getName() + ".", "EN");
                 LanguageAPI.setValue("SetPrefix-Syntax", "setprefix <new Prefix>", "EN");
+                LanguageAPI.setValue("SetPrefix-Set-1", "The Prefix for '", "EN");
+                LanguageAPI.setValue("SetPrefix-Set-2", "' was set to '", "EN");
+                LanguageAPI.setValue("SetPrefix-Set-3", "' !", "EN");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,6 +72,9 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("SetPrefix-Category", "Einstellungen", "DE");
                 LanguageAPI.setValue("SetPrefix-Desc", "Dieser Command ermöglicht es dir einen Serverspezifischen Prefix für " + maddox.getName() + " zu setzen.", "DE");
                 LanguageAPI.setValue("SetPrefix-Syntax", "setprefix <new Prefix>", "DE");
+                LanguageAPI.setValue("SetPrefix-Set-1", "Der Prefix für '", "DE");
+                LanguageAPI.setValue("SetPrefix-Set-2", "' wurde auf '", "DE");
+                LanguageAPI.setValue("SetPrefix-Set-3", "' gesetzt!", "DE");
             }
         } catch (Exception e) {
             e.printStackTrace();

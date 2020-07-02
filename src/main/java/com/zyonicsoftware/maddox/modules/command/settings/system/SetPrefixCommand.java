@@ -12,6 +12,7 @@ import com.zyonicsoftware.maddox.core.engine.handling.command.CommandEvent;
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
+import de.daschi.javalanguageapi.api.LanguageAPI;
 import net.dv8tion.jda.api.Permission;
 
 public class SetPrefixCommand extends Command {
@@ -32,7 +33,7 @@ public class SetPrefixCommand extends Command {
         if (sender.hasPermission(Permission.ADMINISTRATOR)) {
             if (!event.getArguments().isEmpty()) {
                 server.setPrefix(event.getArguments().get(0));
-                event.reply("PleaseReplaceWithRealMessage#38");//ToDo
+                event.reply(LanguageAPI.getValue("SetPrefix-Set-1", server.getLanguage()) + server.getName() + LanguageAPI.getValue("SetPrefix-Set-2", server.getLanguage()) + server.getPrefix() + LanguageAPI.getValue("SetPrefix-Set-3", server.getLanguage()));
             }
         } else {
             event.deleteEventMessage();
