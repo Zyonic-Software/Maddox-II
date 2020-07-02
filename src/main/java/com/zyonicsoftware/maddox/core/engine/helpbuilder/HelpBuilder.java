@@ -8,7 +8,7 @@
 package com.zyonicsoftware.maddox.core.engine.helpbuilder;
 
 import com.zyonicsoftware.maddox.core.engine.handling.command.Command;
-import com.zyonicsoftware.maddox.core.engine.objects.Sender;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import de.daschi.javalanguageapi.api.LanguageAPI;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -25,7 +25,7 @@ public class HelpBuilder {
         this.maddox = maddox;
     }
 
-    public MessageEmbed assembleHelp(Sender sender, String prefix, String language) {
+    public MessageEmbed assembleHelp(MaddoxMember maddoxMember, String prefix, String language) {
         HashMap<String, Command> commands = this.maddox.getCommandHandler().getCommands();
         HashMap<String, Command> specefiedPrefixCommands = this.maddox.getCommandHandler().getSpecificPrefixCommands();
         HashMap<String, ArrayList<Command>> sortedCommands = new HashMap<>();
@@ -34,13 +34,13 @@ public class HelpBuilder {
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
 
-        embedBuilder.setTitle("**" + this.maddox.getName() + " Help**").setThumbnail(sender.getCurrentJDA().getSelfUser().getAvatarUrl());
+        embedBuilder.setTitle("**" + this.maddox.getName() + " Help**").setThumbnail(maddoxMember.getCurrentJDA().getSelfUser().getAvatarUrl());
         embedBuilder.setColor(maddox.getDefaultColor());
 
         //Sorting commands into specefied Categorys
         commands.forEach((name, command) -> {
             if (command.ShowInHelp()) {
-                if (command.getCommandHelpViewPermission() < sender.getCommandHelpViewPermissionValue()) {
+                if (command.getCommandHelpViewPermission() < maddoxMember.getCommandHelpViewPermissionValue()) {
                     if (command.isGetValuesFromLanguageYaml()) {//if Gets Values from Language-Yaml
                         if (sortedCommands.containsKey(LanguageAPI.getValue(command.getCategory(), language))) {
                             sortedCommands.get(LanguageAPI.getValue(command.getCategory(), language)).add(command);
@@ -77,7 +77,7 @@ public class HelpBuilder {
 
         //The same for SpecefiedPrefixCommands
         specefiedPrefixCommands.forEach((name, command) -> {
-            if (command.getCommandHelpViewPermission() < sender.getCommandHelpViewPermissionValue()) {
+            if (command.getCommandHelpViewPermission() < maddoxMember.getCommandHelpViewPermissionValue()) {
                 if (command.isGetValuesFromLanguageYaml()) {//if Gets Values from Language-Yaml
                     if (sortedCommands.containsKey(LanguageAPI.getValue(command.getCategory(), language))) {
                         sortedSpecefiedPrefixCommands.get(LanguageAPI.getValue(command.getCategory(), language)).add(command);
@@ -126,7 +126,7 @@ public class HelpBuilder {
         return embedBuilder.build();
     }
 
-    public MessageEmbed generateCommandHelp(Command command, String prefix, Sender sender) {
+    public MessageEmbed generateCommandHelp(Command command, String prefix, MaddoxMember maddoxMember) {
 
         if (command.isGetValuesFromLanguageYaml()) {
             return new EmbedBuilder()
@@ -139,7 +139,7 @@ public class HelpBuilder {
                     .setTitle("**" + command.getName() + " Help**")
                     .setColor(this.maddox.getDefaultColor())
                     .addField(prefix + command.getSyntax(), command.getDescription(), false)
-                    .setThumbnail(sender.getCurrentJDA().getSelfUser().getAvatarUrl())
+                    .setThumbnail(maddoxMember.getCurrentJDA().getSelfUser().getAvatarUrl())
                     .build();
         }
     }

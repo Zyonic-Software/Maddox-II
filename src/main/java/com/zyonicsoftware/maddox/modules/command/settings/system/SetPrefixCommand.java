@@ -10,8 +10,8 @@ package com.zyonicsoftware.maddox.modules.command.settings.system;
 import com.zyonicsoftware.maddox.core.engine.handling.command.Command;
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandEvent;
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
-import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
-import com.zyonicsoftware.maddox.core.engine.objects.Sender;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import net.dv8tion.jda.api.Permission;
 
 public class SetPrefixCommand extends Command {
@@ -28,7 +28,7 @@ public class SetPrefixCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, Sender sender, DiscordServer server) {
+    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
         if (sender.hasPermission(Permission.ADMINISTRATOR)) {
             if (!event.getArguments().isEmpty()) {
                 server.setPrefix(event.getArguments().get(0));

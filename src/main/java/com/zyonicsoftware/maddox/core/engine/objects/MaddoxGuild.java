@@ -37,20 +37,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class DiscordServer{ //Huge thanks to Spark61 for saving my fingers from typing all this crap
+public class MaddoxGuild { //Huge thanks to Spark61 for saving my fingers from typing all this crap
 
     private final Guild guild;
     private String prefix;
     private String language;
     private MySQLHandler mySQLHandler;
 
-    public DiscordServer(Guild guild, String prefix) {
+    public MaddoxGuild(Guild guild, String prefix) {
         this.guild = guild;
         this.prefix = prefix;
         this.language = LanguageAPI.getLanguageHandler().getLanguage();
     }
 
-    public DiscordServer(Guild guild, String prefix, MySQLHandler mySQLHandler) {
+    public MaddoxGuild(Guild guild, String prefix, MySQLHandler mySQLHandler) {
         this.guild = guild;
         this.prefix = prefix;
         this.language = mySQLHandler.getServerLanguage(guild.getId());

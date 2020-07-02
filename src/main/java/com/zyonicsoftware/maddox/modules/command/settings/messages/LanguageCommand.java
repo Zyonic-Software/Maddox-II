@@ -9,8 +9,8 @@ package com.zyonicsoftware.maddox.modules.command.settings.messages;
 import com.zyonicsoftware.maddox.core.engine.handling.command.Command;
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandEvent;
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
-import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
-import com.zyonicsoftware.maddox.core.engine.objects.Sender;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import de.daschi.javalanguageapi.api.LanguageAPI;
 import net.dv8tion.jda.api.Permission;
@@ -32,7 +32,7 @@ public class LanguageCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, Sender sender, DiscordServer server) {
+    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
         if (sender.hasPermission(Permission.ADMINISTRATOR)) {
             if (!event.getArguments().isEmpty()) {
                 if (event.getArguments().get(0).equalsIgnoreCase("list")) {

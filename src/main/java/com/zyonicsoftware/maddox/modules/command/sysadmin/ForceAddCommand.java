@@ -9,8 +9,8 @@ package com.zyonicsoftware.maddox.modules.command.sysadmin;
 
 import com.zyonicsoftware.maddox.core.engine.handling.command.Command;
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandEvent;
-import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
-import com.zyonicsoftware.maddox.core.engine.objects.Sender;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 
 public class ForceAddCommand extends Command {
@@ -25,7 +25,7 @@ public class ForceAddCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, Sender sender, DiscordServer server) {
+    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
         if (maddox.getBotAdministrator().contains(sender.getID())) {
             if (!event.getArguments().isEmpty()) {
                 if (event.getArguments().get(0).equalsIgnoreCase("server")) {//Forcefully adds a Server to the provided Database

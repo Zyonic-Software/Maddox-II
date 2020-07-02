@@ -29,11 +29,11 @@ import java.util.Collection;
 import java.util.EnumSet;
 import java.util.List;
 
-public class Sender {
+public class MaddoxMember {
 
     private final Member member;
 
-    public Sender(Member member) {
+    public MaddoxMember(Member member) {
         this.member = member;
     }
 
@@ -73,8 +73,8 @@ public class Sender {
         return this.member.canInteract(member);
     }
 
-    public boolean canInteract(Sender sender) {
-        return this.member.canInteract(sender.getMember());
+    public boolean canInteract(MaddoxMember maddoxMember) {
+        return this.member.canInteract(maddoxMember.getMember());
     }
 
     public EnumSet<ClientType> getActiveClients() {

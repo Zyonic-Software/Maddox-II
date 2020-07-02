@@ -8,8 +8,8 @@
 package com.zyonicsoftware.maddox.core.engine.handling.command;
 
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
-import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
-import com.zyonicsoftware.maddox.core.engine.objects.Sender;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 
 public abstract class Command {
 
@@ -19,7 +19,7 @@ public abstract class Command {
     private String specificPrefix;
     private String category = "none";
     private boolean allowExecutionOnMessageEdit;
-    private boolean showInHelp;
+    private boolean showInHelp = true;
     private boolean toggleable;
     private boolean getValuesFromLanguage;
     private int commandHelpViewPermission = 0;
@@ -129,5 +129,5 @@ public abstract class Command {
         return getValuesFromLanguage;
     }
 
-    protected abstract void execute(CommandEvent event, Sender sender, DiscordServer server);
+    protected abstract void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server);
 }

@@ -7,8 +7,8 @@
 
 package com.zyonicsoftware.maddox.core.engine.handling.command;
 
-import com.zyonicsoftware.maddox.core.engine.objects.DiscordServer;
-import com.zyonicsoftware.maddox.core.engine.objects.Sender;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -23,7 +23,7 @@ public class CommandEvent {
     private final Command command;
     private GuildMessageReceivedEvent receivedEvent;
     private GuildMessageUpdateEvent updateEvent;
-    private final DiscordServer server;
+    private final MaddoxGuild server;
     private final String prefix;
 
 
@@ -32,14 +32,14 @@ public class CommandEvent {
         this.command = command;
         this.receivedEvent = receivedEvent;
         this.prefix = prefix;
-        server = new DiscordServer(receivedEvent.getGuild(), prefix);
+        server = new MaddoxGuild(receivedEvent.getGuild(), prefix);
     }
 
     public CommandEvent(Command command, GuildMessageUpdateEvent updateEvent, String prefix) {
         this.command = command;
         this.updateEvent = updateEvent;
         this.prefix = prefix;
-        server = new DiscordServer(updateEvent.getGuild(), prefix);
+        server = new MaddoxGuild(updateEvent.getGuild(), prefix);
     }
 
 
@@ -67,11 +67,11 @@ public class CommandEvent {
         }
     }
 
-    public Sender getSender() {
+    public MaddoxMember getSender() {
         if (receivedEvent != null) {
-            return new Sender(receivedEvent.getMember());
+            return new MaddoxMember(receivedEvent.getMember());
         } else {
-            return new Sender(updateEvent.getMember());
+            return new MaddoxMember(updateEvent.getMember());
         }
     }
 
@@ -310,7 +310,7 @@ public class CommandEvent {
         }
     }
 
-    public DiscordServer getServer() {
+    public MaddoxGuild getServer() {
         return server;
     }
 }
