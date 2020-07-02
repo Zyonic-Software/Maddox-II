@@ -138,4 +138,4 @@ Maddox is developed & maintained by [AzraAnimating](https://github.com/AzraAnima
 
 API's by [DV8FromTheWorld](https://github.com/DV8FromTheWorld) and [Daschi1](https://github.com/Daschi1)
 
-Code "Donations" by [Spark61](https://github.com/Spark61)
+Code contributions by [Spark61](https://github.com/Spark61)
