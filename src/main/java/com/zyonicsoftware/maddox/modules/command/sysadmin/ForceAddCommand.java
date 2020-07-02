@@ -31,7 +31,7 @@ public class ForceAddCommand extends Command {
                 if (event.getArguments().get(0).equalsIgnoreCase("server")) {//Forcefully adds a Server to the provided Database
                     try {
                         this.maddox.getMySQLHandler().addServerToDatabase(server.getID(), this.maddox.getDefaultPrefix(), this.maddox.getDefaultLanguage());
-                        event.reply(server.getServerName() + " was added to Database");
+                        event.reply(server.getName() + " was added to Database");
                     } catch (NullPointerException e) {
                         System.out.println("Force add Failed");
                         System.out.println("MySQL handler not Present, please enable MySQL in the 'config.yml' if you wish to use it");

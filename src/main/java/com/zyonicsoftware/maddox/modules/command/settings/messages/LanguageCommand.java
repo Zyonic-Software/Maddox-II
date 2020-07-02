@@ -40,7 +40,7 @@ public class LanguageCommand extends Command {
                 } else if (this.maddox.getSupportedLanguages().contains(event.getArguments().get(0).toUpperCase())) {
                     String selectedLanguage = event.getArguments().get(0).toUpperCase();
                     server.setLanguage(event.getArguments().get(0));
-                    event.reply(LanguageAPI.getValue("Language-Set-1", selectedLanguage) + server.getServerName() + LanguageAPI.getValue("Language-Set-2", selectedLanguage) + selectedLanguage + LanguageAPI.getValue("Language-Set-3", selectedLanguage));
+                    event.reply(LanguageAPI.getValue("Language-Set-1", selectedLanguage) + server.getName() + LanguageAPI.getValue("Language-Set-2", selectedLanguage) + selectedLanguage + LanguageAPI.getValue("Language-Set-3", selectedLanguage));
                 }
             }
         } else {
