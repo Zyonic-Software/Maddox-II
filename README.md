@@ -68,7 +68,7 @@ public class TestCommand extends Command {
 ```
 
 Now you will need to define what the name of your command is.
-If you want your command to run on ``!test"`` the name of your command is "test"
+If you want your command to run on ``!test`` the name of your command is "test"
 You will have to register the name of your command in the constructor of your class by referencing the "name" variable from the parent-class.
 
 after doing this your Class should look something like this:
@@ -100,7 +100,7 @@ If you are forking Maddox, just enter ``commandHandler.registerCommand(new TestC
 ### IV - Help Building
 
 Maddox has a helpbuilder that will automatically create the help-menu with all registered Commands.
-To make the command ``!help <your command>"`` actually show some useful Information you will have to define a few things to the command in the Constructor of your class.
+To make the command ``!help <your command>`` actually show some useful Information you will have to define a few things to the command in the Constructor of your class.
 These things are:
 
 - The category the command should be listed under in the complete Help-menu
