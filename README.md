@@ -20,12 +20,12 @@ You can also just download Maddox and use it as it is for normal Moderation-Purp
 
 ### I - Plattform
 
-Maddox is written in Java 14 with [Bellsoft's 'Liberika JDK'](https://bell-sw.com/) so I suggest running it on that plattform. It will probably also work with
+Maddox is written in Java 14 with [Bellsoft's 'Liberica JDK'](https://bell-sw.com/) so I suggest running it on that plattform. It will probably also work with
 other JDK's and Java versions, but it is possible that bugs & problems may accur that I have not accounted for.
 
 ### II - Custom Objects
 
-Maddox uses Custom Objects like 'CommandEvent', 'MaddoxGuild' and 'MaddoxMember'. These objects were created so that I could implement Maddox-Specific features-
+Maddox uses custom objects like 'CommandEvent', 'MaddoxGuild' and 'MaddoxMember'. These objects were created so that I could implement Maddox-Specific features
 But this also means, that they are not suitable for every purpose, especially not if you are creating a Musicbot.
 For that reason you can either Cutomize these Objects, or work around them outright by just getting the "Normal" [JavaDiscordAPI-Objects](https://github.com/DV8FromTheWorld/JDA)
 
