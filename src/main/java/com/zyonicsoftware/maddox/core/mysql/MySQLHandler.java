@@ -31,13 +31,9 @@ public class MySQLHandler {
         return mySQL;
     }
 
-    public String getServerLanguage(String guildID) {//ToDo
-        return "EN";
-    }
-
     public void addServerToDatabase(String serverID, String prefix, String language) {
         try {
-            mySQL.executeQuery("INSERT INTO Server_Settings(id, prefix, language) VALUES (" + serverID + "," + prefix + "," + language + ";");
+            mySQL.executeUpdate("INSERT INTO Server_Settings(id, prefix, language) VALUES ('" + serverID + "','" + prefix + "','" + language + "');");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,13 +41,13 @@ public class MySQLHandler {
 
     public void setLanguage(String language, String guildID) {
         try {
-            mySQL.executeQuery("UPDATE Server_Settings SET language = " + language + " WHERE ServerID = " + guildID + ";");
+            mySQL.executeUpdate("UPDATE Server_Settings SET language = '" + language + "' WHERE id = '" + guildID + "';");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public String getLanguage(String guildID) {
+    public String getServerLanguage(String guildID) {
         try {
             final ResultSet resultSet = mySQL.executeQuery("SELECT language FROM Server_Settings WHERE id = " + guildID + ";");
             while (resultSet.next()) {
@@ -59,22 +55,26 @@ public class MySQLHandler {
             }
         } catch (Exception e) {
         }
-        return " ";
+        return null;
     }
 
     public String getPrefix(String guildID) {
         try {
-            final ResultSet resultSet = mySQL.executeQuery("SELECT language FROM Server_Settings WHERE id = " + guildID + ";");
+            final ResultSet resultSet = mySQL.executeQuery("SELECT prefix FROM Server_Settings WHERE id = " + guildID + ";");
             while (resultSet.next()) {
-                return resultSet.getString("language");
+                return resultSet.getString("prefix");
             }
         } catch (Exception e) {
         }
-        return " ";
+        return null;
     }
 
     public void setPrefix(String prefix, String guildID) {
-        //ToDo
+        try {
+            mySQL.executeUpdate("UPDATE Server_Settings SET prefix = '" + prefix + "' WHERE id = '" + guildID + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

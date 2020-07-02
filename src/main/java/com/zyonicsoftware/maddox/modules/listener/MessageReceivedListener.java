@@ -33,7 +33,7 @@ public class MessageReceivedListener extends ListenerAdapter {
             String prefix;
 
             if (this.maddox.isMySQLConnected()) {
-                prefix = "!";//ToDo
+                prefix = this.maddox.getMySQLHandler().getPrefix(event.getGuild().getId());
             } else {
                 prefix = maddox.getDefaultPrefix();
             }

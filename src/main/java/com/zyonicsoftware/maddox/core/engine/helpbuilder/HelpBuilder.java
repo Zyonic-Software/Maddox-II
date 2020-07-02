@@ -8,6 +8,7 @@
 package com.zyonicsoftware.maddox.core.engine.helpbuilder;
 
 import com.zyonicsoftware.maddox.core.engine.handling.command.Command;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import de.daschi.javalanguageapi.api.LanguageAPI;
@@ -40,7 +41,7 @@ public class HelpBuilder {
         //Sorting commands into specefied Categorys
         commands.forEach((name, command) -> {
             if (command.ShowInHelp()) {
-                if (command.getCommandHelpViewPermission() < maddoxMember.getCommandHelpViewPermissionValue()) {
+                if (command.getCommandHelpViewPermission() <= maddoxMember.getCommandHelpViewPermissionValue()) {
                     if (command.isGetValuesFromLanguageYaml()) {//if Gets Values from Language-Yaml
                         if (sortedCommands.containsKey(LanguageAPI.getValue(command.getCategory(), language))) {
                             sortedCommands.get(LanguageAPI.getValue(command.getCategory(), language)).add(command);
@@ -77,7 +78,7 @@ public class HelpBuilder {
 
         //The same for SpecefiedPrefixCommands
         specefiedPrefixCommands.forEach((name, command) -> {
-            if (command.getCommandHelpViewPermission() < maddoxMember.getCommandHelpViewPermissionValue()) {
+            if (command.getCommandHelpViewPermission() <= maddoxMember.getCommandHelpViewPermissionValue()) {
                 if (command.isGetValuesFromLanguageYaml()) {//if Gets Values from Language-Yaml
                     if (sortedCommands.containsKey(LanguageAPI.getValue(command.getCategory(), language))) {
                         sortedSpecefiedPrefixCommands.get(LanguageAPI.getValue(command.getCategory(), language)).add(command);
@@ -126,13 +127,13 @@ public class HelpBuilder {
         return embedBuilder.build();
     }
 
-    public MessageEmbed generateCommandHelp(Command command, String prefix, MaddoxMember maddoxMember) {
+    public MessageEmbed generateCommandHelp(Command command, String prefix, MaddoxMember maddoxMember, MaddoxGuild server) {
 
         if (command.isGetValuesFromLanguageYaml()) {
             return new EmbedBuilder()
                     .setTitle("**" + command.getName() + " Help**")
                     .setColor(this.maddox.getDefaultColor())
-                    .addField(prefix + LanguageAPI.getValue(command.getSyntax()), LanguageAPI.getValue(command.getDescription()), false)
+                    .addField(prefix + LanguageAPI.getValue(command.getSyntax(), server.getLanguage()), LanguageAPI.getValue(command.getDescription(), server.getLanguage()), false)
                     .build();
         } else {
             return new EmbedBuilder()

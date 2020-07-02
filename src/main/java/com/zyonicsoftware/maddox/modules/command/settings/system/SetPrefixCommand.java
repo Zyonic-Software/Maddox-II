@@ -32,6 +32,7 @@ public class SetPrefixCommand extends Command {
         if (sender.hasPermission(Permission.ADMINISTRATOR)) {
             if (!event.getArguments().isEmpty()) {
                 server.setPrefix(event.getArguments().get(0));
+                event.reply("PleaseReplaceWithRealMessage#38");//ToDo
             }
         } else {
             event.deleteEventMessage();

@@ -196,7 +196,6 @@ public class MaddoxMember {
     }
 
     public CommandHelpViewPermission getCommandHelpViewPermission() {
-        EnumSet<Permission> permissions = this.member.getPermissions();
 
         if (this.member.getPermissions().contains(Permission.ADMINISTRATOR)) {
             return CommandHelpViewPermission.ADMINISTRATOR;
