@@ -51,7 +51,7 @@ public class TestCommand extends Command {
 }
 ```
 
-Because Command is an abstract class you will have to implement the abstract method withon command. This is the "execute" method, which will be run upon your Command
+Because Command is an abstract class you will have to implement the abstract method withon command. This is the "execute" method, which will be run upon your command
 being triggered.
 Most IDE's will show you which methods to implement, so you can just klick to add them.
 
@@ -125,7 +125,7 @@ public TestCommand() {
 ## FAQ
 
 ### Why V2?
-Simple: Because V1 is almost 2 Years now and Discord has changed a lot (Yes V1 is private because I don't want anyone to see my
+Simple: Because V1 is almost 2 Years old by now and Discord has changed a lot (Yes V1 is private because I don't want anyone to see my
 *bad* **BAD** code)
 
 ## Credits
