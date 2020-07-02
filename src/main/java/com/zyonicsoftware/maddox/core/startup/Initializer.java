@@ -28,7 +28,7 @@ public class Initializer {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
                 System.out.println("Shutdown Starting");
-                System.out.println("Application Termiating ...");
+                System.out.println("Application Terminating ...");
             }
         });
     }
