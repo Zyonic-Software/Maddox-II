@@ -38,6 +38,10 @@ public class MessageReceivedListener extends ListenerAdapter {
                 prefix = maddox.getDefaultPrefix();
             }
 
+            if (prefix == null) {
+                prefix = maddox.getDefaultPrefix();
+            }
+
             this.maddox.getCommandHandler().handle(event, prefix, event.getMessage().getContentRaw());
 
         }

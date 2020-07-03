@@ -9,6 +9,7 @@ package com.zyonicsoftware.maddox.core.management;
 
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
 import com.zyonicsoftware.maddox.core.main.Maddox;
+import com.zyonicsoftware.maddox.modules.command.information.BotInfoCommand;
 import com.zyonicsoftware.maddox.modules.command.information.HelpCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.LanguageCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.system.SetPrefixCommand;
@@ -35,8 +36,9 @@ public class CommandManager {
 
         //Standard Commands
 
+        ///Infos
         commandHandler.registerCommand(new HelpCommand(this.maddox));
-
+        commandHandler.registerCommand(new BotInfoCommand(this.maddox));
         //Add further Commands here
     }
 

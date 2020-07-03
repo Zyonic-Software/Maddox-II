@@ -16,6 +16,8 @@ import com.zyonicsoftware.maddox.core.language.LanguageLoader;
 import com.zyonicsoftware.maddox.core.management.CommandManager;
 import com.zyonicsoftware.maddox.core.mysql.MySQLHandler;
 import com.zyonicsoftware.maddox.core.startup.StartupLoader;
+import com.zyonicsoftware.maddox.modules.listener.GuildMemberJoinListener;
+import com.zyonicsoftware.maddox.modules.listener.GuildMemberLeaveListener;
 import com.zyonicsoftware.maddox.modules.listener.MessageReceivedListener;
 import com.zyonicsoftware.maddox.modules.listener.MessageUpdateListener;
 import net.dv8tion.jda.api.sharding.ShardManager;
@@ -96,7 +98,9 @@ public class Maddox {
                 amountShards,
                 config.getToken(),
                 new MessageReceivedListener(this),
-                new MessageUpdateListener(this)
+                new MessageUpdateListener(this),
+                new GuildMemberJoinListener(this),
+                new GuildMemberLeaveListener(this)
         );
     }
 
