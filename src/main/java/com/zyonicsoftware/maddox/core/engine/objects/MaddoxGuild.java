@@ -84,7 +84,7 @@ public class MaddoxGuild { //Huge thanks to Spark61 for saving my fingers from t
         }
     }
 
-    public ArrayList<String> getRoleIDs(){
+    public ArrayList<String> getRoleIDs() {
         ArrayList<String> roleIDs = new ArrayList<>();
         this.guild.getRoles().forEach(role -> {
             roleIDs.add(role.getId());
@@ -92,7 +92,7 @@ public class MaddoxGuild { //Huge thanks to Spark61 for saving my fingers from t
         return roleIDs;
     }
 
-    public HashMap<String, Role> getRolesSortedByIDs(){
+    public HashMap<String, Role> getRolesSortedByIDs() {
         HashMap<String, Role> roleIDs = new HashMap<>();
         this.guild.getRoles().forEach(role -> {
             roleIDs.put(role.getId(), role);
@@ -800,13 +800,7 @@ public class MaddoxGuild { //Huge thanks to Spark61 for saving my fingers from t
     }
 
 
-    @Nonnull
-    public String getId() {
-        return this.guild.getId();
-    }
-
-
-    public long getIdLong() {
+    public long getIDLong() {
         return this.guild.getIdLong();
     }
 

@@ -23,6 +23,7 @@ public class BotInfoCommand extends Command {
         this.setName("info");
         this.setCategory("Help-Category");
         this.setShowInHelp(true);
+        this.setShowExtendedHelp(false);
         this.setAllowExecutionOnMessageEdit(true);
         this.setGetValuesFromLanguageYAML(true);
     }

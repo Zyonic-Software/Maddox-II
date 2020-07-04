@@ -20,6 +20,7 @@ public abstract class Command {
     private String category = "none";
     private boolean allowExecutionOnMessageEdit;
     private boolean showInHelp = true;
+    private boolean showExtendedHelp = true;
     private boolean toggleable;
     private boolean getValuesFromLanguage;
     private int commandHelpViewPermission = 0;
@@ -70,6 +71,14 @@ public abstract class Command {
 
     public boolean ShowInHelp() {
         return showInHelp;
+    }
+
+    protected void setShowExtendedHelp(boolean showExtendedHelp) {
+        this.showExtendedHelp = showExtendedHelp;
+    }
+
+    public boolean isShowExtendedHelp() {
+        return showExtendedHelp;
     }
 
     protected void setToggleable(boolean isToggleable) {

@@ -12,6 +12,7 @@ import com.zyonicsoftware.maddox.core.main.Maddox;
 import com.zyonicsoftware.maddox.modules.command.information.BotInfoCommand;
 import com.zyonicsoftware.maddox.modules.command.information.HelpCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.LanguageCommand;
+import com.zyonicsoftware.maddox.modules.command.settings.system.AutoRoleCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.system.SetPrefixCommand;
 import com.zyonicsoftware.maddox.modules.command.sysadmin.ForceAddCommand;
 
@@ -25,21 +26,19 @@ public class CommandManager {
 
     public void registerCommands(CommandHandler commandHandler) {
 
-        //Sys-Admin Comman
-
-        commandHandler.registerCommand(new ForceAddCommand(this.maddox));
-
-        //Guild-Admin Commands
-
-        commandHandler.registerCommand(new LanguageCommand(this.maddox));
-        commandHandler.registerCommand(new SetPrefixCommand());
-
-        //Standard Commands
-
-        ///Infos
-        commandHandler.registerCommand(new HelpCommand(this.maddox));
-        commandHandler.registerCommand(new BotInfoCommand(this.maddox));
-        //Add further Commands here
+        commandHandler.registerCommands(
+                //Sys-Admin
+                new ForceAddCommand(this.maddox),
+                //Guild-Admin
+                new LanguageCommand(this.maddox),
+                new SetPrefixCommand(),
+                new AutoRoleCommand(this.maddox),
+                //Normal
+                ///Information
+                new HelpCommand(this.maddox),
+                new BotInfoCommand(this.maddox)
+                //Add further commands here
+        );
     }
 
 

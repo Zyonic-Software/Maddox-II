@@ -17,11 +17,11 @@ public class AutomaticRoleManager {
 
     private final Maddox maddox;
 
-    public AutomaticRoleManager(Maddox maddox){
+    public AutomaticRoleManager(Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public ArrayList<Role> getRolesForAutomaticAssigning(MaddoxGuild server){
+    public ArrayList<Role> getRolesForAutomaticAssigning(MaddoxGuild server) {
         ArrayList<Role> rolesForAutomaticAssigning = new ArrayList<>();
 
         String rolesInString = this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(server.getID());
@@ -37,7 +37,7 @@ public class AutomaticRoleManager {
         return rolesForAutomaticAssigning;
     }
 
-    public void setAutomaticRoles(ArrayList<Role> rolesForAutomaticAssigning, MaddoxGuild server){
+    public void setAutomaticRoles(ArrayList<Role> rolesForAutomaticAssigning, MaddoxGuild server) {
         StringBuilder rolesInString = new StringBuilder();
 
         rolesForAutomaticAssigning.forEach(role -> {

@@ -33,7 +33,7 @@ dependencies {
     compile(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.6.1')
 }
 
-tasks.withType(JavaCompile){
+tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 

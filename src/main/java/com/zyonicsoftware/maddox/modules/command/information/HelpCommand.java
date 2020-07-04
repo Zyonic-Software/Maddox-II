@@ -13,10 +13,11 @@ import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermissi
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import com.zyonicsoftware.maddox.core.main.Maddox;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
 public class HelpCommand extends Command {
 
-    private Maddox maddox;
+    private final Maddox maddox;
 
     public HelpCommand(Maddox maddox) {
         this.setName("help");
@@ -34,7 +35,10 @@ public class HelpCommand extends Command {
         if (event.getArguments().isEmpty()) {
             event.reply(maddox.getHelpBuilder().assembleHelp(sender, server.getPrefix(), server.getLanguage()));
         } else if (event.getArguments().size() > 0 && this.maddox.getCommandHandler().getCommands().containsKey(event.getArguments().get(0).toLowerCase())) {
-            event.reply(this.maddox.getHelpBuilder().generateCommandHelp(this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0).toLowerCase()), server.getPrefix(), sender, server));
+            MessageEmbed messageEmbed = this.maddox.getHelpBuilder().generateCommandHelp(this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0).toLowerCase()), server.getPrefix(), sender, server);
+            if (messageEmbed != null) {
+                event.reply(messageEmbed);
+            }
         }
     }
 }

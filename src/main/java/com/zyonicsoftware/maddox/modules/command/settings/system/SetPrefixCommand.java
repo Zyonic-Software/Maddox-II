@@ -19,7 +19,7 @@ public class SetPrefixCommand extends Command {
 
     public SetPrefixCommand() {
         this.setName("setprefix");
-        this.setCategory("SetPrefix-Category");
+        this.setCategory("Settings-Category");
         this.setSyntax("SetPrefix-Syntax");
         this.setDescription("SetPrefix-Desc");
         this.setAllowExecutionOnMessageEdit(true);

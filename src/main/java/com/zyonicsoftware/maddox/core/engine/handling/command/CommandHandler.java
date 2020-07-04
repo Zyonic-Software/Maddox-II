@@ -37,6 +37,17 @@ public class CommandHandler {
         }
     }
 
+    public void registerCommands(Command... commands) {
+        for (int i = 0; i < commands.length; i++) {
+            Command command = commands[i];
+            if (command.getSpecificPrefix() == null) {
+                this.commands.put(command.getName(), command);
+            } else {
+                specificPrefixCommands.put(command.getSpecificPrefix() + command.getName(), command);
+            }
+        }
+    }
+
 
     public void handle(GuildMessageReceivedEvent event, String prefix, String messageContent) {
 

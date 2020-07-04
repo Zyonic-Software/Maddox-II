@@ -85,7 +85,7 @@ public class MySQLHandler {
             }
         } catch (Exception e) {
         }
-        return null;
+        return "";
     }
 
     public void setRolesForAutomaticAssigning(String rolesInString, String id) {

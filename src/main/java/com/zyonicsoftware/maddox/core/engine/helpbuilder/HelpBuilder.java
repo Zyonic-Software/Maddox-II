@@ -129,19 +129,42 @@ public class HelpBuilder {
 
     public MessageEmbed generateCommandHelp(Command command, String prefix, MaddoxMember maddoxMember, MaddoxGuild server) {
 
-        if (command.isGetValuesFromLanguageYaml()) {
-            return new EmbedBuilder()
-                    .setTitle("**" + command.getName() + " Help**")
-                    .setColor(this.maddox.getDefaultColor())
-                    .addField(prefix + LanguageAPI.getValue(command.getSyntax(), server.getLanguage()), LanguageAPI.getValue(command.getDescription(), server.getLanguage()), false)
-                    .build();
+        if (command.isShowExtendedHelp()) {
+            if (command.isGetValuesFromLanguageYaml()) {
+                if (command.getDescription() != null) {
+                    return new EmbedBuilder()
+                            .setTitle("**" + prefix + command.getName() + "**")
+                            .setColor(this.maddox.getDefaultColor())
+                            .addField(LanguageAPI.getValue(command.getSyntax(), server.getLanguage()).replace("<PREFIX>", prefix), LanguageAPI.getValue(command.getDescription(), server.getLanguage()).replace("<PREFIX>", prefix), false)
+                            .build();
+                } else {
+                    return new EmbedBuilder()
+                            .setTitle("**" + prefix + command.getName() + "**")
+                            .setColor(this.maddox.getDefaultColor())
+                            .addField("No Description defined", "Please either Disable the .showExtendedHelp option in your CommandClass or add a Description & a Syntax-Description", false)
+                            .setThumbnail(maddoxMember.getCurrentJDA().getSelfUser().getAvatarUrl())
+                            .build();
+                }
+            } else {
+                if (command.getDescription() != null) {
+                    return new EmbedBuilder()
+                            .setTitle("**" + prefix + command.getName() + "**")
+                            .setColor(this.maddox.getDefaultColor())
+                            .addField(command.getSyntax().replace("<PREFIX>", prefix), command.getDescription().replace("<PREFIX>", prefix), false)
+                            .setThumbnail(maddoxMember.getCurrentJDA().getSelfUser().getAvatarUrl())
+                            .build();
+                } else {
+
+                    return new EmbedBuilder()
+                            .setTitle("**" + prefix + command.getName() + "**")
+                            .setColor(this.maddox.getDefaultColor())
+                            .addField("No Description defined", "Please either Disable the .showExtendedHelp option in your CommandClass or add a Description & a Syntax-Description", false)
+                            .setThumbnail(maddoxMember.getCurrentJDA().getSelfUser().getAvatarUrl())
+                            .build();
+                }
+            }
         } else {
-            return new EmbedBuilder()
-                    .setTitle("**" + command.getName() + " Help**")
-                    .setColor(this.maddox.getDefaultColor())
-                    .addField(prefix + command.getSyntax(), command.getDescription(), false)
-                    .setThumbnail(maddoxMember.getCurrentJDA().getSelfUser().getAvatarUrl())
-                    .build();
+            return null;
         }
     }
 }

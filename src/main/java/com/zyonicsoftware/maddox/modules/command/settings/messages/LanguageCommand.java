@@ -21,7 +21,7 @@ public class LanguageCommand extends Command {
 
     public LanguageCommand(Maddox maddox) {
         this.setName("lang");
-        this.setCategory("Language-Category");
+        this.setCategory("Settings-Category");
         this.setSyntax("Language-Syntax");
         this.setDescription("Language-Desc");
         this.setAllowExecutionOnMessageEdit(true);
