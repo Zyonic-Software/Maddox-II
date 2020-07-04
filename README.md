@@ -136,6 +136,6 @@ but you'll always be free to see the beta-branches
 
 Maddox is developed & maintained by [AzraAnimating](https://github.com/AzraAnimating)
 
-API's by [DV8FromTheWorld](https://github.com/DV8FromTheWorld) and [Daschi1](https://github.com/Daschi1)
+API's by [DV8FromTheWorld](https://github.com/DV8FromTheWorld), [Carlsec](https://github.com/Carlsec) and [Daschi1](https://github.com/Daschi1)
 
 Code contributions by [Spark61](https://github.com/Spark61)
