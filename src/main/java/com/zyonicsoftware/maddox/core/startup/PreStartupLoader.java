@@ -11,6 +11,7 @@ import com.zyonicsoftware.maddox.config.BaseValueConfig;
 import com.zyonicsoftware.maddox.config.MySQLConfig;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import org.simpleyaml.configuration.file.YamlConfiguration;
+import org.simpleyaml.configuration.file.YamlFile;
 
 import java.io.File;
 
@@ -37,18 +38,19 @@ public class PreStartupLoader {
 
             if (!configFile.createNewFile()) {
 
-                YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(configFile);
+                YamlFile yamlFile = new YamlFile(configFile);
+                yamlFile.load();
 
-                config.setToken(yamlConfiguration.get("token"));
-                config.setAmountShards(yamlConfiguration.get("amountShards"));
-                config.setDefaultPrefix(yamlConfiguration.get("defaultPrefix"));
-                config.setDefaultColor(yamlConfiguration.get("defaultColor"));
-                config.setDefaultBotName(yamlConfiguration.get("defaultBotName"));
-                config.setDefaultLanguage(yamlConfiguration.get("defaultLanguage"));
-                config.setSupportedLanguages(yamlConfiguration.get("supportedLanguages"));
-                config.setBotAdministrator(yamlConfiguration.get("botAdministrator"));
-                config.setMysql(yamlConfiguration.get("mysql"));
-                config.setCommandsToggleable(yamlConfiguration.get("commandsToggleable"));
+                config.setToken(yamlFile.getString("token"));
+                config.setAmountShards(yamlFile.getInt("amountShards"));
+                config.setDefaultPrefix(yamlFile.getString("defaultPrefix"));
+                config.setDefaultColor(yamlFile.getString("defaultColor"));
+                config.setDefaultBotName(yamlFile.getString("defaultBotName"));
+                config.setDefaultLanguage(yamlFile.getString("defaultLanguage"));
+                config.setSupportedLanguages(yamlFile.getString("supportedLanguages"));
+                config.setBotAdministrator(yamlFile.getString("botAdministrator"));
+                config.setMysql(yamlFile.getBoolean("mysql"));
+                config.setCommandsToggleable(yamlFile.getBoolean("commandsToggleable"));
 
             } else {
 
@@ -92,13 +94,14 @@ public class PreStartupLoader {
 
             if (!mysqlFile.createNewFile()) {
 
-                YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(mysqlFile);
+                YamlFile yamlFile = new YamlFile(mysqlFile);
+                yamlFile.load();
 
-                mySQLConfig.setHostname(yamlConfiguration.get("hostname"));
-                mySQLConfig.setPort(yamlConfiguration.get("port"));
-                mySQLConfig.setDatabase(yamlConfiguration.get("database"));
-                mySQLConfig.setUser(yamlConfiguration.get("user"));
-                mySQLConfig.setPassword(yamlConfiguration.get("password"));
+                mySQLConfig.setHostname(yamlFile.get("hostname"));
+                mySQLConfig.setPort(yamlFile.getInt("port"));
+                mySQLConfig.setDatabase(yamlFile.get("database"));
+                mySQLConfig.setUser(yamlFile.get("user"));
+                mySQLConfig.setPassword(yamlFile.get("password"));
 
             } else {
 

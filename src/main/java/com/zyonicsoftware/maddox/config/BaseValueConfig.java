@@ -30,6 +30,7 @@ public class BaseValueConfig {
     }
 
     public void setDefaultColor(Object defaultColor) {
+        System.out.println(defaultColor);
         this.defaultColor = Color.decode((String) defaultColor);
     }
 
