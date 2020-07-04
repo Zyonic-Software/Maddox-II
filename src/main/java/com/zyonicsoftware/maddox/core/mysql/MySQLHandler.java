@@ -77,4 +77,23 @@ public class MySQLHandler {
         }
     }
 
+    public String getRolesForAutomaticAssigning(String guildID) {
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT roles FROM Server_Automatic_Roles WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("roles");
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public void setRolesForAutomaticAssigning(String rolesInString, String id) {
+        try {
+            mySQL.executeUpdate("UPDATE Server_Automatic_Roles SET roles = '" + rolesInString + "' WHERE id = '" + id + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

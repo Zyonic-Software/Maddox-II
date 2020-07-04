@@ -13,6 +13,7 @@ import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
 import com.zyonicsoftware.maddox.core.engine.handling.privatemessage.PrivateMessageCommandHandler;
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.HelpBuilder;
 import com.zyonicsoftware.maddox.core.language.LanguageLoader;
+import com.zyonicsoftware.maddox.core.management.AutomaticRoleManager;
 import com.zyonicsoftware.maddox.core.management.CommandManager;
 import com.zyonicsoftware.maddox.core.mysql.MySQLHandler;
 import com.zyonicsoftware.maddox.core.startup.StartupLoader;
@@ -27,6 +28,7 @@ import java.awt.*;
 public class Maddox {
 
     private PrivateMessageCommandHandler privateMessageCommandHandler;
+    private AutomaticRoleManager automaticRoleManager;
     private CommandHandler commandHandler;
     private LanguageLoader languageLoader;
     private MySQLHandler mySQLHandler;
@@ -90,6 +92,8 @@ public class Maddox {
         CommandManager commandManager = new CommandManager(this);
 
         commandManager.registerCommands(commandHandler);
+
+        automaticRoleManager = new AutomaticRoleManager(this);
     }
 
     //Creates ShardManager, specefies primary Listeners
@@ -160,5 +164,9 @@ public class Maddox {
 
     public String getSupportedLanguages() {
         return supportedLanguages;
+    }
+
+    public AutomaticRoleManager getAutomaticRoleManager() {
+        return automaticRoleManager;
     }
 }

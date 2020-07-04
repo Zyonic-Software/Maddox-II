@@ -31,10 +31,7 @@ import net.dv8tion.jda.api.utils.concurrent.Task;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.OffsetDateTime;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 public class MaddoxGuild { //Huge thanks to Spark61 for saving my fingers from typing all this crap
@@ -85,6 +82,22 @@ public class MaddoxGuild { //Huge thanks to Spark61 for saving my fingers from t
             this.prefix = prefix;
             mySQLHandler.setPrefix(prefix, this.getID());
         }
+    }
+
+    public ArrayList<String> getRoleIDs(){
+        ArrayList<String> roleIDs = new ArrayList<>();
+        this.guild.getRoles().forEach(role -> {
+            roleIDs.add(role.getId());
+        });
+        return roleIDs;
+    }
+
+    public HashMap<String, Role> getRolesSortedByIDs(){
+        HashMap<String, Role> roleIDs = new HashMap<>();
+        this.guild.getRoles().forEach(role -> {
+            roleIDs.put(role.getId(), role);
+        });
+        return roleIDs;
     }
 
     @Nonnull
