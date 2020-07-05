@@ -114,7 +114,7 @@ public TestCommand() {
         this.setName("test");
         this.setCategory("Testing...");
         this.setDescription("Just a Command for Testing");
-        this.setSyntax("test"); //The Prefix that is set for that guild will automatically be shown infront of your Syntax
+        this.setSyntax("<PREFIX>test"); //"<PREFIX>" will be replaced with the set Prefix.
         this.setShowInHelp(true); //Enables you to hide your command from the help menu - enabled by default
         this.setCommandHelpViewPermission(CommandHelpViewPermission.EVERYONE); //defines who can see the command
     }
