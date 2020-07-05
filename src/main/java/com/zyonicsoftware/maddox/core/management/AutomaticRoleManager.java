@@ -24,7 +24,7 @@ public class AutomaticRoleManager {
     public ArrayList<Role> getRolesForAutomaticAssigning(MaddoxGuild server) {
         ArrayList<Role> rolesForAutomaticAssigning = new ArrayList<>();
 
-        String rolesInString = this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(server.getID());
+        String rolesInString = this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(server.getID()).replace("null", "");
 
         String[] roleIDs = rolesInString.split(";");
 
@@ -45,6 +45,36 @@ public class AutomaticRoleManager {
         });
 
         this.maddox.getMySQLHandler().setRolesForAutomaticAssigning(rolesInString.toString(), server.getID());
+    }
+
+    public boolean removeRolesFromAutomaticAssigning(ArrayList<Role> roles, MaddoxGuild server) {
+        final String[] rolesInString = {this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(server.getID())};
+        String originalString = rolesInString[0];
+        roles.forEach(role -> {
+            rolesInString[0] = rolesInString[0].replace(role.getId() + ";", "");
+        });
+        if (!originalString.equals(rolesInString[0])) {
+            this.maddox.getMySQLHandler().setRolesForAutomaticAssigning(rolesInString[0], server.getID());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean addRolesToAutomaticAssigning(ArrayList<Role> roles, MaddoxGuild server) {
+        StringBuilder rolesInString = new StringBuilder().append(this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(server.getID()).replace("null", ""));
+        String originalString = rolesInString.toString();
+        roles.forEach(role -> {
+            if (!rolesInString.toString().contains(role.getId())) {
+                rolesInString.append(role.getId()).append(";");
+            }
+        });
+        if (!rolesInString.toString().equals(originalString)) {
+            this.maddox.getMySQLHandler().setRolesForAutomaticAssigning(rolesInString.toString(), server.getID());
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

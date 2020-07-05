@@ -7,6 +7,8 @@
 
 package com.zyonicsoftware.maddox.modules.listener;
 
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
+import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -20,7 +22,12 @@ public class GuildMemberJoinListener extends ListenerAdapter {
     }
 
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
-
+        if (this.maddox.isMySQLConnected()) {
+            MaddoxMember member = new MaddoxMember(event.getMember());
+            this.maddox.getAutomaticRoleManager().getRolesForAutomaticAssigning(new MaddoxGuild(event.getGuild(), this.maddox.getMySQLHandler().getPrefix(event.getGuild().getId()), this.maddox.getMySQLHandler())).forEach(role -> {
+                member.addRole(role).queue();
+            });
+        }
     }
 
 }

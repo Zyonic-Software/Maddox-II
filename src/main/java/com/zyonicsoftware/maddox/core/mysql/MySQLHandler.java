@@ -34,6 +34,7 @@ public class MySQLHandler {
     public void addServerToDatabase(String serverID, String prefix, String language) {
         try {
             mySQL.executeUpdate("INSERT INTO Server_Settings(id, prefix, language) VALUES ('" + serverID + "','" + prefix + "','" + language + "');");
+            mySQL.executeUpdate("INSERT INTO Server_Automatic_Roles(id) VALUES ('" + serverID + "');");
         } catch (SQLException e) {
             e.printStackTrace();
         }

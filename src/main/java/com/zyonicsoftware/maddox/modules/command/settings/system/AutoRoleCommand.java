@@ -14,6 +14,9 @@ import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import de.daschi.javalanguageapi.api.LanguageAPI;
+import net.dv8tion.jda.api.entities.Role;
+
+import java.util.ArrayList;
 
 public class AutoRoleCommand extends Command {
 
@@ -36,23 +39,23 @@ public class AutoRoleCommand extends Command {
         if (event.getArguments().size() > 1) {
             if (event.getArguments().get(0).equalsIgnoreCase("add")) {
                 if (!event.getRoleMentions().isEmpty()) {
-                    StringBuilder rolesInString = new StringBuilder().append(this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(server.getID()));
-                    event.getRoleMentions().forEach(role -> {
-                        rolesInString.append(role.getId()).append(";");
-                    });
-                    this.maddox.getMySQLHandler().setRolesForAutomaticAssigning(rolesInString.toString(), server.getID());
-                    event.reply(LanguageAPI.getValue("AutoRole-Response-1", server.getLanguage()));
+                    if (this.maddox.getAutomaticRoleManager().addRolesToAutomaticAssigning((ArrayList<Role>) event.getRoleMentions(), server)) {
+                        event.reply(LanguageAPI.getValue("AutoRole-Response-1", server.getLanguage()).replace("<ROLE>", event.getRoleMentions().get(0).getName()));//Success
+                    } else {
+                        event.reply(LanguageAPI.getValue("AutoRole-Response-3", server.getLanguage()));//Didnt Change
+                    }
                 }
             } else if (event.getArguments().get(0).equalsIgnoreCase("remove")) {
                 if (!event.getRoleMentions().isEmpty()) {
-                    final String[] rolesInString = {this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(server.getID())};
-                    event.getRoleMentions().forEach(role -> {
-                        rolesInString[0] = rolesInString[0].replace(role.getId() + ";", "");
-                    });
-                    this.maddox.getMySQLHandler().setRolesForAutomaticAssigning(rolesInString[0], server.getID());
-                    event.reply(LanguageAPI.getValue("AutoRole-Response-2", server.getLanguage()));
+                    if (this.maddox.getAutomaticRoleManager().removeRolesFromAutomaticAssigning((ArrayList<Role>) event.getRoleMentions(), server)) {
+                        event.reply(LanguageAPI.getValue("AutoRole-Response-2", server.getLanguage()).replace("<ROLE>", event.getRoleMentions().get(0).getName()));//Success
+                    } else {
+                        event.reply(LanguageAPI.getValue("AutoRole-Response-3", server.getLanguage()));//Didnt Change
+                    }
                 }
             }
+        } else {
+            event.reply(LanguageAPI.getValue("AutoRole-Response-4", server.getLanguage()) + LanguageAPI.getValue("AutoRole-Syntax", server.getLanguage()).replace("<PREFIX>", server.getPrefix()));
         }
     }
 }

@@ -15,7 +15,7 @@ import com.zyonicsoftware.maddox.core.main.Maddox;
 
 public class ForceAddCommand extends Command {
 
-    private Maddox maddox;
+    private final Maddox maddox;
 
     public ForceAddCommand(Maddox maddox) {
         this.setName("forceadd");
