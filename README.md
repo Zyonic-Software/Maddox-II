@@ -120,13 +120,40 @@ public TestCommand() {
     }
 ```
 
+### V - Database
+
+To use Maddox to its full extend you will need a MySQL Database, so it can store the required data.
+So, how should your Database be configured so Maddox can work with it?.
+
+You will need **four** Tables with the following Columns:
+
+#### Server_Settings
+
+- id
+- prefix
+- language
+
+#### Server_Automatic_Roles
+
+- id
+- roles
+
+#### Server_Join_Message & Server_Leave_Message (They are the Same)
+
+- id
+- message
+- channel
+- enabled
+
+
 (Stuff *will* be added)
 
 ## FAQ
 
 ### Why V2?
 Simple: Because V1 is almost 2 Years old by now and Discord has changed a lot (Yes V1 is private because I don't want anyone to see my
-*bad* **BAD** code)
+*bad* **BAD** code) Also: Discord has changed a lot of Stuff in the meantime, so it was necessary for me to redo my Engine anyways, especially for
+my other Project, Herukan.
 
 ### Why do you directly push to the master-Branch?
 I am currently developing the base-structure for the bot and I am also the only developer currently working on Maddox. I will stop upon the first "real" Release of Maddox,
