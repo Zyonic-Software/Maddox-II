@@ -139,7 +139,7 @@ You will need **four** Tables with the following Columns:
 - id
 - roles
 
-#### Server_Join_Message & Server_Leave_Message (They are the Same)
+#### Server_Join_Messages & Server_Leave_Messages (They are the Same)
 
 - id
 - message
