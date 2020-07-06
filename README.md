@@ -116,9 +116,36 @@ public TestCommand() {
         this.setDescription("Just a Command for Testing");
         this.setSyntax("<PREFIX>test"); //"<PREFIX>" will be replaced with the set Prefix.
         this.setShowInHelp(true); //Enables you to hide your command from the help menu - enabled by default
+        this.setAllowExecutionOnMessageEdit(true);//Enables the Command to be run when the Message is edited
         this.setCommandHelpViewPermission(CommandHelpViewPermission.EVERYONE); //defines who can see the command
     }
 ```
+
+### V - Database
+
+To use Maddox to its full extend you will need a MySQL Database, so it can store the required data.
+So, how should your Database be configured so Maddox can work with it?.
+
+You will need **four** Tables with the following Columns:
+
+#### Server_Settings
+
+- id
+- prefix
+- language
+
+#### Server_Automatic_Roles
+
+- id
+- roles
+
+#### Server_Join_Messages & Server_Leave_Messages (They are the Same)
+
+- id
+- message
+- channel
+- enabled
+
 
 (Stuff *will* be added)
 
@@ -126,7 +153,8 @@ public TestCommand() {
 
 ### Why V2?
 Simple: Because V1 is almost 2 Years old by now and Discord has changed a lot (Yes V1 is private because I don't want anyone to see my
-*bad* **BAD** code)
+*bad* **BAD** code) Also: Discord has changed a lot of Stuff in the meantime, so it was necessary for me to redo my Engine anyways, especially for
+my other Project, Herukan.
 
 ### Why do you directly push to the master-Branch?
 I am currently developing the base-structure for the bot and I am also the only developer currently working on Maddox. I will stop upon the first "real" Release of Maddox,
