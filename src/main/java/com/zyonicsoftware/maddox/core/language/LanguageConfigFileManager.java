@@ -36,6 +36,8 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Language-Desc", "Command for switching Language-Settings", "EN");
                 LanguageAPI.setValue("Language-Syntax", "<PREFIX>lang <Language>", "EN");
                 LanguageAPI.setValue("Language-Set", "The Language for '<SERVER>' was set to '<LANGUAGE>'!", "EN");
+                LanguageAPI.setValue("Language-List-Header", "Available Languages", "EN");
+                LanguageAPI.setValue("Language-List-SubHeader", "A list of all available Languages:", "EN");
 
 
                 LanguageAPI.setValue("SetPrefix-Desc", "This Commands enables you to choose a server-specific prefix for " + maddox.getName() + ".", "EN");
@@ -85,6 +87,8 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Language-Desc", "Command um die Sprache umzustellen.", "DE");
                 LanguageAPI.setValue("Language-Syntax", "<PREFIX>lang <Sprache>", "DE");
                 LanguageAPI.setValue("Language-Set", "Die Sprache von '<SERVER>' wurde auf '<LANGUAGE>' gesetzt!", "DE");
+                LanguageAPI.setValue("Language-List-Header", "Verfügbare Sprachen", "DE");
+                LanguageAPI.setValue("Language-List-SubHeader", "Eine Liste von allen verfügbaren Sprachen:", "DE");
 
                 LanguageAPI.setValue("SetPrefix-Desc", "Dieser Command ermöglicht es dir einen Serverspezifischen Prefix für " + maddox.getName() + " zu setzen.", "DE");
                 LanguageAPI.setValue("SetPrefix-Syntax", "<PREFIX>setprefix <new Prefix>", "DE");

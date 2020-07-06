@@ -13,6 +13,7 @@ import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import de.daschi.javalanguageapi.api.LanguageAPI;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
 public class LanguageCommand extends Command {
@@ -36,7 +37,12 @@ public class LanguageCommand extends Command {
         if (sender.hasPermission(Permission.ADMINISTRATOR)) {
             if (!event.getArguments().isEmpty()) {
                 if (event.getArguments().get(0).equalsIgnoreCase("list")) {
-                    //toDo
+                    event.reply(new EmbedBuilder()
+                            .setTitle(LanguageAPI.getValue("Language-List-Header", server.getLanguage()))
+                            .addField(LanguageAPI.getValue("Language-List-SubHeader", server.getLanguage()), this.maddox.getSupportedLanguages(), false)
+                            .setColor(this.maddox.getDefaultColor())
+                            .build()
+                    );
                 } else if (this.maddox.getSupportedLanguages().contains(event.getArguments().get(0).toUpperCase())) {
                     String selectedLanguage = event.getArguments().get(0).toUpperCase();
                     server.setLanguage(selectedLanguage);
