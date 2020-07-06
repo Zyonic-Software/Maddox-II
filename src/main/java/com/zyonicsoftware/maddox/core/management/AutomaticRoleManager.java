@@ -62,7 +62,13 @@ public class AutomaticRoleManager {
     }
 
     public boolean addRolesToAutomaticAssigning(ArrayList<Role> roles, MaddoxGuild server) {
-        StringBuilder rolesInString = new StringBuilder().append(this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(server.getID()).replace("null", ""));
+        StringBuilder rolesInString = new StringBuilder();
+        String originalRolesInString = this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(server.getID());
+        if (originalRolesInString == null) {
+            originalRolesInString = "";
+        }
+        originalRolesInString = originalRolesInString.replace("null", "");
+        rolesInString.append(rolesInString);
         String originalString = rolesInString.toString();
         roles.forEach(role -> {
             if (!rolesInString.toString().contains(role.getId())) {

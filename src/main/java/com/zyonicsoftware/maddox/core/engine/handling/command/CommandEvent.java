@@ -229,8 +229,8 @@ public class CommandEvent {
         List<TextChannel> textChannels = new ArrayList<>();
 
         this.getArguments().forEach(argument -> {
-            if (argument.startsWith("<@#") && argument.endsWith(">")) {
-                argument = argument.replace("<@#", "").replace(">", "").replace("!", "");
+            if (argument.startsWith("<#") && argument.endsWith(">")) {
+                argument = argument.replace("<#", "").replace(">", "").replace("!", "");
                 textChannelIDs.add(argument);
             }
         });

@@ -11,6 +11,8 @@ import com.zyonicsoftware.maddox.core.main.Maddox;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import java.util.Objects;
+
 public class GuildMemberLeaveListener extends ListenerAdapter {
 
     private final Maddox maddox;
@@ -20,6 +22,18 @@ public class GuildMemberLeaveListener extends ListenerAdapter {
     }
 
     public void onGuildMemberRemove(GuildMemberRemoveEvent event) {
+        if (this.maddox.isMySQLConnected()) {
+            this.sendLeaveMessage(event);
+        }
+    }
 
+
+    private void sendLeaveMessage(GuildMemberRemoveEvent event) {
+        if (this.maddox.getMySQLHandler().isLeaveMessageEnabled(event.getGuild().getId())) {
+            String channelID = this.maddox.getMySQLHandler().getLeaveMessageChannel(event.getGuild().getId());
+            if (channelID != null) {
+                Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getMySQLHandler().getLeaveMessage(event.getGuild().getId())).queue();
+            }
+        }
     }
 }

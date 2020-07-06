@@ -102,7 +102,9 @@ public class Maddox {
                 new MessageUpdateListener(this),
                 new GuildMemberJoinListener(this),
                 new GuildMemberLeaveListener(this),
-                new PrivateMessageReceivedListener(this)
+                new PrivateMessageReceivedListener(this),
+                new GuildJoinListener(this),
+                new GuildLeaveListener(this)
         );
     }
 

@@ -32,8 +32,12 @@ public class SetPrefixCommand extends Command {
     protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
         if (sender.hasPermission(Permission.ADMINISTRATOR)) {
             if (!event.getArguments().isEmpty()) {
-                server.setPrefix(event.getArguments().get(0));
-                event.reply(LanguageAPI.getValue("SetPrefix-Set-1", server.getLanguage()) + server.getName() + LanguageAPI.getValue("SetPrefix-Set-2", server.getLanguage()) + server.getPrefix() + LanguageAPI.getValue("SetPrefix-Set-3", server.getLanguage()));
+                if (!server.getPrefix().equals(event.getArguments().get(0))) {
+                    server.setPrefix(event.getArguments().get(0));
+                    event.reply(LanguageAPI.getValue("SetPrefix-Set", server.getLanguage()).replace("<SERVER>", server.getName()).replace("<PREFIX>", server.getPrefix()));
+                } else {
+                    event.reply(LanguageAPI.getValue("NoChange", server.getLanguage()));
+                }
             }
         } else {
             event.deleteEventMessage();

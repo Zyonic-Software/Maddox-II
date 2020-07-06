@@ -35,12 +35,26 @@ public class MySQLHandler {
         try {
             mySQL.executeUpdate("INSERT INTO Server_Settings(id, prefix, language) VALUES ('" + serverID + "','" + prefix + "','" + language + "');");
             mySQL.executeUpdate("INSERT INTO Server_Automatic_Roles(id) VALUES ('" + serverID + "');");
+            mySQL.executeUpdate("INSERT INTO Server_Join_Messages(id) VALUES ('" + serverID + "');");
+            mySQL.executeUpdate("INSERT INTO Server_Leave_Messages(id) VALUES ('" + serverID + "');");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    public void removeServerFromDatabase(String serverID) {
+        try {
+            mySQL.executeUpdate("DELETE FROM Server_Settings WHERE serverid = " + serverID);
+            mySQL.executeUpdate("DELETE FROM Server_Automatic_Roles WHERE serverid = " + serverID);
+            mySQL.executeUpdate("DELETE FROM Server_Join_Messages WHERE serverid = " + serverID);
+            mySQL.executeUpdate("DELETE FROM Server_Join_Messages WHERE serverid = " + serverID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setLanguage(String language, String guildID) {
+        language = mySQL.removeSQLInjectionPossibility(language);
         try {
             mySQL.executeUpdate("UPDATE Server_Settings SET language = '" + language + "' WHERE id = '" + guildID + "';");
         } catch (SQLException e) {
@@ -71,6 +85,7 @@ public class MySQLHandler {
     }
 
     public void setPrefix(String prefix, String guildID) {
+        prefix = mySQL.removeSQLInjectionPossibility(prefix);
         try {
             mySQL.executeUpdate("UPDATE Server_Settings SET prefix = '" + prefix + "' WHERE id = '" + guildID + "';");
         } catch (SQLException e) {
@@ -90,11 +105,148 @@ public class MySQLHandler {
     }
 
     public void setRolesForAutomaticAssigning(String rolesInString, String id) {
+        if (this.containsLetters(rolesInString)) {
+            return;
+        }
         try {
             mySQL.executeUpdate("UPDATE Server_Automatic_Roles SET roles = '" + rolesInString + "' WHERE id = '" + id + "';");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    //JoinMessages
+
+    public void setJoinMessage(String message, String guildID) {
+        message = mySQL.removeSQLInjectionPossibility(message);
+        try {
+            mySQL.executeUpdate("UPDATE Server_Join_Messages SET message = '" + message + "' WHERE id = '" + guildID + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getJoinMessage(String guildID) {
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT message FROM Server_Join_Messages WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("message");
+            }
+        } catch (Exception e) {
+        }
+        return "";
+    }
+
+    public void setJoinMessageChannel(String channelID, String guildID) {
+        try {
+            mySQL.executeUpdate("UPDATE Server_Join_Messages SET channel = '" + channelID + "' WHERE id = '" + guildID + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getJoinMessageChannel(String guildID) {
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT channel FROM Server_Join_Messages WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("channel");
+            }
+        } catch (Exception e) {
+        }
+        return "";
+    }
+
+    public void setJoinMessageEnabled(boolean isEnabled, String guildID) {
+        try {
+            if (isEnabled) {
+                mySQL.executeUpdate("UPDATE Server_Join_Messages SET enabled = " + 1 + " WHERE id = '" + guildID + "';");
+            } else {
+                mySQL.executeUpdate("UPDATE Server_Join_Messages SET enabled = " + 0 + " WHERE id = '" + guildID + "';");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isJoinMessageEnabled(String guildID) {
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT enabled FROM Server_Join_Messages WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getBoolean("enabled");
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
+    //LeaveMessages
+
+    public void setLeaveMessage(String message, String guildID) {
+        message = mySQL.removeSQLInjectionPossibility(message);
+        try {
+            mySQL.executeUpdate("UPDATE Server_Leave_Messages SET message = '" + message + "' WHERE id = '" + guildID + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getLeaveMessage(String guildID) {
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT message FROM Server_Leave_Messages WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("message");
+            }
+        } catch (Exception e) {
+        }
+        return "";
+    }
+
+    public void setLeaveMessageChannel(String channelID, String guildID) {
+        try {
+            mySQL.executeUpdate("UPDATE Server_Leave_Messages SET channel = '" + channelID + "' WHERE id = '" + guildID + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getLeaveMessageChannel(String guildID) {
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT channel FROM Server_Leave_Messages WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("channel");
+            }
+        } catch (Exception e) {
+        }
+        return "";
+    }
+
+    public void setLeaveMessageEnabled(boolean isEnabled, String guildID) {
+        try {
+            if (isEnabled) {
+                mySQL.executeUpdate("UPDATE Server_Leave_Messages SET enabled = " + 1 + " WHERE id = '" + guildID + "';");
+            } else {
+                mySQL.executeUpdate("UPDATE Server_Leave_Messages SET enabled = " + 0 + " WHERE id = '" + guildID + "';");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isLeaveMessageEnabled(String guildID) {
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT enabled FROM Server_Leave_Messages WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getBoolean("enabled");
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
+
+    //Seperate Stuff
+    private boolean containsLetters(String value) {
+        return value.matches(".*[AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz].*");
     }
 
 }
