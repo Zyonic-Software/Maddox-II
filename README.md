@@ -116,6 +116,7 @@ public TestCommand() {
         this.setDescription("Just a Command for Testing");
         this.setSyntax("<PREFIX>test"); //"<PREFIX>" will be replaced with the set Prefix.
         this.setShowInHelp(true); //Enables you to hide your command from the help menu - enabled by default
+        this.setAllowExecutionOnMessageEdit(true);//Enables the Command to be run when the Message is edited
         this.setCommandHelpViewPermission(CommandHelpViewPermission.EVERYONE); //defines who can see the command
     }
 ```
