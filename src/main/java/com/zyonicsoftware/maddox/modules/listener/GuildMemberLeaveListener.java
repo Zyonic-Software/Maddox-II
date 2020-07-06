@@ -32,7 +32,7 @@ public class GuildMemberLeaveListener extends ListenerAdapter {
         if (this.maddox.getMySQLHandler().isLeaveMessageEnabled(event.getGuild().getId())) {
             String channelID = this.maddox.getMySQLHandler().getLeaveMessageChannel(event.getGuild().getId());
             if (channelID != null) {
-                Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getMySQLHandler().getLeaveMessage(event.getGuild().getId())).queue();
+                Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getMySQLHandler().getLeaveMessage(event.getGuild().getId()).replace("<USER>", "**" + event.getMember().getEffectiveName() + "**").replace("<SERVER>","**" + event.getGuild().getName() + "**")).queue();
             }
         }
     }
