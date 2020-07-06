@@ -71,7 +71,7 @@ public class HelpBuilder {
                     commandShow.append("``" + prefix + command.getName() + "`` ");
                 });
 
-                embedBuilder.addField("**" + categoryName + " • " + selectedCommands.size() + "**", commandShow.toString(), true);
+                embedBuilder.addField("**" + categoryName + " • " + selectedCommands.size() + "**", commandShow.toString(), false);
             }
         });
 
@@ -109,7 +109,7 @@ public class HelpBuilder {
                     commandShow.append("``" + prefix + command.getName() + "`` ");
                 });
 
-                embedBuilder.addField("**" + categoryName + " • " + selectedCommands.size() + "**", commandShow.toString(), true);
+                embedBuilder.addField("**" + categoryName + " • " + selectedCommands.size() + "**", commandShow.toString(), false);
             }
         });
 
@@ -121,7 +121,7 @@ public class HelpBuilder {
                 commandsWithoutCategoryShow.append("``" + prefix + command.getName() + "`` ");
             });
 
-            embedBuilder.addField("**Other • " + sortedSpecefiedPrefixCommands.get("none").size() + "**", commandsWithoutCategoryShow.toString(), true);
+            embedBuilder.addField("**Other • " + sortedSpecefiedPrefixCommands.get("none").size() + "**", commandsWithoutCategoryShow.toString(), false);
         }
 
         return embedBuilder.build();
