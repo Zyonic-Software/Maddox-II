@@ -39,7 +39,6 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Language-List-Header", "Available Languages", "EN");
                 LanguageAPI.setValue("Language-List-SubHeader", "A list of all available Languages:", "EN");
 
-
                 LanguageAPI.setValue("SetPrefix-Desc", "This Commands enables you to choose a server-specific prefix for " + maddox.getName() + ".", "EN");
                 LanguageAPI.setValue("SetPrefix-Syntax", "<PREFIX>setprefix <new Prefix>", "EN");
                 LanguageAPI.setValue("SetPrefix-Set", "The Prefix for '<SERVER>' was set to '<PREFIX>' !", "EN");
@@ -63,6 +62,14 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("LeaveMessage-Syntax", "``<PREFIX>leavemessage set <Your Message>`` | ``<PREFIX>leavemessage setchannel #YourChannel`` | ``<PREFIX>leavemessage enable`` | ``<PREFIX>leavemessage disable``", "EN");
                 LanguageAPI.setValue("JoinMessage-Desc", "The Joinmessage commands let you set a message that welcomes new Users to your Discord-Server. If you type <USER> within the Message " + maddox.getName() + " will mention the new Member.", "EN");
                 LanguageAPI.setValue("LeaveMessage-Desc", "The Leavemessage commands let you set a message that bids farewell to users that leave your Discord-Server. If you type <USER> within the Message " + maddox.getName() + " will mention the new Member.", "EN");
+
+
+                //ModerationStuff
+
+                LanguageAPI.setValue("Moderation-Category", "Moderation", "EN");
+
+                LanguageAPI.setValue("Kick-Syntax", "<PREFIX>kick @Member", "EN");
+                LanguageAPI.setValue("Kick-Desc", "This Commands lets you kick users off your Discord-Server", "EN");
 
 
                 LanguageAPI.setValue("NoChange", "Nothing was Changed", "EN");
@@ -113,6 +120,14 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("LeaveMessage-Syntax", "``<PREFIX>leavemessage set <Deine Nachricht>`` | ``<PREFIX>leavemessage setchannel #DeinKanal`` | ``<PREFIX>leavemessage enable`` | ``<PREFIX>leavemessage disable``", "DE");
                 LanguageAPI.setValue("JoinMessage-Desc", "Der Joinmessage Command lässt dich eine Nachricht erstellen die die User auf deinem Discord wilkommen heißt. Indem du in deiner Nachricht <USER> schreibst erwähnst du neue Benutzer", "DE");
                 LanguageAPI.setValue("LeaveMessage-Desc", "Der Leavemessage Command lässt dich eine Nachricht erstellen die die User von deinem Discord verabschiedet. Indem du in deiner Nachricht <USER> schreibst erwähnst du neue Benutzer", "DE");
+
+
+                //ModerationStuff
+
+                LanguageAPI.setValue("Moderation-Category", "Moderation", "DE");
+
+                LanguageAPI.setValue("Kick-Syntax", "<PREFIX>kick @User", "DE");
+                LanguageAPI.setValue("Kick-Desc", "Dieser Command erlaubt es dir jemanden von deinem Discordserver zu kicken", "DE");
 
 
                 LanguageAPI.setValue("NoChange", "Nichts verändert", "DE");

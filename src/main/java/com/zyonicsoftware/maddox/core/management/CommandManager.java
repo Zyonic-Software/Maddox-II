@@ -11,6 +11,7 @@ import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import com.zyonicsoftware.maddox.modules.command.information.BotInfoCommand;
 import com.zyonicsoftware.maddox.modules.command.information.HelpCommand;
+import com.zyonicsoftware.maddox.modules.command.moderation.KickCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.JoinMessageCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.LanguageCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.LeaveMessageCommand;
@@ -37,6 +38,8 @@ public class CommandManager {
                 new AutoRoleCommand(this.maddox),
                 new JoinMessageCommand(this.maddox),
                 new LeaveMessageCommand(this.maddox),
+                //Moderation
+                new KickCommand(),
                 //Normal
                 ///Information
                 new HelpCommand(this.maddox),

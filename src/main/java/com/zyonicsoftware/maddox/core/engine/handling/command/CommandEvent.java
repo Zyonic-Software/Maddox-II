@@ -202,9 +202,9 @@ public class CommandEvent {
         }
     }
 
-    public List<Member> getMentions() {
+    public List<MaddoxMember> getMentions() {
         List<String> memberIDs = new ArrayList<>();
-        List<Member> members = new ArrayList<>();
+        List<MaddoxMember> members = new ArrayList<>();
 
         this.getArguments().forEach(argument -> {
             if (argument.startsWith("<@") && argument.endsWith(">")) {
@@ -215,7 +215,7 @@ public class CommandEvent {
 
         memberIDs.forEach(userID -> {
             try {
-                members.add(this.getGuild().getMemberById(userID));
+                members.add(new MaddoxMember(this.getGuild().getMemberById(userID)));
             } catch (Exception e) {
 
             }
