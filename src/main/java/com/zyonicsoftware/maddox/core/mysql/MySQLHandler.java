@@ -37,6 +37,7 @@ public class MySQLHandler {
             mySQL.executeUpdate("INSERT INTO Server_Automatic_Roles(id) VALUES ('" + serverID + "');");
             mySQL.executeUpdate("INSERT INTO Server_Join_Messages(id) VALUES ('" + serverID + "');");
             mySQL.executeUpdate("INSERT INTO Server_Leave_Messages(id) VALUES ('" + serverID + "');");
+            mySQL.executeUpdate("INSERT INTO Server_Command_Toggle(id) VALUES ('" + serverID + "');");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,6 +49,7 @@ public class MySQLHandler {
             mySQL.executeUpdate("DELETE FROM Server_Automatic_Roles WHERE serverid = " + serverID);
             mySQL.executeUpdate("DELETE FROM Server_Join_Messages WHERE serverid = " + serverID);
             mySQL.executeUpdate("DELETE FROM Server_Join_Messages WHERE serverid = " + serverID);
+            mySQL.executeUpdate("DELETE FROM Server_Command_Toggle WHERE serverid = " + serverID);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -241,6 +243,25 @@ public class MySQLHandler {
         } catch (Exception e) {
         }
         return false;
+    }
+
+    public String getEnabledCommands(String guildID){
+        try {
+            final ResultSet resultSet = mySQL.executeQuery("SELECT enabled_commands FROM Server_Command_Toggle WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("enabled_commands");
+            }
+        } catch (Exception e) {
+        }
+        return "";
+    }
+
+    public void setEnabledCommands(String enabledCommands, String guildID){
+        try {
+            mySQL.executeUpdate("UPDATE Server_Command_Toggle SET enabled_commands = '" + enabledCommands + "' WHERE id = '" + guildID + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

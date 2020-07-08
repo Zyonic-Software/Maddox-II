@@ -24,6 +24,7 @@ public class KickCommand extends Command {
         this.setGetValuesFromLanguageYAML(true);
         this.setAllowExecutionOnMessageEdit(true);
         this.setCommandHelpViewPermission(CommandHelpViewPermission.MEMBER_KICK);
+        this.setToggleable(true);
     }
 
     @Override

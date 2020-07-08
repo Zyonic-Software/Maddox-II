@@ -63,6 +63,13 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("JoinMessage-Desc", "The Joinmessage commands let you set a message that welcomes new Users to your Discord-Server. If you type <USER> within the Message " + maddox.getName() + " will mention the new Member.", "EN");
                 LanguageAPI.setValue("LeaveMessage-Desc", "The Leavemessage commands let you set a message that bids farewell to users that leave your Discord-Server. If you type <USER> within the Message " + maddox.getName() + " will mention the new Member.", "EN");
 
+                LanguageAPI.setValue("Toggle-Syntax", "<PREFIX>toggle <Command>", "EN");
+                LanguageAPI.setValue("Toggle-Desc", "This commands lets you toggle specific commands on and off.", "EN");
+                LanguageAPI.setValue("NoCommandProvided", "Please provide a command that is toggleable. ``<PREFIX>toggle kick off``", "EN");
+                LanguageAPI.setValue("NoCommandOptionProvided", "Please specify an option. ``<PREFIX>toggle kick off``", "EN");
+                LanguageAPI.setValue("Toggle-ON", "The command ``<PREFIX><COMMAND>`` was enabled.", "EN");
+                LanguageAPI.setValue("Toggle-OFF", "The command ``<PREFIX><COMMAND>`` was disabled.", "EN");
+
 
                 //ModerationStuff
 
@@ -121,6 +128,12 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("JoinMessage-Desc", "Der Joinmessage Command lässt dich eine Nachricht erstellen die die User auf deinem Discord wilkommen heißt. Indem du in deiner Nachricht <USER> schreibst erwähnst du neue Benutzer", "DE");
                 LanguageAPI.setValue("LeaveMessage-Desc", "Der Leavemessage Command lässt dich eine Nachricht erstellen die die User von deinem Discord verabschiedet. Indem du in deiner Nachricht <USER> schreibst erwähnst du neue Benutzer", "DE");
 
+                LanguageAPI.setValue("Toggle-Syntax", "<PREFIX>toggle <Command>", "DE");
+                LanguageAPI.setValue("Toggle-Desc", "Dieser Command lässt dich bestimmte Commands aktivieren oder deaktivieren.", "DE");
+                LanguageAPI.setValue("NoCommandProvided", "Bitte gebe einen Command an der an- bzw. ausgeschaltet werden kann. ``<PREFIX>toggle kick off``", "DE");
+                LanguageAPI.setValue("NoCommandOptionProvided", "Bitte gebe eine Option an. ``<PREFIX>toggle kick off``", "DE");
+                LanguageAPI.setValue("Toggle-ON", "Der Command ``<PREFIX><COMMAND>`` wurde eingeschaltet.", "DE");
+                LanguageAPI.setValue("Toggle-OFF", "Der Command ``<PREFIX><COMMAND>`` wurde ausgeschaltet.", "DE");
 
                 //ModerationStuff
 

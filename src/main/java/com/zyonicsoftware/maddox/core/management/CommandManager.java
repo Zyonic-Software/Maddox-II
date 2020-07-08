@@ -17,6 +17,7 @@ import com.zyonicsoftware.maddox.modules.command.settings.messages.LanguageComma
 import com.zyonicsoftware.maddox.modules.command.settings.messages.LeaveMessageCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.system.AutoRoleCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.system.SetPrefixCommand;
+import com.zyonicsoftware.maddox.modules.command.settings.system.ToggleCommand;
 import com.zyonicsoftware.maddox.modules.command.sysadmin.ForceAddCommand;
 
 public class CommandManager {
@@ -38,6 +39,7 @@ public class CommandManager {
                 new AutoRoleCommand(this.maddox),
                 new JoinMessageCommand(this.maddox),
                 new LeaveMessageCommand(this.maddox),
+                new ToggleCommand(this.maddox),
                 //Moderation
                 new KickCommand(),
                 //Normal

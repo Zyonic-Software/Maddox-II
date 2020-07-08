@@ -22,6 +22,13 @@ public class GuildJoinListener extends ListenerAdapter {
     public void onGuildJoin(GuildJoinEvent event) {
         if (this.maddox.isMySQLConnected()) {
             this.maddox.getMySQLHandler().addServerToDatabase(event.getGuild().getId(), this.maddox.getDefaultPrefix(), this.maddox.getDefaultLanguage());
+            StringBuilder commandsInString = new StringBuilder();
+            this.maddox.getCommandHandler().getCommands().forEach((name, command) -> {
+                if(command.isToggleable()) {
+                    commandsInString.append(name).append(";");
+                }
+            });
+            this.maddox.getMySQLHandler().setEnabledCommands(commandsInString.toString(), event.getGuild().getId());
         }
     }
 

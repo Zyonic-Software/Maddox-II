@@ -30,7 +30,14 @@ public class ForceAddCommand extends Command {
             if (!event.getArguments().isEmpty()) {
                 if (event.getArguments().get(0).equalsIgnoreCase("server")) {//Forcefully adds a Server to the provided Database
                     try {
-                        this.maddox.getMySQLHandler().addServerToDatabase(server.getID(), this.maddox.getDefaultPrefix(), this.maddox.getDefaultLanguage());
+                        this.maddox.getMySQLHandler().addServerToDatabase(event.getGuild().getId(), this.maddox.getDefaultPrefix(), this.maddox.getDefaultLanguage());
+                        StringBuilder commandsInString = new StringBuilder();
+                        this.maddox.getCommandHandler().getCommands().forEach((name, command) -> {
+                            if(command.isToggleable()) {
+                                commandsInString.append(name).append(";");
+                            }
+                        });
+                        this.maddox.getMySQLHandler().setEnabledCommands(commandsInString.toString(), event.getGuild().getId());
                         event.reply(server.getName() + " was added to Database");
                     } catch (NullPointerException e) {
                         System.out.println("Force add Failed");

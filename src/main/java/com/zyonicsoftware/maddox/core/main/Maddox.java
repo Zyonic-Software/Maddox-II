@@ -15,6 +15,7 @@ import com.zyonicsoftware.maddox.core.engine.helpbuilder.HelpBuilder;
 import com.zyonicsoftware.maddox.core.language.LanguageLoader;
 import com.zyonicsoftware.maddox.core.management.AutomaticRoleManager;
 import com.zyonicsoftware.maddox.core.management.CommandManager;
+import com.zyonicsoftware.maddox.core.management.CommandToggleManager;
 import com.zyonicsoftware.maddox.core.mysql.MySQLHandler;
 import com.zyonicsoftware.maddox.core.startup.StartupLoader;
 import com.zyonicsoftware.maddox.modules.listener.*;
@@ -25,6 +26,7 @@ import java.awt.*;
 public class Maddox {
 
     private PrivateMessageCommandHandler privateMessageCommandHandler;
+    private CommandToggleManager commandToggleManager;
     private AutomaticRoleManager automaticRoleManager;
     private CommandHandler commandHandler;
     private LanguageLoader languageLoader;
@@ -34,6 +36,7 @@ public class Maddox {
     private HelpBuilder helpBuilder;
     private String botAdministrator;
     private String defaultLanguage;
+    private boolean areCommandsToggleable;
     private String defaultPrefix;
     private Color defaultColor;
     private boolean isMySQL;
@@ -91,6 +94,8 @@ public class Maddox {
         commandManager.registerCommands(commandHandler);
 
         automaticRoleManager = new AutomaticRoleManager(this);
+
+        commandToggleManager = new CommandToggleManager(this);
     }
 
     //Creates ShardManager, specefies primary Listeners
@@ -115,6 +120,7 @@ public class Maddox {
         this.botAdministrator = config.getBotAdministrator();
         this.defaultLanguage = config.getDefaultLanguage();
         this.supportedLanguages = config.getSupportedLanguages();
+        this.areCommandsToggleable = config.areCommandsToggleable();
     }
 
 
@@ -168,5 +174,13 @@ public class Maddox {
 
     public AutomaticRoleManager getAutomaticRoleManager() {
         return automaticRoleManager;
+    }
+
+    public CommandToggleManager getCommandToggleManager() {
+        return commandToggleManager;
+    }
+
+    public boolean areCommandsToggleable() {
+        return areCommandsToggleable;
     }
 }
