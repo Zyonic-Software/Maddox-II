@@ -146,6 +146,11 @@ You will need **four** Tables with the following Columns:
 - channel
 - enabled
 
+#### Server_Commands_Toggle
+
+- id
+- enabled_commands
+
 
 (Stuff *will* be added)
 
