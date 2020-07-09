@@ -126,7 +126,7 @@ public TestCommand() {
 To use Maddox to its full extend you will need a MySQL Database, so it can store the required data.
 So, how should your Database be configured so Maddox can work with it?.
 
-You will need **four** Tables with the following Columns:
+You will need **five** Tables with the following Columns:
 
 #### Server_Settings
 
