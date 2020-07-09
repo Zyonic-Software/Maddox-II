@@ -11,6 +11,7 @@ import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import com.zyonicsoftware.maddox.modules.command.information.BotInfoCommand;
 import com.zyonicsoftware.maddox.modules.command.information.HelpCommand;
+import com.zyonicsoftware.maddox.modules.command.moderation.ClearCommand;
 import com.zyonicsoftware.maddox.modules.command.moderation.KickCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.JoinMessageCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.LanguageCommand;
@@ -41,7 +42,8 @@ public class CommandManager {
                 new LeaveMessageCommand(this.maddox),
                 new ToggleCommand(this.maddox),
                 //Moderation
-                new KickCommand(),
+                new KickCommand(this.maddox),
+                new ClearCommand(),
                 //Normal
                 ///Information
                 new HelpCommand(this.maddox),

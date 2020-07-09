@@ -77,6 +77,13 @@ public class LanguageConfigFileManager {
 
                 LanguageAPI.setValue("Kick-Syntax", "<PREFIX>kick @Member", "EN");
                 LanguageAPI.setValue("Kick-Desc", "This Commands lets you kick users off your Discord-Server", "EN");
+                LanguageAPI.setValue("Kick-Without-Reason", "The user '**<USER>**' was kicked.", "EN");
+                LanguageAPI.setValue("Kick-With-Reason", "The user '**<USER>**' was kicked because off '<REASON>'.", "EN");
+
+                LanguageAPI.setValue("Clear-Desc", "You can delete up to 100 Messages at a time with <PREFIX>clear", "EN");
+                LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "EN");
+                LanguageAPI.setValue("Clear-NoNumberProvided", "Please provide a number between 2 - 100.", "EN");
+                LanguageAPI.setValue("Clear-MessagesTooOld", "These Messages are older than two weeks, they can't be deleted automatically.", "EN");
 
 
                 LanguageAPI.setValue("NoChange", "Nothing was Changed", "EN");
@@ -141,6 +148,13 @@ public class LanguageConfigFileManager {
 
                 LanguageAPI.setValue("Kick-Syntax", "<PREFIX>kick @User", "DE");
                 LanguageAPI.setValue("Kick-Desc", "Dieser Command erlaubt es dir jemanden von deinem Discordserver zu kicken", "DE");
+                LanguageAPI.setValue("Kick-Without-Reason", "Der Benutzer '**<USER>**' wurde erfolgreich vom Server geworfen", "DE");
+                LanguageAPI.setValue("Kick-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund '<REASON>' erfolgreich vom Server geworfen", "DE");
+
+                LanguageAPI.setValue("Clear-Desc", "Mit <PREFIX>clear kannst du bis zu 100 Nachrichten auf einmal löschen", "DE");
+                LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "DE");
+                LanguageAPI.setValue("Clear-NoNumberProvided", "Bitte gebe eine Zahl zwischen 2 - 100 an.", "DE");
+                LanguageAPI.setValue("Clear-MessagesTooOld", "Diese Nachrichten sind über zwei Wochen alt, sie können nicht automatisch gelöscht werden.", "DE");
 
 
                 LanguageAPI.setValue("NoChange", "Nichts verändert", "DE");

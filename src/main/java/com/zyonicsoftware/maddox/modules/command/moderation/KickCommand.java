@@ -12,11 +12,17 @@ import com.zyonicsoftware.maddox.core.engine.handling.command.CommandEvent;
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
+import com.zyonicsoftware.maddox.core.main.Maddox;
+import de.daschi.javalanguageapi.api.LanguageAPI;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
 public class KickCommand extends Command {
 
-    public KickCommand(){
+    private final Maddox maddox;
+
+    public KickCommand(Maddox maddox){
+        this.maddox = maddox;
         this.setName("kick");
         this.setDescription("Kick-Desc");
         this.setSyntax("Kick-Syntax");
@@ -33,8 +39,20 @@ public class KickCommand extends Command {
             if(!event.getMentions().isEmpty()){
                 if(event.getArguments().size() > 1) {
                     event.getMentions().get(0).kick(event.getArguments().get(1)).queue();
+                    event.reply(
+                            new EmbedBuilder()
+                                    .addField("Kick", LanguageAPI.getValue("Kick-With-Reason").replace("<USER>", event.getMentions().get(0).getNickame()).replace("<REASON>", event.getArgumentsAsString().replace(" " + event.getMentions().get(0).getAsMention() + " ", "")), false)
+                                    .setColor(this.maddox.getDefaultColor())
+                                    .build()
+                    );
                 } else {
                     event.getMentions().get(0).kick().queue();
+                    event.reply(
+                            new EmbedBuilder()
+                                    .addField("Kick", LanguageAPI.getValue("Kick-Without-Reason").replace("<USER>", event.getMentions().get(0).getNickame()), false)
+                                    .setColor(this.maddox.getDefaultColor())
+                                    .build()
+                    );
                 }
             }
         }
