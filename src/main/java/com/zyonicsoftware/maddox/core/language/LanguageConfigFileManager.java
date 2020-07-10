@@ -79,6 +79,7 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Kick-Desc", "This Commands lets you kick users off your Discord-Server", "EN");
                 LanguageAPI.setValue("Kick-Without-Reason", "The user '**<USER>**' was kicked.", "EN");
                 LanguageAPI.setValue("Kick-With-Reason", "The user '**<USER>**' was kicked because off '<REASON>'.", "EN");
+                LanguageAPI.setValue("Kick-NoPersonDefined", "Please provide a user to be kicked. ``<PREFIX>kick @User``", "EN");
 
                 LanguageAPI.setValue("Clear-Desc", "You can delete up to 100 Messages at a time with <PREFIX>clear", "EN");
                 LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "EN");
@@ -150,6 +151,7 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Kick-Desc", "Dieser Command erlaubt es dir jemanden von deinem Discordserver zu kicken", "DE");
                 LanguageAPI.setValue("Kick-Without-Reason", "Der Benutzer '**<USER>**' wurde erfolgreich vom Server geworfen", "DE");
                 LanguageAPI.setValue("Kick-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund '<REASON>' erfolgreich vom Server geworfen", "DE");
+                LanguageAPI.setValue("Kick-NoPersonDefined", "Bitte gebe einen Benutzer zum kicken an. ``<PREFIX>kick @User``", "DE");
 
                 LanguageAPI.setValue("Clear-Desc", "Mit <PREFIX>clear kannst du bis zu 100 Nachrichten auf einmal löschen", "DE");
                 LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "DE");

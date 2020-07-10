@@ -54,6 +54,8 @@ public class KickCommand extends Command {
                                     .build()
                     );
                 }
+            } else {
+                event.reply(LanguageAPI.getValue("Kick-NoPersonDefined", server.getLanguage()).replace("<PREFIX>", event.getPrefix()));
             }
         }
     }

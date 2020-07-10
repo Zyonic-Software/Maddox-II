@@ -215,7 +215,10 @@ public class CommandEvent {
 
         memberIDs.forEach(userID -> {
             try {
-                members.add(new MaddoxMember(this.getGuild().getMemberById(userID)));
+                Member member = this.getGuild().getMemberById(userID);
+                if(member != null) {
+                    members.add(new MaddoxMember(member));
+                }
             } catch (Exception e) {
 
             }
