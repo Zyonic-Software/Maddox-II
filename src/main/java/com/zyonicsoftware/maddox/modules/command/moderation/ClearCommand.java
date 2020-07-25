@@ -18,7 +18,7 @@ import net.dv8tion.jda.api.entities.MessageHistory;
 
 public class ClearCommand extends Command {
 
-    public ClearCommand(){
+    public ClearCommand() {
         this.setName("clear");
         this.setDescription("Clear-Desc");
         this.setSyntax("Clear-Syntax");
@@ -31,11 +31,11 @@ public class ClearCommand extends Command {
 
     @Override
     protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
-        if(!sender.hasPermission(Permission.MESSAGE_MANAGE)){
+        if (!sender.hasPermission(Permission.MESSAGE_MANAGE)) {
             return;
         }
 
-        if(event.getArguments().isEmpty()){
+        if (event.getArguments().isEmpty()) {
             event.reply(LanguageAPI.getValue("Clear-NoNumberProvided", server.getLanguage()));
             return;
         }
@@ -43,15 +43,16 @@ public class ClearCommand extends Command {
         try {
             final int amount = Integer.parseInt(event.getArguments().get(0));
 
-            if(amount > 1 && amount < 101){
+            if (amount > 1 && amount < 101) {
                 event.deleteEventMessage();
                 final MessageHistory hist = new MessageHistory(event.getChannel());
                 event.getChannel().deleteMessages(hist.retrievePast(amount).complete()).queue();
             }
-        } catch (NumberFormatException numberFormatException){
+        } catch (NumberFormatException numberFormatException) {
             event.reply(LanguageAPI.getValue("Clear-NoNumberProvided", server.getLanguage()));
-        } catch (IllegalArgumentException illegalArgumentException){
+        } catch (IllegalArgumentException illegalArgumentException) {
             event.reply(LanguageAPI.getValue("Clear-MessagesTooOld", server.getLanguage()));
-        } catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
     }
 }

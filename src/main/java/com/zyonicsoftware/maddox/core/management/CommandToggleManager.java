@@ -17,15 +17,15 @@ public class CommandToggleManager {
 
     private final Maddox maddox;
 
-    public CommandToggleManager(Maddox maddox){
+    public CommandToggleManager(Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public ArrayList<String> getCommandsForToggling(Guild guild){
+    public ArrayList<String> getCommandsForToggling(Guild guild) {
         return (ArrayList<String>) Arrays.asList(this.maddox.getMySQLHandler().getEnabledCommands(guild.getId()).split(";"));
     }
 
-    public void setCommandsForToggling(Guild guild, ArrayList<String> commands){
+    public void setCommandsForToggling(Guild guild, ArrayList<String> commands) {
 
         StringBuilder commandsInString = new StringBuilder();
 

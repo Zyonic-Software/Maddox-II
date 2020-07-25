@@ -187,16 +187,10 @@ public class CommandEvent {
         }
         if (arguments.length() > 0) {
             arguments = arguments.substring(1);
-            String[] args = arguments.split(" ");
-            List<String> argslist = new ArrayList<>();
+            List<String> argslist = new ArrayList<>(Arrays.asList(arguments.split(" ")));
+            argslist.removeIf(String::isEmpty);
 
-            for(int i = 0 ; i < args.length ; i++){
-                if(!args[i].equals("") || !args[i].equals(" ") || args[i] != null){
-                    argslist.add(args[i]);
-                }
-            }
-
-            if(argslist.isEmpty()){
+            if (argslist.isEmpty()) {
                 return new ArrayList<>();
             }
 
@@ -228,7 +222,7 @@ public class CommandEvent {
         memberIDs.forEach(userID -> {
             try {
                 Member member = this.getGuild().retrieveMemberById(userID).complete(true);
-                if(member != null) {
+                if (member != null) {
                     members.add(new MaddoxMember(member));
                 }
             } catch (Exception e) {

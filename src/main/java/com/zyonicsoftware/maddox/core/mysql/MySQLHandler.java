@@ -245,7 +245,7 @@ public class MySQLHandler {
         return false;
     }
 
-    public String getEnabledCommands(String guildID){
+    public String getEnabledCommands(String guildID) {
         try {
             final ResultSet resultSet = mySQL.executeQuery("SELECT enabled_commands FROM Server_Command_Toggle WHERE id = " + guildID + ";");
             while (resultSet.next()) {
@@ -256,7 +256,7 @@ public class MySQLHandler {
         return "";
     }
 
-    public void setEnabledCommands(String enabledCommands, String guildID){
+    public void setEnabledCommands(String enabledCommands, String guildID) {
         try {
             mySQL.executeUpdate("UPDATE Server_Command_Toggle SET enabled_commands = '" + enabledCommands + "' WHERE id = '" + guildID + "';");
         } catch (SQLException e) {

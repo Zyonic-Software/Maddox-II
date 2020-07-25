@@ -41,7 +41,7 @@ public class GuildMemberJoinListener extends ListenerAdapter {
         if (this.maddox.getMySQLHandler().isJoinMessageEnabled(event.getGuild().getId())) {
             String channelID = this.maddox.getMySQLHandler().getJoinMessageChannel(event.getGuild().getId());
             if (channelID != null) {
-                Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getMySQLHandler().getJoinMessage(event.getGuild().getId()).replace("<USER>", event.getMember().getAsMention()).replace("<SERVER>","**" + event.getGuild().getName() + "**")).queue();
+                Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getMySQLHandler().getJoinMessage(event.getGuild().getId()).replace("<USER>", event.getMember().getAsMention()).replace("<SERVER>", "**" + event.getGuild().getName() + "**")).queue();
             }
         }
     }

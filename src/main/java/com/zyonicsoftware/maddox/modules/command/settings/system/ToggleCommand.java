@@ -20,7 +20,7 @@ public class ToggleCommand extends Command {
 
     private final Maddox maddox;
 
-    public ToggleCommand(Maddox maddox){
+    public ToggleCommand(Maddox maddox) {
         this.maddox = maddox;
         this.setName("toggle");
         this.setCategory("Settings-Category");
@@ -32,10 +32,10 @@ public class ToggleCommand extends Command {
 
     @Override
     protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
-        if(sender.hasPermission(Permission.MANAGE_SERVER)){
-            if(event.getArguments().size() > 1){
-                if(this.maddox.getCommandHandler().getCommands().containsKey(event.getArguments().get(0))){
-                    if(this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0)).isToggleable()) {
+        if (sender.hasPermission(Permission.MANAGE_SERVER)) {
+            if (event.getArguments().size() > 1) {
+                if (this.maddox.getCommandHandler().getCommands().containsKey(event.getArguments().get(0))) {
+                    if (this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0)).isToggleable()) {
                         if (event.getArguments().get(1).equalsIgnoreCase("on")) {
                             String initialCommandsInString = this.maddox.getMySQLHandler().getEnabledCommands(event.getGuild().getId());
                             if (initialCommandsInString.contains(event.getArguments().get(0))) {
