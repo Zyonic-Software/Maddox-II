@@ -33,7 +33,7 @@ public class ForceAddCommand extends Command {
                         this.maddox.getMySQLHandler().addServerToDatabase(event.getGuild().getId(), this.maddox.getDefaultPrefix(), this.maddox.getDefaultLanguage());
                         StringBuilder commandsInString = new StringBuilder();
                         this.maddox.getCommandHandler().getCommands().forEach((name, command) -> {
-                            if(command.isToggleable()) {
+                            if (command.isToggleable()) {
                                 commandsInString.append(name).append(";");
                             }
                         });

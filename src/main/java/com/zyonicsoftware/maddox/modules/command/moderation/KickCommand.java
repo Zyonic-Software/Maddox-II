@@ -21,7 +21,7 @@ public class KickCommand extends Command {
 
     private final Maddox maddox;
 
-    public KickCommand(Maddox maddox){
+    public KickCommand(Maddox maddox) {
         this.maddox = maddox;
         this.setName("kick");
         this.setDescription("Kick-Desc");
@@ -35,13 +35,14 @@ public class KickCommand extends Command {
 
     @Override
     protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
-        if(sender.hasPermission(Permission.KICK_MEMBERS)){
-            if(!event.getMentions().isEmpty()){
-                if(event.getArguments().size() > 1) {
+        event.getArguments();
+        if (sender.hasPermission(Permission.KICK_MEMBERS)) {
+            if (!event.getMentions().isEmpty()) {
+                if (event.getArguments().size() > 1) {
                     event.getMentions().get(0).kick(event.getArguments().get(1)).queue();
                     event.reply(
                             new EmbedBuilder()
-                                    .addField("Kick", LanguageAPI.getValue("Kick-With-Reason").replace("<USER>", event.getMentions().get(0).getNickame()).replace("<REASON>", event.getArgumentsAsString().replace(" " + event.getMentions().get(0).getAsMention() + " ", "")), false)
+                                    .addField("Kick", LanguageAPI.getValue("Kick-With-Reason").replace("<USER>", event.getMentions().get(0).getUsername()).replace("<REASON>", event.getArgumentsAsString().replace(" " + event.getMentions().get(0).getAsMention() + " ", "")), false)
                                     .setColor(this.maddox.getDefaultColor())
                                     .build()
                     );
@@ -49,7 +50,7 @@ public class KickCommand extends Command {
                     event.getMentions().get(0).kick().queue();
                     event.reply(
                             new EmbedBuilder()
-                                    .addField("Kick", LanguageAPI.getValue("Kick-Without-Reason").replace("<USER>", event.getMentions().get(0).getNickame()), false)
+                                    .addField("Kick", LanguageAPI.getValue("Kick-Without-Reason").replace("<USER>", event.getMentions().get(0).getUsername()), false)
                                     .setColor(this.maddox.getDefaultColor())
                                     .build()
                     );

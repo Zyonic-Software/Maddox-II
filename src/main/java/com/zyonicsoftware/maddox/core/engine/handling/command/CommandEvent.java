@@ -187,8 +187,14 @@ public class CommandEvent {
         }
         if (arguments.length() > 0) {
             arguments = arguments.substring(1);
-            String[] args = arguments.split(" ");
-            return Arrays.asList(args);
+            List<String> argslist = new ArrayList<>(Arrays.asList(arguments.split(" ")));
+            argslist.removeIf(String::isEmpty);
+
+            if (argslist.isEmpty()) {
+                return new ArrayList<>();
+            }
+
+            return argslist;
         } else {
             return new ArrayList<String>();
         }
@@ -215,8 +221,8 @@ public class CommandEvent {
 
         memberIDs.forEach(userID -> {
             try {
-                Member member = this.getGuild().getMemberById(userID);
-                if(member != null) {
+                Member member = this.getGuild().retrieveMemberById(userID).complete(true);
+                if (member != null) {
                     members.add(new MaddoxMember(member));
                 }
             } catch (Exception e) {
@@ -225,6 +231,19 @@ public class CommandEvent {
         });
 
         return members;
+    }
+
+    public List<String> getMentionsAsIDs() {
+        List<String> memberIDs = new ArrayList<>();
+
+        this.getArguments().forEach(argument -> {
+            if (argument.startsWith("<@") && argument.endsWith(">")) {
+                argument = argument.replace("<@", "").replace(">", "").replace("!", "");
+                memberIDs.add(argument);
+            }
+        });
+
+        return memberIDs;
     }
 
     public List<TextChannel> getTextChannelMentions() {

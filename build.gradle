@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    compile(group: 'net.dv8tion', name: 'JDA', version: '4.1.1_166')
+    compile(group: 'net.dv8tion', name: 'JDA', version: '4.2.0_181')
     compile('com.github.Daschi1:JavaMySQLAPI:v1.0.5a')
     compile('com.github.Daschi1:JavaLanguageAPI:v1.0.2a')
     compile(group: 'com.github.Carleslc', name: 'Simple-YAML', version: '1.6.1')

@@ -61,8 +61,8 @@ public class CommandHandler {
 
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        if(this.maddox.areCommandsToggleable()){
-                            if(selectedCommand.isToggleable()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
                                 if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
                                     return;
                                 }
@@ -103,8 +103,8 @@ public class CommandHandler {
 
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        if(this.maddox.areCommandsToggleable()){
-                            if(selectedCommand.isToggleable()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
                                 if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
                                     return;
                                 }
@@ -126,8 +126,8 @@ public class CommandHandler {
                 Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        if(this.maddox.areCommandsToggleable()){
-                            if(selectedCommand.isToggleable()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
                                 if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
                                     return;
                                 }
@@ -149,8 +149,8 @@ public class CommandHandler {
                 Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        if(this.maddox.areCommandsToggleable()){
-                            if(selectedCommand.isToggleable()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
                                 if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
                                     return;
                                 }
@@ -180,8 +180,8 @@ public class CommandHandler {
 
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        if(this.maddox.areCommandsToggleable()){
-                            if(selectedCommand.isToggleable()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
                                 if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
                                     return;
                                 }
@@ -203,8 +203,8 @@ public class CommandHandler {
                 Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        if(this.maddox.areCommandsToggleable()){
-                            if(selectedCommand.isToggleable()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
                                 if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
                                     return;
                                 }
@@ -228,8 +228,8 @@ public class CommandHandler {
 
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        if(this.maddox.areCommandsToggleable()){
-                            if(selectedCommand.isToggleable()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
                                 if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
                                     return;
                                 }
@@ -251,8 +251,8 @@ public class CommandHandler {
                 Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        if(this.maddox.areCommandsToggleable()){
-                            if(selectedCommand.isToggleable()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
                                 if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
                                     return;
                                 }
@@ -274,8 +274,8 @@ public class CommandHandler {
                 Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        if(this.maddox.areCommandsToggleable()){
-                            if(selectedCommand.isToggleable()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
                                 if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
                                     return;
                                 }
