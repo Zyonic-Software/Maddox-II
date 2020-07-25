@@ -7,7 +7,7 @@
 
 package com.zyonicsoftware.maddox.core.engine.objects;
 
-import com.zyonicsoftware.maddox.core.mysql.MySQLHandler;
+import com.zyonicsoftware.maddox.core.savestructure.MySQLHandler;
 import de.daschi.javalanguageapi.api.LanguageAPI;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.Region;

@@ -16,7 +16,8 @@ import com.zyonicsoftware.maddox.core.language.LanguageLoader;
 import com.zyonicsoftware.maddox.core.management.AutomaticRoleManager;
 import com.zyonicsoftware.maddox.core.management.CommandManager;
 import com.zyonicsoftware.maddox.core.management.CommandToggleManager;
-import com.zyonicsoftware.maddox.core.mysql.MySQLHandler;
+import com.zyonicsoftware.maddox.core.savestructure.CacheManager;
+import com.zyonicsoftware.maddox.core.savestructure.MySQLHandler;
 import com.zyonicsoftware.maddox.core.startup.StartupLoader;
 import com.zyonicsoftware.maddox.modules.listener.*;
 import net.dv8tion.jda.api.sharding.ShardManager;
@@ -28,15 +29,16 @@ public class Maddox {
     private PrivateMessageCommandHandler privateMessageCommandHandler;
     private CommandToggleManager commandToggleManager;
     private AutomaticRoleManager automaticRoleManager;
+    private boolean areCommandsToggleable;
     private CommandHandler commandHandler;
     private LanguageLoader languageLoader;
     private MySQLHandler mySQLHandler;
     private ShardManager shardManager;
+    private CacheManager cacheManager;
     private String supportedLanguages;
     private HelpBuilder helpBuilder;
     private String botAdministrator;
     private String defaultLanguage;
-    private boolean areCommandsToggleable;
     private String defaultPrefix;
     private Color defaultColor;
     private boolean isMySQL;
@@ -77,16 +79,13 @@ public class Maddox {
         }
 
         this.languageLoader = new LanguageLoader(this);
-
         this.languageLoader.initLanguages();//Loads languages from config files (and generates them)
-
 
         System.out.println("Bot-Administrator ID(s): " + config.getBotAdministrator());
 
         shardManager = this.initShards(amountShards, config, startupLoader);
 
         commandHandler = new CommandHandler(this);
-
         helpBuilder = new HelpBuilder(this);
 
         CommandManager commandManager = new CommandManager(this);
@@ -94,8 +93,8 @@ public class Maddox {
         commandManager.registerCommands(commandHandler);
 
         automaticRoleManager = new AutomaticRoleManager(this);
-
         commandToggleManager = new CommandToggleManager(this);
+        cacheManager = new CacheManager(this);
     }
 
     //Creates ShardManager, specefies primary Listeners
@@ -182,5 +181,9 @@ public class Maddox {
 
     public boolean areCommandsToggleable() {
         return areCommandsToggleable;
+    }
+
+    public CacheManager getCacheManager() {
+        return cacheManager;
     }
 }

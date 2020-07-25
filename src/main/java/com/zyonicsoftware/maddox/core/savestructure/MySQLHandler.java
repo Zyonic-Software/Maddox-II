@@ -5,7 +5,7 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.core.mysql;
+package com.zyonicsoftware.maddox.core.savestructure;
 
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import de.daschi.core.MySQL;
