@@ -19,11 +19,11 @@ public class PreStartupLoader {
 
     private final Maddox maddox;
 
-    public PreStartupLoader(Maddox maddox) {
+    public PreStartupLoader(final Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public void loadConfigFile(BaseValueConfig config, MySQLConfig mySQLConfig) {
+    public void loadConfigFile(final BaseValueConfig config, final MySQLConfig mySQLConfig) {
 
         this.initMainConfig(config);
 
@@ -32,13 +32,13 @@ public class PreStartupLoader {
         }
     }
 
-    private void initMainConfig(BaseValueConfig config) {
+    private void initMainConfig(final BaseValueConfig config) {
         try {
-            File configFile = new File("config.yml");
+            final File configFile = new File("config.yml");
 
             if (!configFile.createNewFile()) {
 
-                YamlFile yamlFile = new YamlFile(configFile);
+                final YamlFile yamlFile = new YamlFile(configFile);
                 yamlFile.load();
 
                 config.setToken(yamlFile.getString("token"));
@@ -54,7 +54,7 @@ public class PreStartupLoader {
 
             } else {
 
-                YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(configFile);
+                final YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(configFile);
 
                 yamlConfiguration.createSection("token");
                 yamlConfiguration.createSection("amountShards");
@@ -82,19 +82,19 @@ public class PreStartupLoader {
 
                 yamlConfiguration.save(configFile);
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             System.out.println("Config generated, please Restart");
             e.printStackTrace();
         }
     }
 
-    private void initMysqlConfig(MySQLConfig mySQLConfig) {
+    private void initMysqlConfig(final MySQLConfig mySQLConfig) {
         try {
-            File mysqlFile = new File("mysqlconfig.yml");
+            final File mysqlFile = new File("mysqlconfig.yml");
 
             if (!mysqlFile.createNewFile()) {
 
-                YamlFile yamlFile = new YamlFile(mysqlFile);
+                final YamlFile yamlFile = new YamlFile(mysqlFile);
                 yamlFile.load();
 
                 mySQLConfig.setHostname(yamlFile.get("hostname"));
@@ -105,7 +105,7 @@ public class PreStartupLoader {
 
             } else {
 
-                YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(mysqlFile);
+                final YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(mysqlFile);
 
                 yamlConfiguration.createSection("hostname");
                 yamlConfiguration.createSection("port");
@@ -125,7 +125,7 @@ public class PreStartupLoader {
 
                 System.out.println("Generated mySQL config, please enter your Information and restart");
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
     }

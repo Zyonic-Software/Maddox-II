@@ -19,7 +19,7 @@ public class HelpCommand extends Command {
 
     private final Maddox maddox;
 
-    public HelpCommand(Maddox maddox) {
+    public HelpCommand(final Maddox maddox) {
         this.setName("help");
         this.setCategory("Help-Category");
         this.setDescription("Help-Desc");
@@ -31,11 +31,11 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
+    protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         if (event.getArguments().isEmpty()) {
-            event.reply(maddox.getHelpBuilder().assembleHelp(sender, server.getPrefix(), server.getLanguage()));
+            event.reply(this.maddox.getHelpBuilder().assembleHelp(sender, server.getPrefix(), server.getLanguage()));
         } else if (event.getArguments().size() > 0 && this.maddox.getCommandHandler().getCommands().containsKey(event.getArguments().get(0).toLowerCase())) {
-            MessageEmbed messageEmbed = this.maddox.getHelpBuilder().generateCommandHelp(this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0).toLowerCase()), server.getPrefix(), sender, server);
+            final MessageEmbed messageEmbed = this.maddox.getHelpBuilder().generateCommandHelp(this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0).toLowerCase()), server.getPrefix(), sender, server);
             if (messageEmbed != null) {
                 event.reply(messageEmbed);
             }

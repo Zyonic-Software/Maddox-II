@@ -14,7 +14,7 @@ import net.dv8tion.jda.api.sharding.ShardManager;
 
 public class StartupLoader {
 
-    public ShardManager loadShards(int amountOfShards, String token, ListenerAdapter... listenerAdapters) {
+    public ShardManager loadShards(final int amountOfShards, final String token, final ListenerAdapter... listenerAdapters) {
         try {
             return DefaultShardManagerBuilder
                     .createLight(
@@ -34,7 +34,7 @@ public class StartupLoader {
                     .addEventListeners(listenerAdapters)
                     .setShardsTotal(amountOfShards)
                     .build();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             System.out.println("The provided token is invalid, please enter a valid one");
             return null;
         }

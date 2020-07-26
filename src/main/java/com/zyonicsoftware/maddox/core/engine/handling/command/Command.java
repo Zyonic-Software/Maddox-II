@@ -25,71 +25,71 @@ public abstract class Command {
     private boolean getValuesFromLanguage;
     private int commandHelpViewPermission = 0;
 
-    protected void setName(String name) {
+    protected void setName(final String name) {
         this.name = name.toLowerCase();
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    protected void setDescription(String description) {
+    protected void setDescription(final String description) {
         this.description = description;
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
-    protected void setSyntax(String syntax) {
+    protected void setSyntax(final String syntax) {
         this.syntax = syntax;
     }
 
     public String getSyntax() {
-        return syntax;
+        return this.syntax;
     }
 
-    protected void setSpecificPrefix(String specificPrefix) {
+    protected void setSpecificPrefix(final String specificPrefix) {
         this.specificPrefix = specificPrefix;
     }
 
     public String getSpecificPrefix() {
-        return specificPrefix;
+        return this.specificPrefix;
     }
 
-    protected void setAllowExecutionOnMessageEdit(boolean allowExecutionOnMessageEdit) {
+    protected void setAllowExecutionOnMessageEdit(final boolean allowExecutionOnMessageEdit) {
         this.allowExecutionOnMessageEdit = allowExecutionOnMessageEdit;
     }
 
     public boolean isExecutionOnMessageEdit() {
-        return allowExecutionOnMessageEdit;
+        return this.allowExecutionOnMessageEdit;
     }
 
-    protected void setShowInHelp(boolean showInHelp) {
+    protected void setShowInHelp(final boolean showInHelp) {
         this.showInHelp = showInHelp;
     }
 
     public boolean ShowInHelp() {
-        return showInHelp;
+        return this.showInHelp;
     }
 
-    protected void setShowExtendedHelp(boolean showExtendedHelp) {
+    protected void setShowExtendedHelp(final boolean showExtendedHelp) {
         this.showExtendedHelp = showExtendedHelp;
     }
 
     public boolean isShowExtendedHelp() {
-        return showExtendedHelp;
+        return this.showExtendedHelp;
     }
 
-    protected void setToggleable(boolean isToggleable) {
+    protected void setToggleable(final boolean isToggleable) {
         this.toggleable = isToggleable;
     }
 
     public boolean isToggleable() {
-        return toggleable;
+        return this.toggleable;
     }
 
-    protected void setCommandHelpViewPermission(CommandHelpViewPermission commandHelpViewPermission) {
+    protected void setCommandHelpViewPermission(final CommandHelpViewPermission commandHelpViewPermission) {
         switch (commandHelpViewPermission) {
             case EVERYONE:
                 this.commandHelpViewPermission = 0;
@@ -119,23 +119,23 @@ public abstract class Command {
     }
 
     public int getCommandHelpViewPermission() {
-        return commandHelpViewPermission;
+        return this.commandHelpViewPermission;
     }
 
-    protected void setCategory(String category) {
+    protected void setCategory(final String category) {
         this.category = category;
     }
 
     public String getCategory() {
-        return category;
+        return this.category;
     }
 
-    protected void setGetValuesFromLanguageYAML(boolean getValuesFromLanguage) {
+    protected void setGetValuesFromLanguageYAML(final boolean getValuesFromLanguage) {
         this.getValuesFromLanguage = getValuesFromLanguage;
     }
 
     public boolean isGetValuesFromLanguageYaml() {
-        return getValuesFromLanguage;
+        return this.getValuesFromLanguage;
     }
 
     protected abstract void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server);

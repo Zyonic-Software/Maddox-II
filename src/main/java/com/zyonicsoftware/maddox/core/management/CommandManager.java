@@ -25,11 +25,11 @@ public class CommandManager {
 
     private final Maddox maddox;
 
-    public CommandManager(Maddox maddox) {
+    public CommandManager(final Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public void registerCommands(CommandHandler commandHandler) {
+    public void registerCommands(final CommandHandler commandHandler) {
 
         commandHandler.registerCommands(
                 //Sys-Admin

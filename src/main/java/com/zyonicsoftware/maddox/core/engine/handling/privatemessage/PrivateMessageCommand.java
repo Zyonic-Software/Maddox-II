@@ -15,44 +15,44 @@ public abstract class PrivateMessageCommand {
     private String specificPrefix;
     private boolean allowExecutionOnMessageEdit;
 
-    protected void setName(String name) {
+    protected void setName(final String name) {
         this.name = name;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    protected void setDescription(String description) {
+    protected void setDescription(final String description) {
         this.description = description;
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
-    protected void setSyntax(String syntax) {
+    protected void setSyntax(final String syntax) {
         this.syntax = syntax;
     }
 
     public String getSyntax() {
-        return syntax;
+        return this.syntax;
     }
 
-    protected void setSpecificPrefix(String specificPrefix) {
+    protected void setSpecificPrefix(final String specificPrefix) {
         this.specificPrefix = specificPrefix;
     }
 
     public String getSpecificPrefix() {
-        return specificPrefix;
+        return this.specificPrefix;
     }
 
-    protected void setAllowExecutionOnMessageEdit(boolean allowExecutionOnMessageEdit) {
+    protected void setAllowExecutionOnMessageEdit(final boolean allowExecutionOnMessageEdit) {
         this.allowExecutionOnMessageEdit = allowExecutionOnMessageEdit;
     }
 
     public boolean isExecutionOnMessageEdit() {
-        return allowExecutionOnMessageEdit;
+        return this.allowExecutionOnMessageEdit;
     }
 
     protected abstract void execute(PrivateMessageCommandEvent event);

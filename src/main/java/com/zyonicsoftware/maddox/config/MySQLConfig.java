@@ -16,51 +16,51 @@ public class MySQLConfig {
     private String password;
     private boolean isEnabled;
 
-    public void setHostname(Object hostname) {
+    public void setHostname(final Object hostname) {
         this.hostname = (String) hostname;
     }
 
-    public void setPort(Object port) {
+    public void setPort(final Object port) {
         this.port = (int) port;
     }
 
-    public void setDatabase(Object database) {
+    public void setDatabase(final Object database) {
         this.database = (String) database;
     }
 
-    public void setUser(Object user) {
+    public void setUser(final Object user) {
         this.user = (String) user;
     }
 
-    public void setPassword(Object password) {
+    public void setPassword(final Object password) {
         this.password = (String) password;
     }
 
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
+    public void setEnabled(final boolean enabled) {
+        this.isEnabled = enabled;
     }
 
     public String getHostname() {
-        return hostname;
+        return this.hostname;
     }
 
     public int getPort() {
-        return port;
+        return this.port;
     }
 
     public String getDatabase() {
-        return database;
+        return this.database;
     }
 
     public String getUser() {
-        return user;
+        return this.user;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public boolean isEnabled() {
-        return isEnabled;
+        return this.isEnabled;
     }
 }

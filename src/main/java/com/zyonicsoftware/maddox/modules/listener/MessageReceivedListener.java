@@ -22,24 +22,25 @@ public class MessageReceivedListener extends ListenerAdapter {
 
     private final Maddox maddox;
 
-    public MessageReceivedListener(Maddox maddox) {
+    public MessageReceivedListener(final Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+    @Override
+    public void onGuildMessageReceived(final GuildMessageReceivedEvent event) {
 
         if (!event.getAuthor().equals(event.getJDA().getSelfUser())) {
 
             String prefix;
 
             if (this.maddox.isMySQLConnected()) {
-                prefix = this.maddox.getMySQLHandler().getPrefix(event.getGuild().getId());
+                prefix = this.maddox.getCacheManager().getPrefix(event.getGuild().getId());
             } else {
-                prefix = maddox.getDefaultPrefix();
+                prefix = this.maddox.getDefaultPrefix();
             }
 
             if (prefix == null) {
-                prefix = maddox.getDefaultPrefix();
+                prefix = this.maddox.getDefaultPrefix();
             }
 
             this.maddox.getCommandHandler().handle(event, prefix, event.getMessage().getContentRaw());

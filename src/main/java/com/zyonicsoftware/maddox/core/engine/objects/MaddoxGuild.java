@@ -7,7 +7,7 @@
 
 package com.zyonicsoftware.maddox.core.engine.objects;
 
-import com.zyonicsoftware.maddox.core.savestructure.MySQLHandler;
+import com.zyonicsoftware.maddox.core.savestructure.CacheManager;
 import de.daschi.javalanguageapi.api.LanguageAPI;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.Region;
@@ -39,23 +39,23 @@ public class MaddoxGuild { //Huge thanks to Spark61 for saving my fingers from t
     private final Guild guild;
     private String prefix;
     private String language;
-    private MySQLHandler mySQLHandler;
+    private CacheManager cacheManager;
 
-    public MaddoxGuild(Guild guild, String prefix) {
+    public MaddoxGuild(final Guild guild, final String prefix) {
         this.guild = guild;
         this.prefix = prefix;
         this.language = LanguageAPI.getLanguageHandler().getLanguage();
     }
 
-    public MaddoxGuild(Guild guild, String prefix, MySQLHandler mySQLHandler) {
+    public MaddoxGuild(final Guild guild, final String prefix, final CacheManager cacheManager) {
         this.guild = guild;
         this.prefix = prefix;
-        this.language = mySQLHandler.getServerLanguage(guild.getId());
-        this.mySQLHandler = mySQLHandler;
+        this.language = cacheManager.getLanguage(guild.getId());
+        this.cacheManager = cacheManager;
     }
 
     public Guild getGuild() {
-        return guild;
+        return this.guild;
     }
 
     public String getID() {
@@ -63,29 +63,29 @@ public class MaddoxGuild { //Huge thanks to Spark61 for saving my fingers from t
     }
 
     public String getLanguage() {
-        return language;
+        return this.language;
     }
 
-    public void setLanguage(String language) {
-        if (mySQLHandler != null) {
-            mySQLHandler.setLanguage(language, this.guild.getId());
+    public void setLanguage(final String language) {
+        if (this.cacheManager != null) {
+            this.cacheManager.setLanguage(language, this.guild.getId());
             this.language = language;
         }
     }
 
     public String getPrefix() {
-        return prefix;
+        return this.prefix;
     }
 
-    public void setPrefix(String prefix) {
-        if (mySQLHandler != null) {
+    public void setPrefix(final String prefix) {
+        if (this.cacheManager != null) {
             this.prefix = prefix;
-            mySQLHandler.setPrefix(prefix, this.getID());
+            this.cacheManager.setPrefix(prefix, this.getID());
         }
     }
 
     public ArrayList<String> getRoleIDs() {
-        ArrayList<String> roleIDs = new ArrayList<>();
+        final ArrayList<String> roleIDs = new ArrayList<>();
         this.guild.getRoles().forEach(role -> {
             roleIDs.add(role.getId());
         });
@@ -93,7 +93,7 @@ public class MaddoxGuild { //Huge thanks to Spark61 for saving my fingers from t
     }
 
     public HashMap<String, Role> getRolesSortedByIDs() {
-        HashMap<String, Role> roleIDs = new HashMap<>();
+        final HashMap<String, Role> roleIDs = new HashMap<>();
         this.guild.getRoles().forEach(role -> {
             roleIDs.put(role.getId(), role);
         });

@@ -17,24 +17,24 @@ public class PrivateMessageCommandHandler {
     private final Maddox maddox;
     private final HashMap<String, PrivateMessageCommand> privateCommands;
 
-    public PrivateMessageCommandHandler(Maddox maddox) {
+    public PrivateMessageCommandHandler(final Maddox maddox) {
         this.maddox = maddox;
 
-        privateCommands = new HashMap<>();
+        this.privateCommands = new HashMap<>();
     }
 
-    public void registerPrivateMessageCommand(PrivateMessageCommand privateMessageCommand) {
-        privateCommands.put(this.maddox.getDefaultPrefix() + privateMessageCommand.getName(), privateMessageCommand);
+    public void registerPrivateMessageCommand(final PrivateMessageCommand privateMessageCommand) {
+        this.privateCommands.put(this.maddox.getDefaultPrefix() + privateMessageCommand.getName(), privateMessageCommand);
     }
 
-    public void handle(PrivateMessageReceivedEvent event, String prefix, String messageContent) {
+    public void handle(final PrivateMessageReceivedEvent event, final String prefix, final String messageContent) {
         if (messageContent.startsWith(prefix)) {
 
-            String[] seperatedStrings = messageContent.substring(prefix.length()).split(" ");
+            final String[] seperatedStrings = messageContent.substring(prefix.length()).split(" ");
 
             if (seperatedStrings.length > 0) {
 
-                PrivateMessageCommand selectedCommand = privateCommands.get(seperatedStrings[0].toLowerCase());
+                final PrivateMessageCommand selectedCommand = this.privateCommands.get(seperatedStrings[0].toLowerCase());
 
                 if (selectedCommand != null) {
                     selectedCommand.execute(new PrivateMessageCommandEvent(selectedCommand, event, this.maddox));
@@ -44,11 +44,11 @@ public class PrivateMessageCommandHandler {
 
             if (messageContent.startsWith(prefix)) {
 
-                String[] seperatedStrings = messageContent.substring(prefix.length()).split(" ");
+                final String[] seperatedStrings = messageContent.substring(prefix.length()).split(" ");
 
                 if (seperatedStrings.length > 0) {
 
-                    PrivateMessageCommand selectedCommand = privateCommands.get(seperatedStrings[0].toLowerCase());
+                    final PrivateMessageCommand selectedCommand = this.privateCommands.get(seperatedStrings[0].toLowerCase());
 
                     if (selectedCommand != null) {
                         selectedCommand.execute(new PrivateMessageCommandEvent(selectedCommand, event, this.maddox));

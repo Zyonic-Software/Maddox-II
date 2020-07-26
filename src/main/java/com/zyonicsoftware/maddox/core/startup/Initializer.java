@@ -14,11 +14,11 @@ import de.daschi.core.MySQL;
 
 public class Initializer {
 
-    public static void main(String[] args) {
-        Maddox maddox = new Maddox();
-        PreStartupLoader preStartupLoader = new PreStartupLoader(maddox);
-        BaseValueConfig config = new BaseValueConfig();
-        MySQLConfig mySQLConfig = new MySQLConfig();
+    public static void main(final String[] args) {
+        final Maddox maddox = new Maddox();
+        final PreStartupLoader preStartupLoader = new PreStartupLoader(maddox);
+        final BaseValueConfig config = new BaseValueConfig();
+        final MySQLConfig mySQLConfig = new MySQLConfig();
 
         preStartupLoader.loadConfigFile(config, mySQLConfig);
 
@@ -27,6 +27,7 @@ public class Initializer {
 
         //ShutdownHook
         Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
             public void run() {
                 MySQL.disconnect();
                 System.out.println("Shutdown Starting");

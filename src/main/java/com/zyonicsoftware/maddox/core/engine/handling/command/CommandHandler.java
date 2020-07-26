@@ -21,35 +21,35 @@ public class CommandHandler {
     private final HashMap<String, Command> commands;
     private final HashMap<String, Command> specificPrefixCommands;
 
-    public CommandHandler(Maddox maddox) {
+    public CommandHandler(final Maddox maddox) {
         this.maddox = maddox;
 
-        commands = new HashMap<>();
-        specificPrefixCommands = new HashMap<>();
+        this.commands = new HashMap<>();
+        this.specificPrefixCommands = new HashMap<>();
     }
 
 
-    public void registerCommand(Command command) {
+    public void registerCommand(final Command command) {
         if (command.getSpecificPrefix() == null) {
-            commands.put(command.getName(), command);
+            this.commands.put(command.getName(), command);
         } else {
-            specificPrefixCommands.put(command.getSpecificPrefix() + command.getName(), command);
+            this.specificPrefixCommands.put(command.getSpecificPrefix() + command.getName(), command);
         }
     }
 
-    public void registerCommands(Command... commands) {
+    public void registerCommands(final Command... commands) {
         for (int i = 0; i < commands.length; i++) {
-            Command command = commands[i];
+            final Command command = commands[i];
             if (command.getSpecificPrefix() == null) {
                 this.commands.put(command.getName(), command);
             } else {
-                specificPrefixCommands.put(command.getSpecificPrefix() + command.getName(), command);
+                this.specificPrefixCommands.put(command.getSpecificPrefix() + command.getName(), command);
             }
         }
     }
 
 
-    public void handle(GuildMessageReceivedEvent event, String prefix, String messageContent) {
+    public void handle(final GuildMessageReceivedEvent event, final String prefix, final String messageContent) {
 
         if (messageContent.startsWith(prefix + " ")) {
 
@@ -57,7 +57,7 @@ public class CommandHandler {
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = commands.get(seperatedStrings[0].toLowerCase());
+                final Command selectedCommand = this.commands.get(seperatedStrings[0].toLowerCase());
 
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
@@ -68,7 +68,7 @@ public class CommandHandler {
                                 }
                             }
                         }
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -81,10 +81,10 @@ public class CommandHandler {
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase().substring(1));
+                final Command selectedCommand = this.specificPrefixCommands.get(seperatedStrings[0].toLowerCase().substring(1));
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -99,7 +99,7 @@ public class CommandHandler {
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = commands.get(seperatedStrings[0].toLowerCase());
+                final Command selectedCommand = this.commands.get(seperatedStrings[0].toLowerCase());
 
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
@@ -110,7 +110,7 @@ public class CommandHandler {
                                 }
                             }
                         }
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -123,7 +123,7 @@ public class CommandHandler {
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
+                final Command selectedCommand = this.specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
                         if (this.maddox.areCommandsToggleable()) {
@@ -133,7 +133,7 @@ public class CommandHandler {
                                 }
                             }
                         }
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -142,11 +142,11 @@ public class CommandHandler {
                 }
             }
         } else {
-            String[] seperatedStrings = messageContent.split(" ");
+            final String[] seperatedStrings = messageContent.split(" ");
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
+                final Command selectedCommand = this.specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
                         if (this.maddox.areCommandsToggleable()) {
@@ -156,7 +156,7 @@ public class CommandHandler {
                                 }
                             }
                         }
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -168,7 +168,7 @@ public class CommandHandler {
     }
 
 
-    public void handle(GuildMessageUpdateEvent event, String prefix, String messageContent) {
+    public void handle(final GuildMessageUpdateEvent event, final String prefix, final String messageContent) {
 
         if (messageContent.startsWith(prefix + " ")) {
 
@@ -176,7 +176,7 @@ public class CommandHandler {
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = commands.get(seperatedStrings[0].toLowerCase());
+                final Command selectedCommand = this.commands.get(seperatedStrings[0].toLowerCase());
 
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
@@ -187,7 +187,7 @@ public class CommandHandler {
                                 }
                             }
                         }
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -200,7 +200,7 @@ public class CommandHandler {
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
+                final Command selectedCommand = this.specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
                         if (this.maddox.areCommandsToggleable()) {
@@ -210,7 +210,7 @@ public class CommandHandler {
                                 }
                             }
                         }
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -224,7 +224,7 @@ public class CommandHandler {
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = commands.get(seperatedStrings[0].toLowerCase());
+                final Command selectedCommand = this.commands.get(seperatedStrings[0].toLowerCase());
 
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
@@ -235,7 +235,7 @@ public class CommandHandler {
                                 }
                             }
                         }
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -248,7 +248,7 @@ public class CommandHandler {
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
+                final Command selectedCommand = this.specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
                         if (this.maddox.areCommandsToggleable()) {
@@ -258,7 +258,7 @@ public class CommandHandler {
                                 }
                             }
                         }
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -267,11 +267,11 @@ public class CommandHandler {
                 }
             }
         } else {
-            String[] seperatedStrings = messageContent.split(" ");
+            final String[] seperatedStrings = messageContent.split(" ");
 
             if (seperatedStrings.length > 0) {
 
-                Command selectedCommand = specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
+                final Command selectedCommand = this.specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
                 if (selectedCommand != null) {
                     if (this.maddox.isMySQLConnected()) {
                         if (this.maddox.areCommandsToggleable()) {
@@ -281,7 +281,7 @@ public class CommandHandler {
                                 }
                             }
                         }
-                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getMySQLHandler()));
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
                         return;
                     } else {
                         selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
@@ -293,10 +293,10 @@ public class CommandHandler {
     }
 
     public HashMap<String, Command> getCommands() {
-        return commands;
+        return this.commands;
     }
 
     public HashMap<String, Command> getSpecificPrefixCommands() {
-        return specificPrefixCommands;
+        return this.specificPrefixCommands;
     }
 }

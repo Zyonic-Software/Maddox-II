@@ -14,11 +14,11 @@ public class UtilManager {
 
     private final Maddox maddox;
 
-    public UtilManager(Maddox maddox) {
+    public UtilManager(final Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public MemberTools getMemberHandler(Member member) {
+    public MemberTools getMemberHandler(final Member member) {
         return new MemberTools(this.maddox, member);
     }
 

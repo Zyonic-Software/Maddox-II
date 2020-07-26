@@ -18,7 +18,7 @@ public class BotInfoCommand extends Command {
 
     private final Maddox maddox;
 
-    public BotInfoCommand(Maddox maddox) {
+    public BotInfoCommand(final Maddox maddox) {
         this.maddox = maddox;
         this.setName("info");
         this.setCategory("Help-Category");
@@ -29,7 +29,7 @@ public class BotInfoCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
+    protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         event.reply(new EmbedBuilder()
                 .setTitle(this.maddox.getName() + " | Info", "https://github.com/Zyonic-Software/Maddox-V2")
                 .setThumbnail(event.getJDA().getSelfUser().getAvatarUrl())

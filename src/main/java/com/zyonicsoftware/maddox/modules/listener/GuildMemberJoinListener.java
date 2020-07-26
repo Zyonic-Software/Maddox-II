@@ -19,29 +19,30 @@ public class GuildMemberJoinListener extends ListenerAdapter {
 
     private final Maddox maddox;
 
-    public GuildMemberJoinListener(Maddox maddox) {
+    public GuildMemberJoinListener(final Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public void onGuildMemberJoin(GuildMemberJoinEvent event) {
+    @Override
+    public void onGuildMemberJoin(final GuildMemberJoinEvent event) {
         if (this.maddox.isMySQLConnected()) {
             this.assignAutoRoles(event);
             this.sendJoinMessage(event);
         }
     }
 
-    private void assignAutoRoles(GuildMemberJoinEvent event) {
-        MaddoxMember member = new MaddoxMember(event.getMember());
-        this.maddox.getAutomaticRoleManager().getRolesForAutomaticAssigning(new MaddoxGuild(event.getGuild(), this.maddox.getMySQLHandler().getPrefix(event.getGuild().getId()), this.maddox.getMySQLHandler())).forEach(role -> {
+    private void assignAutoRoles(final GuildMemberJoinEvent event) {
+        final MaddoxMember member = new MaddoxMember(event.getMember());
+        this.maddox.getAutomaticRoleManager().getRolesForAutomaticAssigning(new MaddoxGuild(event.getGuild(), this.maddox.getCacheManager().getPrefix(event.getGuild().getId()), this.maddox.getCacheManager())).forEach(role -> {
             member.addRole(role).queue();
         });
     }
 
-    private void sendJoinMessage(GuildMemberJoinEvent event) {
-        if (this.maddox.getMySQLHandler().isJoinMessageEnabled(event.getGuild().getId())) {
-            String channelID = this.maddox.getMySQLHandler().getJoinMessageChannel(event.getGuild().getId());
+    private void sendJoinMessage(final GuildMemberJoinEvent event) {
+        if (this.maddox.getCacheManager().isJoinMessageEnabled(event.getGuild().getId())) {
+            final String channelID = this.maddox.getCacheManager().getJoinMessageChannel(event.getGuild().getId());
             if (channelID != null) {
-                Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getMySQLHandler().getJoinMessage(event.getGuild().getId()).replace("<USER>", event.getMember().getAsMention()).replace("<SERVER>", "**" + event.getGuild().getName() + "**")).queue();
+                Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getCacheManager().getJoinMessage(event.getGuild().getId()).replace("<USER>", event.getMember().getAsMention()).replace("<SERVER>", "**" + event.getGuild().getName() + "**")).queue();
             }
         }
     }

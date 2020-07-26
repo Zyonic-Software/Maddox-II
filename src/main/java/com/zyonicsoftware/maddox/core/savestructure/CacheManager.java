@@ -17,12 +17,12 @@ public class CacheManager {
     private final HashMap<String, HashMap<Datatype, String>> guildMap = new HashMap<>();
     private final HashMap<String, HashMap<Toggletype, Boolean>> guildToggleMap = new HashMap<>();
 
-    public CacheManager(Maddox maddox) {
+    public CacheManager(final Maddox maddox) {
         this.maddox = maddox;
     }
 
-    private void registerServerToCache(String guildID) {
-        HashMap<Datatype, String> guildData = new HashMap<>();
+    private void registerServerToCache(final String guildID) {
+        final HashMap<Datatype, String> guildData = new HashMap<>();
         guildData.put(Datatype.PREFIX, this.maddox.getMySQLHandler().getPrefix(guildID));
         guildData.put(Datatype.LANGUAGE, this.maddox.getMySQLHandler().getServerLanguage(guildID));
         guildData.put(Datatype.AUTOROLES, this.maddox.getMySQLHandler().getRolesForAutomaticAssigning(guildID));
@@ -32,21 +32,21 @@ public class CacheManager {
         guildData.put(Datatype.LEAVEMESSAGE, this.maddox.getMySQLHandler().getLeaveMessage(guildID));
         guildData.put(Datatype.ENABLED_COMMANDS, this.maddox.getMySQLHandler().getEnabledCommands(guildID));
 
-        guildMap.put(guildID, guildData);
+        this.guildMap.put(guildID, guildData);
 
-        HashMap<Toggletype, Boolean> guildToggleData = new HashMap<>();
+        final HashMap<Toggletype, Boolean> guildToggleData = new HashMap<>();
         guildToggleData.put(Toggletype.JOINMESSAGE, this.maddox.getMySQLHandler().isJoinMessageEnabled(guildID));
         guildToggleData.put(Toggletype.LEAVEMESSAGE, this.maddox.getMySQLHandler().isLeaveMessageEnabled(guildID));
     }
 
-    public String getPrefix(String guildID) {
+    public String getPrefix(final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
-        return guildMap.get(guildID).get(Datatype.PREFIX);
+        return this.guildMap.get(guildID).get(Datatype.PREFIX);
     }
 
-    public void setPrefix(String prefix, String guildID) {
+    public void setPrefix(final String prefix, final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
@@ -55,14 +55,14 @@ public class CacheManager {
     }
 
 
-    public String getLanguage(String guildID) {
+    public String getLanguage(final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
-        return guildMap.get(guildID).get(Datatype.LANGUAGE);
+        return this.guildMap.get(guildID).get(Datatype.LANGUAGE);
     }
 
-    public void setLanguage(String language, String guildID) {
+    public void setLanguage(final String language, final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
@@ -71,14 +71,14 @@ public class CacheManager {
     }
 
 
-    public String getRolesForAutomaticAssigning(String guildID) {
+    public String getRolesForAutomaticAssigning(final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
         return this.guildMap.get(guildID).get(Datatype.AUTOROLES);
     }
 
-    public void setRolesForAutomaticAssigning(String rolesforautomaticassigning, String guildID) {
+    public void setRolesForAutomaticAssigning(final String rolesforautomaticassigning, final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
@@ -87,14 +87,14 @@ public class CacheManager {
     }
 
 
-    public String getJoinMessage(String guildID) {
+    public String getJoinMessage(final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
         return this.guildMap.get(guildID).get(Datatype.JOINMESSAGE);
     }
 
-    public void setJoinMessage(String joinmessage, String guildID) {
+    public void setJoinMessage(final String joinmessage, final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
@@ -103,14 +103,14 @@ public class CacheManager {
     }
 
 
-    public String getJoinMessageChannel(String guildID) {
+    public String getJoinMessageChannel(final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
         return this.guildMap.get(guildID).get(Datatype.JOINCHANNEL);
     }
 
-    public void setJoinMessageChannel(String joinMessageChannelID, String guildID) {
+    public void setJoinMessageChannel(final String joinMessageChannelID, final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
@@ -119,14 +119,14 @@ public class CacheManager {
     }
 
 
-    public String getLeaveMessage(String guildID) {
+    public String getLeaveMessage(final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
         return this.guildMap.get(guildID).get(Datatype.LEAVEMESSAGE);
     }
 
-    public void setLeaveMessage(String leavemessage, String guildID) {
+    public void setLeaveMessage(final String leavemessage, final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
@@ -135,14 +135,14 @@ public class CacheManager {
     }
 
 
-    public String getLeaveMessageChannel(String guildID) {
+    public String getLeaveMessageChannel(final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
         return this.guildMap.get(guildID).get(Datatype.LEAVECHANNEL);
     }
 
-    public void setLeaveMessageChannel(String leaveMessageChannelID, String guildID) {
+    public void setLeaveMessageChannel(final String leaveMessageChannelID, final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
@@ -151,18 +151,48 @@ public class CacheManager {
     }
 
 
-    public String getEnabledCommands(String guildID) {
+    public String getEnabledCommands(final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
         return this.guildMap.get(guildID).get(Datatype.ENABLED_COMMANDS);
     }
 
-    public void setEnabledCommands(String enabledCommandsInString, String guildID) {
+    public void setEnabledCommands(final String enabledCommandsInString, final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
         this.guildMap.get(guildID).put(Datatype.LEAVECHANNEL, enabledCommandsInString);
         this.maddox.getMySQLHandler().setEnabledCommands(enabledCommandsInString, guildID);
+    }
+
+    public boolean isJoinMessageEnabled(final String guildID) {
+        if (!this.guildToggleMap.containsKey(guildID)) {
+            this.registerServerToCache(guildID);
+        }
+        return this.guildToggleMap.get(guildID).get(Toggletype.JOINMESSAGE);
+    }
+
+    public void setJoinMessageEnabled(final boolean state, final String guildID) {
+        if (!this.guildToggleMap.containsKey(guildID)) {
+            this.registerServerToCache(guildID);
+        }
+        this.guildToggleMap.get(guildID).put(Toggletype.JOINMESSAGE, state);
+        this.maddox.getMySQLHandler().setJoinMessageEnabled(true, guildID);
+    }
+
+    public boolean isLeaveMessageEnabled(final String guildID) {
+        if (!this.guildToggleMap.containsKey(guildID)) {
+            this.registerServerToCache(guildID);
+        }
+        return this.guildToggleMap.get(guildID).get(Toggletype.JOINMESSAGE);
+    }
+
+    public void setLeaveMessageEnabled(final boolean state, final String guildID) {
+        if (!this.guildToggleMap.containsKey(guildID)) {
+            this.registerServerToCache(guildID);
+        }
+        this.guildToggleMap.get(guildID).put(Toggletype.LEAVEMESSAGE, state);
+        this.maddox.getMySQLHandler().setLeaveMessageEnabled(true, guildID);
     }
 }

@@ -20,7 +20,7 @@ public class LanguageCommand extends Command {
 
     private final Maddox maddox;
 
-    public LanguageCommand(Maddox maddox) {
+    public LanguageCommand(final Maddox maddox) {
         this.setName("lang");
         this.setCategory("Settings-Category");
         this.setSyntax("Language-Syntax");
@@ -33,7 +33,7 @@ public class LanguageCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
+    protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         if (sender.hasPermission(Permission.ADMINISTRATOR)) {
             if (!event.getArguments().isEmpty()) {
                 if (event.getArguments().get(0).equalsIgnoreCase("list")) {
@@ -44,7 +44,7 @@ public class LanguageCommand extends Command {
                             .build()
                     );
                 } else if (this.maddox.getSupportedLanguages().contains(event.getArguments().get(0).toUpperCase())) {
-                    String selectedLanguage = event.getArguments().get(0).toUpperCase();
+                    final String selectedLanguage = event.getArguments().get(0).toUpperCase();
                     server.setLanguage(selectedLanguage);
                     event.reply(LanguageAPI.getValue("Language-Set", selectedLanguage).replace("<SERVER>", server.getName()).replace("<LANGUAGE>", selectedLanguage));
                 }

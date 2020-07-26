@@ -45,12 +45,12 @@ public class Maddox {
     private String name;
 
 
-    public void startup(int amountShards, BaseValueConfig config, MySQLConfig mySQLConfig) {
+    public void startup(final int amountShards, final BaseValueConfig config, final MySQLConfig mySQLConfig) {
 
         //Get Values from Primary Config (config.yml)
         this.loadConfigValues(config);
 
-        StartupLoader startupLoader = new StartupLoader();//Used to Init Shards
+        final StartupLoader startupLoader = new StartupLoader();//Used to Init Shards
 
         if (config.getToken() == null || config.getToken().equals("your_bots_token_goes_here")) {//Checks if token has been insertet
             System.out.println("Please enter your Bot's Token into the generated 'config.yml'");
@@ -63,12 +63,12 @@ public class Maddox {
         //If MySQL-Module is Enabled, this will automatically connect to the specified Database Server
         if (config.isMysql()) {
             if (mySQLConfig.getPassword() != null && !mySQLConfig.getPassword().equals("maddox_is_cool_please_use_a_safe_password_i_beg_you")) {
-                mySQLHandler = new MySQLHandler(this);
+                this.mySQLHandler = new MySQLHandler(this);
                 try {
-                    mySQLHandler.connectToMysql(mySQLConfig.getHostname(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUser(), mySQLConfig.getPassword());
+                    this.mySQLHandler.connectToMysql(mySQLConfig.getHostname(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUser(), mySQLConfig.getPassword());
                     System.out.println("MySQL enabled");
-                    isMySQL = true;
-                } catch (Exception e) {
+                    this.isMySQL = true;
+                } catch (final Exception e) {
                     System.out.println("MySQL connection failed, aborting");
                     return;
                 }
@@ -83,22 +83,22 @@ public class Maddox {
 
         System.out.println("Bot-Administrator ID(s): " + config.getBotAdministrator());
 
-        shardManager = this.initShards(amountShards, config, startupLoader);
+        this.shardManager = this.initShards(amountShards, config, startupLoader);
 
-        commandHandler = new CommandHandler(this);
-        helpBuilder = new HelpBuilder(this);
+        this.commandHandler = new CommandHandler(this);
+        this.helpBuilder = new HelpBuilder(this);
 
-        CommandManager commandManager = new CommandManager(this);
+        final CommandManager commandManager = new CommandManager(this);
 
-        commandManager.registerCommands(commandHandler);
+        commandManager.registerCommands(this.commandHandler);
 
-        automaticRoleManager = new AutomaticRoleManager(this);
-        commandToggleManager = new CommandToggleManager(this);
-        cacheManager = new CacheManager(this);
+        this.automaticRoleManager = new AutomaticRoleManager(this);
+        this.commandToggleManager = new CommandToggleManager(this);
+        this.cacheManager = new CacheManager(this);
     }
 
     //Creates ShardManager, specefies primary Listeners
-    private ShardManager initShards(int amountShards, BaseValueConfig config, StartupLoader startupLoader) {
+    private ShardManager initShards(final int amountShards, final BaseValueConfig config, final StartupLoader startupLoader) {
         return startupLoader.loadShards(
                 amountShards,
                 config.getToken(),
@@ -112,7 +112,7 @@ public class Maddox {
         );
     }
 
-    private void loadConfigValues(BaseValueConfig config) {
+    private void loadConfigValues(final BaseValueConfig config) {
         this.defaultPrefix = config.getDefaultPrefix();
         this.defaultColor = config.getDefaultColor();
         this.name = config.getDefaultBotName();
@@ -124,66 +124,66 @@ public class Maddox {
 
 
     public CommandHandler getCommandHandler() {
-        return commandHandler;
+        return this.commandHandler;
     }
 
     public PrivateMessageCommandHandler getPrivateMessageCommandHandler() {
-        return privateMessageCommandHandler;
+        return this.privateMessageCommandHandler;
     }
 
     public ShardManager getShardManager() {
-        return shardManager;
+        return this.shardManager;
     }
 
     public String getDefaultPrefix() {
-        return defaultPrefix;
+        return this.defaultPrefix;
     }
 
     public Color getDefaultColor() {
-        return defaultColor;
+        return this.defaultColor;
     }
 
     public String getBotAdministrator() {
-        return botAdministrator;
+        return this.botAdministrator;
     }
 
     public HelpBuilder getHelpBuilder() {
-        return helpBuilder;
+        return this.helpBuilder;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public boolean isMySQLConnected() {
-        return isMySQL;
+        return this.isMySQL;
     }
 
     public MySQLHandler getMySQLHandler() {
-        return mySQLHandler;
+        return this.mySQLHandler;
     }
 
     public String getDefaultLanguage() {
-        return defaultLanguage;
+        return this.defaultLanguage;
     }
 
     public String getSupportedLanguages() {
-        return supportedLanguages;
+        return this.supportedLanguages;
     }
 
     public AutomaticRoleManager getAutomaticRoleManager() {
-        return automaticRoleManager;
+        return this.automaticRoleManager;
     }
 
     public CommandToggleManager getCommandToggleManager() {
-        return commandToggleManager;
+        return this.commandToggleManager;
     }
 
     public boolean areCommandsToggleable() {
-        return areCommandsToggleable;
+        return this.areCommandsToggleable;
     }
 
     public CacheManager getCacheManager() {
-        return cacheManager;
+        return this.cacheManager;
     }
 }
