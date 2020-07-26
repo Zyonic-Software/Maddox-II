@@ -245,6 +245,49 @@ public class MySQLHandler {
         return false;
     }
 
+    public String getPrivateJoinMessage(final String guildID) {
+        try {
+            final ResultSet resultSet = this.mySQL.executeQuery("SELECT message FROM Private_Join_Message WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("message");
+            }
+        } catch (final Exception e) {
+        }
+        return "";
+    }
+
+    public void setPrivateJoinMessage(String message, final String guildID) {
+        message = this.mySQL.removeSQLInjectionPossibility(message);
+        try {
+            this.mySQL.executeUpdate("UPDATE Private_Join_Message SET message = '" + message + "' WHERE id = '" + guildID + "';");
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setPrivateJoinMessageEnabled(final boolean isEnabled, final String guildID) {
+        try {
+            if (isEnabled) {
+                this.mySQL.executeUpdate("UPDATE Private_Join_Message SET enabled = " + 1 + " WHERE id = '" + guildID + "';");
+            } else {
+                this.mySQL.executeUpdate("UPDATE Private_Join_Message SET enabled = " + 0 + " WHERE id = '" + guildID + "';");
+            }
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isPrivateJoinMessageEnabled(final String guildID) {
+        try {
+            final ResultSet resultSet = this.mySQL.executeQuery("SELECT enabled FROM Private_Join_Message WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getBoolean("enabled");
+            }
+        } catch (final Exception e) {
+        }
+        return false;
+    }
+
     public String getEnabledCommands(final String guildID) {
         try {
             final ResultSet resultSet = this.mySQL.executeQuery("SELECT enabled_commands FROM Server_Command_Toggle WHERE id = " + guildID + ";");

@@ -25,6 +25,7 @@ import com.zyonicsoftware.maddox.modules.command.moderation.UnBanCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.JoinMessageCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.LanguageCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.LeaveMessageCommand;
+import com.zyonicsoftware.maddox.modules.command.settings.messages.PrivateJoinMessageCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.system.AutoRoleCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.system.SetPrefixCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.system.ToggleCommand;
@@ -54,6 +55,7 @@ public class CommandManager {
                 new KickCommand(this.maddox),
                 new BanCommand(this.maddox),
                 new UnBanCommand(this.maddox),
+                new PrivateJoinMessageCommand(this.maddox),
                 new ClearCommand(),
                 //Normal
                 ///Information
