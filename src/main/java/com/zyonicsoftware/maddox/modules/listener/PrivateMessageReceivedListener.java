@@ -15,14 +15,15 @@ public class PrivateMessageReceivedListener extends ListenerAdapter {
 
     private final Maddox maddox;
 
-    public PrivateMessageReceivedListener(Maddox maddox) {
+    public PrivateMessageReceivedListener(final Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public void onPrivateMessageReceived(PrivateMessageReceivedEvent event) {
+    @Override
+    public void onPrivateMessageReceived(final PrivateMessageReceivedEvent event) {
         if (event.getAuthor().equals(event.getAuthor().getJDA().getSelfUser())) {
 
-            String prefix = this.maddox.getDefaultPrefix();
+            final String prefix = this.maddox.getDefaultPrefix();
 
             this.maddox.getPrivateMessageCommandHandler().handle(event, prefix, event.getMessage().getContentRaw());
         }

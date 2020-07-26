@@ -14,13 +14,13 @@ public class LanguageLoader {
     private final Maddox maddox;
     private final LanguageConfigFileManager languageConfigFileManager;
 
-    public LanguageLoader(Maddox maddox) {
+    public LanguageLoader(final Maddox maddox) {
         this.maddox = maddox;
-        languageConfigFileManager = new LanguageConfigFileManager();
+        this.languageConfigFileManager = new LanguageConfigFileManager();
     }
 
     public void initLanguages() {
-        languageConfigFileManager.initLanguageConfig(this.maddox);
+        this.languageConfigFileManager.initLanguageConfig(this.maddox);
     }
 
 

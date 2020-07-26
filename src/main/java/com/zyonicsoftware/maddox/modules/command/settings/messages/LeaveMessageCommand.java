@@ -20,7 +20,7 @@ public class LeaveMessageCommand extends Command {
 
     private final Maddox maddox;
 
-    public LeaveMessageCommand(Maddox maddox) {
+    public LeaveMessageCommand(final Maddox maddox) {
         this.maddox = maddox;
         this.setName("leavemessage");
         this.setSyntax("LeaveMessage-Syntax");
@@ -32,16 +32,16 @@ public class LeaveMessageCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
+    protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         if (sender.hasPermission(Permission.MANAGE_SERVER)) {
             if (event.getArguments().size() > 1) {
                 if (event.getArguments().get(0).equalsIgnoreCase("set")) {//Setting the LeaveMessage
-                    this.maddox.getMySQLHandler().setLeaveMessage(event.getArgumentsAsString().substring("set ".length()), server.getID());
-                    this.maddox.getMySQLHandler().setLeaveMessageEnabled(true, server.getID());
+                    this.maddox.getCacheManager().setLeaveMessage(event.getArgumentsAsString().substring("set ".length()), server.getID());
+                    this.maddox.getCacheManager().setLeaveMessageEnabled(true, server.getID());
                     event.reply(LanguageAPI.getValue("EventMessage-Set", server.getLanguage()).replace("<MESSAGE-TYPE>", LanguageAPI.getValue("LeaveMessage", server.getLanguage())).replace("<MESSAGE>", "'" + event.getArgumentsAsString().substring("set ".length()) + "'"));
                 } else if (event.getArguments().get(0).equalsIgnoreCase("setchannel")) {
                     if (!event.getTextChannelMentions().isEmpty()) {
-                        this.maddox.getMySQLHandler().setLeaveMessageChannel(event.getTextChannelMentions().get(0).getId(), server.getID());
+                        this.maddox.getCacheManager().setLeaveMessageChannel(event.getTextChannelMentions().get(0).getId(), server.getID());
                         event.reply(LanguageAPI.getValue("ChannelSet", server.getLanguage()).replace("<MESSAGE-TYPE>", LanguageAPI.getValue("LeaveMessage", server.getLanguage())).replace("<CHANNEL>", event.getTextChannelMentions().get(0).getAsMention()));
                     } else {
                         event.reply(LanguageAPI.getValue("NoChannelProvided", server.getLanguage()).replace("<PREFIX>", server.getPrefix()).replace("<MESSAGE-TYPE>", "leave"));
@@ -49,10 +49,10 @@ public class LeaveMessageCommand extends Command {
                 }
             } else if (!event.getArguments().isEmpty()) {
                 if (event.getArguments().get(0).equalsIgnoreCase("disable")) {
-                    this.maddox.getMySQLHandler().setLeaveMessageEnabled(false, server.getID());
+                    this.maddox.getCacheManager().setLeaveMessageEnabled(false, server.getID());
                     event.reply(LanguageAPI.getValue("MessageDisabled", server.getLanguage()).replace("<MESSAGE-TYPE>", LanguageAPI.getValue("LeaveMessage", server.getLanguage())));
                 } else if (event.getArguments().get(0).equalsIgnoreCase("enable")) {
-                    this.maddox.getMySQLHandler().setLeaveMessageEnabled(true, server.getID());
+                    this.maddox.getCacheManager().setLeaveMessageEnabled(true, server.getID());
                     event.reply(LanguageAPI.getValue("MessageEnabled", server.getLanguage()).replace("<MESSAGE-TYPE>", LanguageAPI.getValue("LeaveMessage", server.getLanguage())));
                 } else if (event.getArguments().get(0).equalsIgnoreCase("set")) {
                     event.reply(LanguageAPI.getValue("NoMessageProvided", server.getLanguage()).replace("<PREFIX>", server.getPrefix()).replace("<MESSAGE-TYPE>", "leave"));

@@ -21,20 +21,21 @@ public class MessageUpdateListener extends ListenerAdapter {
 
     private final Maddox maddox;
 
-    public MessageUpdateListener(Maddox maddox) {
+    public MessageUpdateListener(final Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public void onGuildMessageUpdate(GuildMessageUpdateEvent event) {
+    @Override
+    public void onGuildMessageUpdate(final GuildMessageUpdateEvent event) {
 
         if (!event.getAuthor().equals(event.getJDA().getSelfUser())) {
 
-            String prefix;
+            final String prefix;
 
             if (this.maddox.isMySQLConnected()) {
                 prefix = "!";//ToDo
             } else {
-                prefix = maddox.getDefaultPrefix();
+                prefix = this.maddox.getDefaultPrefix();
             }
 
             this.maddox.getCommandHandler().handle(event, prefix, event.getMessage().getContentRaw());

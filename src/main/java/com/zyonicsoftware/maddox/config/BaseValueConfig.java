@@ -21,84 +21,84 @@ public class BaseValueConfig {
     private boolean isMysql;
     private boolean commandsToggleable;
 
-    public void setToken(Object token) {
+    public void setToken(final Object token) {
         this.token = (String) token;
     }
 
-    public void setAmountShards(Object amountShards) {
+    public void setAmountShards(final Object amountShards) {
         this.amountShards = (int) amountShards;
     }
 
-    public void setDefaultColor(Object defaultColor) {
+    public void setDefaultColor(final Object defaultColor) {
         System.out.println(defaultColor);
         this.defaultColor = Color.decode((String) defaultColor);
     }
 
-    public void setDefaultPrefix(Object defaultPrefix) {
+    public void setDefaultPrefix(final Object defaultPrefix) {
         this.defaultPrefix = (String) defaultPrefix;
     }
 
-    public void setDefaultBotName(Object defaultBotName) {
+    public void setDefaultBotName(final Object defaultBotName) {
         this.defaultBotName = (String) defaultBotName;
     }
 
-    public void setDefaultLanguage(Object defaultLanguage) {
+    public void setDefaultLanguage(final Object defaultLanguage) {
         this.defaultLanguage = (String) defaultLanguage;
     }
 
-    public void setSupportedLanguages(Object supportedLanguages) {
+    public void setSupportedLanguages(final Object supportedLanguages) {
         this.supportedLanguages = (String) supportedLanguages;
     }
 
-    public void setMysql(Object mysql) {
-        isMysql = (boolean) mysql;
+    public void setMysql(final Object mysql) {
+        this.isMysql = (boolean) mysql;
     }
 
-    public void setBotAdministrator(Object botAdministrator) {
+    public void setBotAdministrator(final Object botAdministrator) {
         this.botAdministrator = (String) botAdministrator;
     }
 
-    public void setCommandsToggleable(Object commandsToggleable) {
+    public void setCommandsToggleable(final Object commandsToggleable) {
         this.commandsToggleable = (boolean) commandsToggleable;
     }
 
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     public int getAmountShards() {
-        return amountShards;
+        return this.amountShards;
     }
 
     public String getDefaultPrefix() {
-        return defaultPrefix;
+        return this.defaultPrefix;
     }
 
     public Color getDefaultColor() {
-        return defaultColor;
+        return this.defaultColor;
     }
 
     public String getDefaultBotName() {
-        return defaultBotName;
+        return this.defaultBotName;
     }
 
     public String getDefaultLanguage() {
-        return defaultLanguage;
+        return this.defaultLanguage;
     }
 
     public String getSupportedLanguages() {
-        return supportedLanguages;
+        return this.supportedLanguages;
     }
 
     public String getBotAdministrator() {
-        return botAdministrator;
+        return this.botAdministrator;
     }
 
     public boolean isMysql() {
-        return isMysql;
+        return this.isMysql;
     }
 
     public boolean areCommandsToggleable() {
-        return commandsToggleable;
+        return this.commandsToggleable;
     }
 }

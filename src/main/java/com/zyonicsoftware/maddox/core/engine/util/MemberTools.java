@@ -15,7 +15,7 @@ public class MemberTools {
     private final Maddox maddox;
     private final Member member;
 
-    public MemberTools(Maddox maddox, Member member) {
+    public MemberTools(final Maddox maddox, final Member member) {
         this.maddox = maddox;
         this.member = member;
     }
@@ -24,8 +24,8 @@ public class MemberTools {
         return this.member;
     }
 
-    public String getAvatarURL(int imageSize) {
-        return "https://cdn.discordapp.com/avatars/" + member.getId() + "/" + member.getUser().getAvatarId() + ".png?size=" + imageSize;
+    public String getAvatarURL(final int imageSize) {
+        return "https://cdn.discordapp.com/avatars/" + this.member.getId() + "/" + this.member.getUser().getAvatarId() + ".png?size=" + imageSize;
     }
 
 }

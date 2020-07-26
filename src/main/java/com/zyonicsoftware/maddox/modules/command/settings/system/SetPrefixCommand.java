@@ -29,7 +29,7 @@ public class SetPrefixCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
+    protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         if (sender.hasPermission(Permission.ADMINISTRATOR)) {
             if (!event.getArguments().isEmpty()) {
                 if (!server.getPrefix().equals(event.getArguments().get(0))) {

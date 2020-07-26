@@ -15,11 +15,12 @@ public class GuildLeaveListener extends ListenerAdapter {
 
     private final Maddox maddox;
 
-    public GuildLeaveListener(Maddox maddox) {
+    public GuildLeaveListener(final Maddox maddox) {
         this.maddox = maddox;
     }
 
-    public void onGuildLeave(GuildLeaveEvent event) {
+    @Override
+    public void onGuildLeave(final GuildLeaveEvent event) {
         if (this.maddox.isMySQLConnected()) {
             this.maddox.getMySQLHandler().removeServerFromDatabase(event.getGuild().getId());
         }

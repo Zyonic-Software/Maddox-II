@@ -21,7 +21,7 @@ public class KickCommand extends Command {
 
     private final Maddox maddox;
 
-    public KickCommand(Maddox maddox) {
+    public KickCommand(final Maddox maddox) {
         this.maddox = maddox;
         this.setName("kick");
         this.setDescription("Kick-Desc");
@@ -34,7 +34,7 @@ public class KickCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
+    protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         event.getArguments();
         if (sender.hasPermission(Permission.KICK_MEMBERS)) {
             if (!event.getMentions().isEmpty()) {

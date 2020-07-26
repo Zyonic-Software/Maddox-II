@@ -33,7 +33,7 @@ public class MaddoxMember {
 
     private final Member member;
 
-    public MaddoxMember(Member member) {
+    public MaddoxMember(final Member member) {
         this.member = member;
     }
 
@@ -53,27 +53,27 @@ public class MaddoxMember {
         return this.member.getEffectiveName();
     }
 
-    public AuditableRestAction<Void> ban(int deletionDays) {
+    public AuditableRestAction<Void> ban(final int deletionDays) {
         return this.member.ban(deletionDays);
     }
 
-    public AuditableRestAction<Void> ban(int deletionDays, @Nonnull String reason) {
+    public AuditableRestAction<Void> ban(final int deletionDays, @Nonnull final String reason) {
         return this.member.ban(deletionDays, reason);
     }
 
-    public boolean canInteract(Role role) {
+    public boolean canInteract(final Role role) {
         return this.member.canInteract(role);
     }
 
-    public boolean canInteract(Emote emote) {
+    public boolean canInteract(final Emote emote) {
         return this.member.canInteract(emote);
     }
 
-    public boolean canInteract(Member member) {
+    public boolean canInteract(final Member member) {
         return this.member.canInteract(member);
     }
 
-    public boolean canInteract(MaddoxMember maddoxMember) {
+    public boolean canInteract(final MaddoxMember maddoxMember) {
         return this.member.canInteract(maddoxMember.getMember());
     }
 
@@ -101,7 +101,7 @@ public class MaddoxMember {
         return this.member.getOnlineStatus();
     }
 
-    public OnlineStatus getOnlineStatus(@Nonnull ClientType clientType) {
+    public OnlineStatus getOnlineStatus(@Nonnull final ClientType clientType) {
         return this.member.getOnlineStatus(clientType);
     }
 
@@ -137,11 +137,11 @@ public class MaddoxMember {
         return this.member.kick();
     }
 
-    public AuditableRestAction<Void> kick(@Nonnull String reason) {
+    public AuditableRestAction<Void> kick(@Nonnull final String reason) {
         return this.member.kick(reason);
     }
 
-    public AuditableRestAction<Void> modifyNickname(@Nonnull String newNickname) {
+    public AuditableRestAction<Void> modifyNickname(@Nonnull final String newNickname) {
         return this.member.modifyNickname(newNickname);
     }
 
@@ -153,7 +153,7 @@ public class MaddoxMember {
         return this.member.getPermissions();
     }
 
-    public EnumSet<Permission> getPermissions(GuildChannel guildChannel) {
+    public EnumSet<Permission> getPermissions(final GuildChannel guildChannel) {
         return this.member.getPermissions(guildChannel);
     }
 
@@ -161,19 +161,19 @@ public class MaddoxMember {
         return this.member.getPermissionsExplicit();
     }
 
-    public EnumSet<Permission> getPermissionExplicit(GuildChannel guildChannel) {
+    public EnumSet<Permission> getPermissionExplicit(final GuildChannel guildChannel) {
         return this.member.getPermissionsExplicit(guildChannel);
     }
 
-    public boolean hasPermission(@Nonnull Permission... permissions) {
+    public boolean hasPermission(@Nonnull final Permission... permissions) {
         return this.member.hasPermission(permissions);
     }
 
-    public boolean hasPermission(@Nonnull Collection<Permission> permissions) {
+    public boolean hasPermission(@Nonnull final Collection<Permission> permissions) {
         return this.member.hasPermission(permissions);
     }
 
-    public boolean hasPermission(@Nonnull GuildChannel guildChannel, @Nonnull Permission... permissions) {
+    public boolean hasPermission(@Nonnull final GuildChannel guildChannel, @Nonnull final Permission... permissions) {
         return this.member.hasPermission(guildChannel, permissions);
     }
 
@@ -183,12 +183,12 @@ public class MaddoxMember {
 
     //CustomMethods
 
-    public AuditableRestAction<Void> addRole(Role role) {
-        return this.member.getGuild().addRoleToMember(member, role);
+    public AuditableRestAction<Void> addRole(final Role role) {
+        return this.member.getGuild().addRoleToMember(this.member, role);
     }
 
-    public AuditableRestAction<Void> removeRole(Role role) {
-        return this.member.getGuild().removeRoleFromMember(member, role);
+    public AuditableRestAction<Void> removeRole(final Role role) {
+        return this.member.getGuild().removeRoleFromMember(this.member, role);
     }
 
     public PrivateChannel openPrivateChannel() {

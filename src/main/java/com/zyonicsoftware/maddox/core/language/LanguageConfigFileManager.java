@@ -15,17 +15,17 @@ import java.io.File;
 
 public class LanguageConfigFileManager {
 
-    public void initLanguageConfig(Maddox maddox) {
+    public void initLanguageConfig(final Maddox maddox) {
 
         new File("languages/").mkdir();
 
-        LanguageHandler languageHandler = new LanguageHandler(LanguageHandler.LanguageSaveMode.YAML, "languages/", "EN");
+        final LanguageHandler languageHandler = new LanguageHandler(LanguageHandler.LanguageSaveMode.YAML, "languages/", "EN");
         LanguageAPI.setLanguageHandler(languageHandler);
         LanguageAPI.setLanguage("EN");
 
         //Help
         try {
-            File file = new File("languages/EN.yml");
+            final File file = new File("languages/EN.yml");
 
             if (file.createNewFile()) {
                 LanguageAPI.setValue("Help-Category", "Information", "EN");
@@ -87,10 +87,10 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Clear-MessagesTooOld", "These Messages are older than two weeks, they can't be deleted automatically.", "EN");
 
 
-                LanguageAPI.setValue("NoChange", "Nothing was Changed", "EN");
+                LanguageAPI.setValue("NoChange", "Nothing was Changed.", "EN");
 
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
 
@@ -98,7 +98,7 @@ public class LanguageConfigFileManager {
         LanguageAPI.setLanguage("DE");
 
         try {
-            File file = new File("languages/DE.yml");
+            final File file = new File("languages/DE.yml");
 
             if (file.createNewFile()) {
                 LanguageAPI.setValue("Help-Category", "Informationen", "DE");
@@ -159,9 +159,9 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Clear-MessagesTooOld", "Diese Nachrichten sind über zwei Wochen alt, sie können nicht automatisch gelöscht werden.", "DE");
 
 
-                LanguageAPI.setValue("NoChange", "Nichts verändert", "DE");
+                LanguageAPI.setValue("NoChange", "Nichts verändert.", "DE");
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
 

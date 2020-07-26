@@ -23,7 +23,7 @@ public class AutoRoleCommand extends Command {
 
     private final Maddox maddox;
 
-    public AutoRoleCommand(Maddox maddox) {
+    public AutoRoleCommand(final Maddox maddox) {
         this.maddox = maddox;
         this.setName("autorole");
         this.setCategory("Settings-Category");
@@ -36,7 +36,7 @@ public class AutoRoleCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
+    protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         if (!sender.hasPermission(Permission.MANAGE_ROLES)) {
             event.deleteEventMessage();
             return;

@@ -30,7 +30,7 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
+    protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         if (!sender.hasPermission(Permission.MESSAGE_MANAGE)) {
             return;
         }
@@ -48,11 +48,11 @@ public class ClearCommand extends Command {
                 final MessageHistory hist = new MessageHistory(event.getChannel());
                 event.getChannel().deleteMessages(hist.retrievePast(amount).complete()).queue();
             }
-        } catch (NumberFormatException numberFormatException) {
+        } catch (final NumberFormatException numberFormatException) {
             event.reply(LanguageAPI.getValue("Clear-NoNumberProvided", server.getLanguage()));
-        } catch (IllegalArgumentException illegalArgumentException) {
+        } catch (final IllegalArgumentException illegalArgumentException) {
             event.reply(LanguageAPI.getValue("Clear-MessagesTooOld", server.getLanguage()));
-        } catch (Exception ignored) {
+        } catch (final Exception ignored) {
         }
     }
 }

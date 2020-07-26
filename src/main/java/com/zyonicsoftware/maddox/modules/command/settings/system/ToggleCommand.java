@@ -20,7 +20,7 @@ public class ToggleCommand extends Command {
 
     private final Maddox maddox;
 
-    public ToggleCommand(Maddox maddox) {
+    public ToggleCommand(final Maddox maddox) {
         this.maddox = maddox;
         this.setName("toggle");
         this.setCategory("Settings-Category");
@@ -31,25 +31,25 @@ public class ToggleCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event, MaddoxMember sender, MaddoxGuild server) {
+    protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         if (sender.hasPermission(Permission.MANAGE_SERVER)) {
             if (event.getArguments().size() > 1) {
                 if (this.maddox.getCommandHandler().getCommands().containsKey(event.getArguments().get(0))) {
                     if (this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0)).isToggleable()) {
                         if (event.getArguments().get(1).equalsIgnoreCase("on")) {
-                            String initialCommandsInString = this.maddox.getMySQLHandler().getEnabledCommands(event.getGuild().getId());
+                            final String initialCommandsInString = this.maddox.getCacheManager().getEnabledCommands(event.getGuild().getId());
                             if (initialCommandsInString.contains(event.getArguments().get(0))) {
                                 event.reply(LanguageAPI.getValue("NoChange", server.getLanguage()));
                             } else {
-                                this.maddox.getMySQLHandler().setEnabledCommands(initialCommandsInString + event.getArguments().get(0) + ";", event.getGuild().getId());
+                                this.maddox.getCacheManager().setEnabledCommands(initialCommandsInString + event.getArguments().get(0) + ";", event.getGuild().getId());
                                 event.reply(LanguageAPI.getValue("Toggle-ON", server.getLanguage()).replace("<COMMAND>", event.getArguments().get(0)).replace("<PREFIX>", server.getPrefix()));
                             }
                         } else if (event.getArguments().get(1).equalsIgnoreCase("off")) {
-                            String initialCommandsInString = this.maddox.getMySQLHandler().getEnabledCommands(event.getGuild().getId());
+                            final String initialCommandsInString = this.maddox.getCacheManager().getEnabledCommands(event.getGuild().getId());
                             if (!initialCommandsInString.contains(event.getArguments().get(0))) {
                                 event.reply(LanguageAPI.getValue("NoChange", server.getLanguage()));
                             } else {
-                                this.maddox.getMySQLHandler().setEnabledCommands(initialCommandsInString.replace(event.getArguments().get(0) + ";", ""), event.getGuild().getId());
+                                this.maddox.getCacheManager().setEnabledCommands(initialCommandsInString.replace(event.getArguments().get(0) + ";", ""), event.getGuild().getId());
                                 event.reply(LanguageAPI.getValue("Toggle-OFF", server.getLanguage()).replace("<COMMAND>", event.getArguments().get(0)).replace("<PREFIX>", server.getPrefix()));
                             }
                         } else {

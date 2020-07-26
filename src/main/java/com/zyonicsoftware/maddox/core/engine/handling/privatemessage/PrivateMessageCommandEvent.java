@@ -24,65 +24,65 @@ public class PrivateMessageCommandEvent {
     private final PrivateMessageCommand command;
     private final Maddox maddox;
 
-    public PrivateMessageCommandEvent(PrivateMessageCommand command, PrivateMessageReceivedEvent event, Maddox maddox) {
+    public PrivateMessageCommandEvent(final PrivateMessageCommand command, final PrivateMessageReceivedEvent event, final Maddox maddox) {
         this.event = event;
         this.command = command;
         this.maddox = maddox;
     }
 
     public PrivateMessageCommand getCommand() {
-        return command;
+        return this.command;
     }
 
     public PrivateMessageReceivedEvent getEvent() {
-        return event;
+        return this.event;
     }
 
     public User getAuthor() {
-        return event.getAuthor();
+        return this.event.getAuthor();
     }
 
     public PrivateChannel getChannel() {
-        return event.getChannel();
+        return this.event.getChannel();
     }
 
     public Message getMessage() {
-        return event.getMessage();
+        return this.event.getMessage();
     }
 
     public JDA getJDA() {
-        return event.getJDA();
+        return this.event.getJDA();
     }
 
-    public void reply(String pMessage) {
+    public void reply(final String pMessage) {
         this.getChannel().sendMessage(pMessage).queue();
     }
 
-    public void reply(MessageEmbed messageEmbed) {
+    public void reply(final MessageEmbed messageEmbed) {
         this.getChannel().sendMessage(messageEmbed).queue();
     }
 
-    public Message returnReply(String pMessage) {
+    public Message returnReply(final String pMessage) {
         return this.getChannel().sendMessage(pMessage).complete();
     }
 
-    public Message returnReply(MessageEmbed messageEmbed) {
+    public Message returnReply(final MessageEmbed messageEmbed) {
         return this.getChannel().sendMessage(messageEmbed).complete();
     }
 
     public ArrayList<String> getArguments() {
         String arguments;
-        arguments = event.getMessage().getContentRaw().substring(command.getName().length() + this.maddox.getDefaultPrefix().length());
-        if (event.getMessage().getContentRaw().startsWith(this.maddox.getDefaultPrefix() + " ")) {
-            arguments = event.getMessage().getContentRaw().substring(command.getName().length() + this.maddox.getDefaultPrefix().length() + 1);
+        arguments = this.event.getMessage().getContentRaw().substring(this.command.getName().length() + this.maddox.getDefaultPrefix().length());
+        if (this.event.getMessage().getContentRaw().startsWith(this.maddox.getDefaultPrefix() + " ")) {
+            arguments = this.event.getMessage().getContentRaw().substring(this.command.getName().length() + this.maddox.getDefaultPrefix().length() + 1);
         }
 
         if (arguments.length() > 0) {
             arguments = arguments.substring(1);
-            String[] args = arguments.split(" ");
+            final String[] args = arguments.split(" ");
             return (ArrayList<String>) Arrays.asList(args);
         } else {
-            return new ArrayList<String>();
+            return new ArrayList<>();
         }
     }
 
