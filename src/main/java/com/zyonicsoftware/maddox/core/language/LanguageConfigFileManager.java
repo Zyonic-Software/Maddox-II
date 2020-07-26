@@ -87,6 +87,11 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Ban-With-Reason", "The user '**<USER>**' was banned because of '<REASON>'.", "EN");
                 LanguageAPI.setValue("Ban-NoPersonDefined", "Please provide a user to be banned. ``<PREFIX>ban @User``", "EN");
 
+                LanguageAPI.setValue("UnBan-Syntax", "<PREFIX>unban User#1234", "EN");
+                LanguageAPI.setValue("UnBan-Desc", "This Command unbans a banned user.", "EN");
+                LanguageAPI.setValue("UnBan", "The user '**<USER>**' was unbanned.", "EN");
+                LanguageAPI.setValue("UnBan-NoPersonDefined", "Please provide a user. ``<PREFIX>unban User#1234``", "EN");
+
                 LanguageAPI.setValue("Clear-Desc", "You can delete up to 100 Messages at a time with <PREFIX>clear", "EN");
                 LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "EN");
                 LanguageAPI.setValue("Clear-NoNumberProvided", "Please provide a number between 2 - 100.", "EN");
@@ -164,6 +169,11 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Ban-Without-Reason", "Der Benutzer '**<USER>**' wurde gebannt.", "DE");
                 LanguageAPI.setValue("Ban-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund von '<REASON>' gebannt.", "DE");
                 LanguageAPI.setValue("Ban-NoPersonDefined", "Bitte gebe einen Benutzer zum bannen an. ``<PREFIX>ban @User``", "DE");
+
+                LanguageAPI.setValue("UnBan-Syntax", "<PREFIX>unban User#1234", "DE");
+                LanguageAPI.setValue("UnBan-Desc", "Mit diesem Command kann du einen gebannten Nutzer entbannen.", "DE");
+                LanguageAPI.setValue("UnBan", "Der Benutzer '**<USER>**' wurde entbannt.", "DE");
+                LanguageAPI.setValue("UnBan-NoPersonDefined", "Bitte gebe einen Benutzer zum entbannen an. ``<PREFIX>unban User#1234``", "DE");
 
                 LanguageAPI.setValue("Clear-Desc", "Mit <PREFIX>clear kannst du bis zu 100 Nachrichten auf einmal löschen", "DE");
                 LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "DE");
