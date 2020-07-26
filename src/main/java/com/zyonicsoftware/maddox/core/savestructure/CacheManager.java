@@ -47,7 +47,7 @@ public class CacheManager {
             guildToggleData.put(Toggletype.LEAVEMESSAGE, false);
             this.maddox.getMySQLHandler().setLeaveMessageEnabled(false, guildID);
         }
-        
+
         this.guildToggleMap.put(guildID, guildToggleData);
     }
 
