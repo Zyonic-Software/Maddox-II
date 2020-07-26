@@ -1,7 +1,6 @@
 /*
  * Zyonic Software - 2020 - Tobias Rempe
- * This File, its contents and by extention the corresponding project may be
- * used freely in compliance with the Apache 2.0 License.
+ * This File, its contents and by extention the corresponding project may be used freely in compliance with the Apache 2.0 License.
  *
  * tobiasrempe@zyonicsoftware.com
  */
@@ -21,151 +20,170 @@ import com.zyonicsoftware.maddox.core.savestructure.CacheManager;
 import com.zyonicsoftware.maddox.core.savestructure.MySQLHandler;
 import com.zyonicsoftware.maddox.core.startup.StartupLoader;
 import com.zyonicsoftware.maddox.modules.listener.*;
-import java.awt.*;
 import net.dv8tion.jda.api.sharding.ShardManager;
+
+import java.awt.*;
 
 public class Maddox {
 
-  private PrivateMessageCommandHandler privateMessageCommandHandler;
-  private CommandToggleManager commandToggleManager;
-  private AutomaticRoleManager automaticRoleManager;
-  private boolean areCommandsToggleable;
-  private CommandHandler commandHandler;
-  private LanguageLoader languageLoader;
-  private MySQLHandler mySQLHandler;
-  private ShardManager shardManager;
-  private CacheManager cacheManager;
-  private String supportedLanguages;
-  private HelpBuilder helpBuilder;
-  private String botAdministrator;
-  private String defaultLanguage;
-  private String defaultPrefix;
-  private Color defaultColor;
-  private boolean isMySQL;
-  private String name;
+    private PrivateMessageCommandHandler privateMessageCommandHandler;
+    private CommandToggleManager commandToggleManager;
+    private AutomaticRoleManager automaticRoleManager;
+    private boolean areCommandsToggleable;
+    private CommandHandler commandHandler;
+    private LanguageLoader languageLoader;
+    private MySQLHandler mySQLHandler;
+    private ShardManager shardManager;
+    private CacheManager cacheManager;
+    private String supportedLanguages;
+    private HelpBuilder helpBuilder;
+    private String botAdministrator;
+    private String defaultLanguage;
+    private String defaultPrefix;
+    private Color defaultColor;
+    private boolean isMySQL;
+    private String name;
 
-  public void startup(final int amountShards, final BaseValueConfig config,
-                      final MySQLConfig mySQLConfig) {
 
-    // Get Values from Primary Config (config.yml)
-    this.loadConfigValues(config);
+    public void startup(final int amountShards, final BaseValueConfig config, final MySQLConfig mySQLConfig) {
 
-    final StartupLoader startupLoader =
-        new StartupLoader(); // Used to Init Shards
+        //Get Values from Primary Config (config.yml)
+        this.loadConfigValues(config);
 
-    if (config.getToken() == null ||
-        config.getToken().equals(
-            "your_bots_token_goes_here")) { // Checks if token has been insertet
-      System.out.println(
-          "Please enter your Bot's Token into the generated 'config.yml'");
-      return;
-    }
+        final StartupLoader startupLoader = new StartupLoader();//Used to Init Shards
 
-    System.out.println("Startup " + this.name);
-
-    // If MySQL-Module is Enabled, this will automatically connect to the
-    // specified Database Server
-    if (config.isMysql()) {
-      if (mySQLConfig.getPassword() != null &&
-          !mySQLConfig.getPassword().equals(
-              "maddox_is_cool_please_use_a_safe_password_i_beg_you")) {
-        this.mySQLHandler = new MySQLHandler(this);
-        try {
-          this.mySQLHandler.connectToMysql(
-              mySQLConfig.getHostname(), mySQLConfig.getPort(),
-              mySQLConfig.getDatabase(), mySQLConfig.getUser(),
-              mySQLConfig.getPassword());
-          System.out.println("MySQL enabled");
-          this.isMySQL = true;
-        } catch (final Exception e) {
-          System.out.println("MySQL connection failed, aborting");
-          return;
+        if (config.getToken() == null || config.getToken().equals("your_bots_token_goes_here")) {//Checks if token has been insertet
+            System.out.println("Please enter your Bot's Token into the generated 'config.yml'");
+            return;
         }
-      } else {
-        System.out.println(
-            "Please enter your info in 'mysqlconfig.yml' for the MySQL module to work, aborting.");
-        return;
-      }
+
+        System.out.println("Startup " + this.name);
+
+
+        //If MySQL-Module is Enabled, this will automatically connect to the specified Database Server
+        if (config.isMysql()) {
+            if (mySQLConfig.getPassword() != null && !mySQLConfig.getPassword().equals("maddox_is_cool_please_use_a_safe_password_i_beg_you")) {
+                this.mySQLHandler = new MySQLHandler(this);
+                try {
+                    this.mySQLHandler.connectToMysql(mySQLConfig.getHostname(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUser(), mySQLConfig.getPassword());
+                    System.out.println("MySQL enabled");
+                    this.isMySQL = true;
+                } catch (final Exception e) {
+                    System.out.println("MySQL connection failed, aborting");
+                    return;
+                }
+            } else {
+                System.out.println("Please enter your info in 'mysqlconfig.yml' for the MySQL module to work, aborting.");
+                return;
+            }
+        }
+
+        this.languageLoader = new LanguageLoader(this);
+        this.languageLoader.initLanguages();//Loads languages from config files (and generates them)
+
+        System.out.println("Bot-Administrator ID(s): " + config.getBotAdministrator());
+
+        this.shardManager = this.initShards(amountShards, config, startupLoader);
+
+        this.commandHandler = new CommandHandler(this);
+        this.helpBuilder = new HelpBuilder(this);
+
+        final CommandManager commandManager = new CommandManager(this);
+
+        commandManager.registerCommands(this.commandHandler);
+
+        this.automaticRoleManager = new AutomaticRoleManager(this);
+        this.commandToggleManager = new CommandToggleManager(this);
+        this.cacheManager = new CacheManager(this);
     }
 
-    this.languageLoader = new LanguageLoader(this);
-    this.languageLoader.initLanguages(); // Loads languages from config files
-                                         // (and generates them)
+    //Creates ShardManager, specefies primary Listeners
+    private ShardManager initShards(final int amountShards, final BaseValueConfig config, final StartupLoader startupLoader) {
+        return startupLoader.loadShards(
+                amountShards,
+                config.getToken(),
+                new MessageReceivedListener(this),
+                new MessageUpdateListener(this),
+                new GuildMemberJoinListener(this),
+                new GuildMemberLeaveListener(this),
+                new PrivateMessageReceivedListener(this),
+                new GuildJoinListener(this),
+                new GuildLeaveListener(this)
+        );
+    }
 
-    System.out.println("Bot-Administrator ID(s): " +
-                       config.getBotAdministrator());
+    private void loadConfigValues(final BaseValueConfig config) {
+        this.defaultPrefix = config.getDefaultPrefix();
+        this.defaultColor = config.getDefaultColor();
+        this.name = config.getDefaultBotName();
+        this.botAdministrator = config.getBotAdministrator();
+        this.defaultLanguage = config.getDefaultLanguage();
+        this.supportedLanguages = config.getSupportedLanguages();
+        this.areCommandsToggleable = config.areCommandsToggleable();
+    }
 
-    this.shardManager = this.initShards(amountShards, config, startupLoader);
 
-    this.commandHandler = new CommandHandler(this);
-    this.helpBuilder = new HelpBuilder(this);
+    public CommandHandler getCommandHandler() {
+        return this.commandHandler;
+    }
 
-    final CommandManager commandManager = new CommandManager(this);
+    public PrivateMessageCommandHandler getPrivateMessageCommandHandler() {
+        return this.privateMessageCommandHandler;
+    }
 
-    commandManager.registerCommands(this.commandHandler);
+    public ShardManager getShardManager() {
+        return this.shardManager;
+    }
 
-    this.automaticRoleManager = new AutomaticRoleManager(this);
-    this.commandToggleManager = new CommandToggleManager(this);
-    this.cacheManager = new CacheManager(this);
-  }
+    public String getDefaultPrefix() {
+        return this.defaultPrefix;
+    }
 
-  // Creates ShardManager, specefies primary Listeners
-  private ShardManager initShards(final int amountShards,
-                                  final BaseValueConfig config,
-                                  final StartupLoader startupLoader) {
-    return startupLoader.loadShards(
-        amountShards, config.getToken(), new MessageReceivedListener(this),
-        new MessageUpdateListener(this), new GuildMemberJoinListener(this),
-        new GuildMemberLeaveListener(this),
-        new PrivateMessageReceivedListener(this), new GuildJoinListener(this),
-        new GuildLeaveListener(this));
-  }
+    public Color getDefaultColor() {
+        return this.defaultColor;
+    }
 
-  private void loadConfigValues(final BaseValueConfig config) {
-    this.defaultPrefix = config.getDefaultPrefix();
-    this.defaultColor = config.getDefaultColor();
-    this.name = config.getDefaultBotName();
-    this.botAdministrator = config.getBotAdministrator();
-    this.defaultLanguage = config.getDefaultLanguage();
-    this.supportedLanguages = config.getSupportedLanguages();
-    this.areCommandsToggleable = config.areCommandsToggleable();
-  }
+    public String getBotAdministrator() {
+        return this.botAdministrator;
+    }
 
-  public CommandHandler getCommandHandler() { return this.commandHandler; }
+    public HelpBuilder getHelpBuilder() {
+        return this.helpBuilder;
+    }
 
-  public PrivateMessageCommandHandler getPrivateMessageCommandHandler() {
-    return this.privateMessageCommandHandler;
-  }
+    public String getName() {
+        return this.name;
+    }
 
-  public ShardManager getShardManager() { return this.shardManager; }
+    public boolean isMySQLConnected() {
+        return this.isMySQL;
+    }
 
-  public String getDefaultPrefix() { return this.defaultPrefix; }
+    public MySQLHandler getMySQLHandler() {
+        return this.mySQLHandler;
+    }
 
-  public Color getDefaultColor() { return this.defaultColor; }
+    public String getDefaultLanguage() {
+        return this.defaultLanguage;
+    }
 
-  public String getBotAdministrator() { return this.botAdministrator; }
+    public String getSupportedLanguages() {
+        return this.supportedLanguages;
+    }
 
-  public HelpBuilder getHelpBuilder() { return this.helpBuilder; }
+    public AutomaticRoleManager getAutomaticRoleManager() {
+        return this.automaticRoleManager;
+    }
 
-  public String getName() { return this.name; }
+    public CommandToggleManager getCommandToggleManager() {
+        return this.commandToggleManager;
+    }
 
-  public boolean isMySQLConnected() { return this.isMySQL; }
+    public boolean areCommandsToggleable() {
+        return this.areCommandsToggleable;
+    }
 
-  public MySQLHandler getMySQLHandler() { return this.mySQLHandler; }
-
-  public String getDefaultLanguage() { return this.defaultLanguage; }
-
-  public String getSupportedLanguages() { return this.supportedLanguages; }
-
-  public AutomaticRoleManager getAutomaticRoleManager() {
-    return this.automaticRoleManager;
-  }
-
-  public CommandToggleManager getCommandToggleManager() {
-    return this.commandToggleManager;
-  }
-
-  public boolean areCommandsToggleable() { return this.areCommandsToggleable; }
-
-  public CacheManager getCacheManager() { return this.cacheManager; }
+    public CacheManager getCacheManager() {
+        return this.cacheManager;
+    }
 }
