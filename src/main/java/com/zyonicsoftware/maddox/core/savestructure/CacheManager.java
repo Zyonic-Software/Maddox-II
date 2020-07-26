@@ -35,8 +35,20 @@ public class CacheManager {
         this.guildMap.put(guildID, guildData);
 
         final HashMap<Toggletype, Boolean> guildToggleData = new HashMap<>();
-        guildToggleData.put(Toggletype.JOINMESSAGE, this.maddox.getMySQLHandler().isJoinMessageEnabled(guildID));
-        guildToggleData.put(Toggletype.LEAVEMESSAGE, this.maddox.getMySQLHandler().isLeaveMessageEnabled(guildID));
+        try {
+            guildToggleData.put(Toggletype.JOINMESSAGE, this.maddox.getMySQLHandler().isJoinMessageEnabled(guildID));
+        } catch (final Exception ignored) {
+            guildToggleData.put(Toggletype.JOINMESSAGE, false);
+            this.maddox.getMySQLHandler().setJoinMessageEnabled(false, guildID);
+        }
+        try {
+            guildToggleData.put(Toggletype.LEAVEMESSAGE, this.maddox.getMySQLHandler().isLeaveMessageEnabled(guildID));
+        } catch (final Exception ignored) {
+            guildToggleData.put(Toggletype.LEAVEMESSAGE, false);
+            this.maddox.getMySQLHandler().setLeaveMessageEnabled(false, guildID);
+        }
+        
+        this.guildToggleMap.put(guildID, guildToggleData);
     }
 
     public String getPrefix(final String guildID) {

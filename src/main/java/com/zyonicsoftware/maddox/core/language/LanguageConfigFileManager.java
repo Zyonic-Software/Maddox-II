@@ -87,7 +87,7 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Clear-MessagesTooOld", "These Messages are older than two weeks, they can't be deleted automatically.", "EN");
 
 
-                LanguageAPI.setValue("NoChange", "Nothing was Changed", "EN");
+                LanguageAPI.setValue("NoChange", "Nothing was Changed.", "EN");
 
             }
         } catch (final Exception e) {
@@ -159,7 +159,7 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Clear-MessagesTooOld", "Diese Nachrichten sind über zwei Wochen alt, sie können nicht automatisch gelöscht werden.", "DE");
 
 
-                LanguageAPI.setValue("NoChange", "Nichts verändert", "DE");
+                LanguageAPI.setValue("NoChange", "Nichts verändert.", "DE");
             }
         } catch (final Exception e) {
             e.printStackTrace();

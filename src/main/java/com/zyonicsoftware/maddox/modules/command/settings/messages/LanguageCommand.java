@@ -45,8 +45,12 @@ public class LanguageCommand extends Command {
                     );
                 } else if (this.maddox.getSupportedLanguages().contains(event.getArguments().get(0).toUpperCase())) {
                     final String selectedLanguage = event.getArguments().get(0).toUpperCase();
-                    server.setLanguage(selectedLanguage);
-                    event.reply(LanguageAPI.getValue("Language-Set", selectedLanguage).replace("<SERVER>", server.getName()).replace("<LANGUAGE>", selectedLanguage));
+                    if (!this.maddox.getCacheManager().getLanguage(server.getID()).equalsIgnoreCase(event.getArguments().get(0))) {
+                        server.setLanguage(selectedLanguage);
+                        event.reply(LanguageAPI.getValue("Language-Set", selectedLanguage).replace("<SERVER>", server.getName()).replace("<LANGUAGE>", selectedLanguage));
+                    } else {
+                        event.reply(LanguageAPI.getValue("NoChange", server.getLanguage()));
+                    }
                 }
             }
         } else {
