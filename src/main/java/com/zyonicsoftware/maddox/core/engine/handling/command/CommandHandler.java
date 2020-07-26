@@ -13,6 +13,7 @@ import com.zyonicsoftware.maddox.core.main.Maddox;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CommandHandler {
@@ -49,7 +50,7 @@ public class CommandHandler {
     }
 
 
-    public void handle(final GuildMessageReceivedEvent event, final String prefix, final String messageContent) {
+    public void handle(final GuildMessageReceivedEvent event, String prefix, String messageContent) {
 
         if (messageContent.startsWith(prefix + " ")) {
 
@@ -96,6 +97,62 @@ public class CommandHandler {
         } else if (messageContent.startsWith(prefix)) {
 
             String[] seperatedStrings = messageContent.substring(prefix.length()).split(" ");
+
+            if (seperatedStrings.length > 0) {
+
+                final Command selectedCommand = this.commands.get(seperatedStrings[0].toLowerCase());
+
+                if (selectedCommand != null) {
+                    if (this.maddox.isMySQLConnected()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
+                                if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
+                                    return;
+                                }
+                            }
+                        }
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
+                        return;
+                    } else {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, prefix), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
+                        return;
+                    }
+                }
+            }
+
+            seperatedStrings = messageContent.split(" ");
+
+            if (seperatedStrings.length > 0) {
+
+                final Command selectedCommand = this.specificPrefixCommands.get(seperatedStrings[0].toLowerCase());
+                if (selectedCommand != null) {
+                    if (this.maddox.isMySQLConnected()) {
+                        if (this.maddox.areCommandsToggleable()) {
+                            if (selectedCommand.isToggleable()) {
+                                if (!this.maddox.getCommandToggleManager().getCommandsForToggling(event.getGuild()).contains(selectedCommand.getName())) {
+                                    return;
+                                }
+                            }
+                        }
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix, this.maddox.getCacheManager()));
+                        return;
+                    } else {
+                        selectedCommand.execute(new CommandEvent(selectedCommand, event, selectedCommand.getSpecificPrefix()), new MaddoxMember(event.getMember()), new MaddoxGuild(event.getGuild(), prefix));
+                        return;
+                    }
+                }
+            }
+        } else if (messageContent.startsWith("<@" + event.getJDA().getSelfUser().getId() + "> ") || messageContent.startsWith("<@!" + event.getJDA().getSelfUser().getId() + "> ")) {
+
+            if (messageContent.startsWith("<@" + event.getJDA().getSelfUser().getId() + ">")) {
+                messageContent = messageContent.substring(2 + event.getJDA().getSelfUser().getId().length() + 2);
+                prefix = "<@" + event.getJDA().getSelfUser().getId() + ">";
+            } else if (messageContent.startsWith("<@!" + event.getJDA().getSelfUser().getId() + ">")) {
+                messageContent = messageContent.substring(3 + event.getJDA().getSelfUser().getId().length() + 2);
+                prefix = "<@!" + event.getJDA().getSelfUser().getId() + ">";
+            }
+
+            String[] seperatedStrings = messageContent.split(" ");
 
             if (seperatedStrings.length > 0) {
 
@@ -298,5 +355,15 @@ public class CommandHandler {
 
     public HashMap<String, Command> getSpecificPrefixCommands() {
         return this.specificPrefixCommands;
+    }
+
+    public ArrayList<String> getCategories() {
+        final ArrayList<String> categories = new ArrayList<>();
+        this.commands.forEach((name, command) -> {
+            if (!categories.contains(command.getCategory())) {
+                categories.add(command.getCategory());
+            }
+        });
+        return categories;
     }
 }

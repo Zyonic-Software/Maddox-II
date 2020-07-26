@@ -17,47 +17,47 @@ import de.daschi.javalanguageapi.api.LanguageAPI;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
-public class KickCommand extends Command {
+public class BanCommand extends Command {
 
     private final Maddox maddox;
 
-    public KickCommand(final Maddox maddox) {
+    public BanCommand(final Maddox maddox) {
         this.maddox = maddox;
-        this.setName("kick");
-        this.setDescription("Kick-Desc");
-        this.setSyntax("Kick-Syntax");
+        this.setName("ban");
+        this.setDescription("Ban-Desc");
+        this.setSyntax("Ban-Syntax");
         this.setCategory("Moderation-Category");
         this.setGetValuesFromLanguageYAML(true);
         this.setAllowExecutionOnMessageEdit(true);
-        this.setCommandHelpViewPermission(CommandHelpViewPermission.MEMBER_KICK);
+        this.setCommandHelpViewPermission(CommandHelpViewPermission.MEMBER_BAN);
         this.setToggleable(true);
     }
 
     @Override
     protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
-        if (sender.hasPermission(Permission.KICK_MEMBERS)) {
+        if (sender.hasPermission(Permission.BAN_MEMBERS)) {
             if (!event.getMentions().isEmpty()) {
                 if (event.getArguments().size() > 1) {
                     final String memberID = event.getMentions().get(0).getID();
                     final String memberName = event.getMentions().get(0).getUsername();
-                    event.getMentions().get(0).kick(event.getArgumentsAsString().replace("<@!" + memberID + ">" + " ", "")).queue();
+                    event.getMentions().get(0).ban(0, event.getArgumentsAsString().replace("<@!" + memberID + ">" + " ", "")).queue();
                     event.reply(
                             new EmbedBuilder()
-                                    .addField("Kick", LanguageAPI.getValue("Kick-With-Reason").replace("<USER>", memberName).replace("<REASON>", event.getArgumentsAsString().replace("<@!" + memberID + ">" + " ", "")), false)
+                                    .addField("Ban", LanguageAPI.getValue("Ban-With-Reason").replace("<USER>", memberName).replace("<REASON>", event.getArgumentsAsString().replace("<@!" + memberID + ">" + " ", "")), false)
                                     .setColor(this.maddox.getDefaultColor())
                                     .build()
                     );
                 } else {
-                    event.getMentions().get(0).kick().queue();
+                    event.getMentions().get(0).ban(0).queue();
                     event.reply(
                             new EmbedBuilder()
-                                    .addField("Kick", LanguageAPI.getValue("Kick-Without-Reason").replace("<USER>", event.getMentions().get(0).getMember().getEffectiveName()), false)
+                                    .addField("Ban", LanguageAPI.getValue("Ban-Without-Reason").replace("<USER>", event.getMentions().get(0).getMember().getEffectiveName()), false)
                                     .setColor(this.maddox.getDefaultColor())
                                     .build()
                     );
                 }
             } else {
-                event.reply(LanguageAPI.getValue("Kick-NoPersonDefined", server.getLanguage()).replace("<PREFIX>", event.getPrefix()));
+                event.reply(LanguageAPI.getValue("Ban-NoPersonDefined", server.getLanguage()).replace("<PREFIX>", event.getPrefix()));
             }
         }
     }

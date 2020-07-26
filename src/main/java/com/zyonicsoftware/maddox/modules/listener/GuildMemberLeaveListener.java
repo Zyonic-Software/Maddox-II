@@ -34,7 +34,10 @@ public class GuildMemberLeaveListener extends ListenerAdapter {
         if (this.maddox.getCacheManager().isLeaveMessageEnabled(event.getGuild().getId())) {
             final String channelID = this.maddox.getCacheManager().getLeaveMessageChannel(event.getGuild().getId());
             if (channelID != null) {
-                Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getCacheManager().getLeaveMessage(event.getGuild().getId()).replace("<USER>", "**" + event.getMember().getEffectiveName() + "**").replace("<SERVER>", "**" + event.getGuild().getName() + "**")).queue();
+                try {
+                    Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getCacheManager().getLeaveMessage(event.getGuild().getId()).replace("<USER>", "**" + event.getMember().getEffectiveName() + "**").replace("<SERVER>", "**" + event.getGuild().getName() + "**")).queue();
+                } catch (final Exception ignored) {
+                }
             }
         }
     }

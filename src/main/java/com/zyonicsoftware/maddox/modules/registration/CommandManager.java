@@ -5,12 +5,20 @@
  * tobiasrempe@zyonicsoftware.com
  */
 
-package com.zyonicsoftware.maddox.core.management;
+/*
+ * Zyonic Software - 2020 - Tobias Rempe
+ * This File, its contents and by extention the corresponding project may be used freely in compliance with the Apache 2.0 License.
+ *
+ * tobiasrempe@zyonicsoftware.com
+ */
+
+package com.zyonicsoftware.maddox.modules.registration;
 
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandHandler;
 import com.zyonicsoftware.maddox.core.main.Maddox;
 import com.zyonicsoftware.maddox.modules.command.information.BotInfoCommand;
 import com.zyonicsoftware.maddox.modules.command.information.HelpCommand;
+import com.zyonicsoftware.maddox.modules.command.moderation.BanCommand;
 import com.zyonicsoftware.maddox.modules.command.moderation.ClearCommand;
 import com.zyonicsoftware.maddox.modules.command.moderation.KickCommand;
 import com.zyonicsoftware.maddox.modules.command.settings.messages.JoinMessageCommand;
@@ -43,6 +51,7 @@ public class CommandManager {
                 new ToggleCommand(this.maddox),
                 //Moderation
                 new KickCommand(this.maddox),
+                new BanCommand(this.maddox),
                 new ClearCommand(),
                 //Normal
                 ///Information

@@ -78,8 +78,14 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Kick-Syntax", "<PREFIX>kick @Member", "EN");
                 LanguageAPI.setValue("Kick-Desc", "This Commands lets you kick users off your Discord-Server", "EN");
                 LanguageAPI.setValue("Kick-Without-Reason", "The user '**<USER>**' was kicked.", "EN");
-                LanguageAPI.setValue("Kick-With-Reason", "The user '**<USER>**' was kicked because off '<REASON>'.", "EN");
+                LanguageAPI.setValue("Kick-With-Reason", "The user '**<USER>**' was kicked because of '<REASON>'.", "EN");
                 LanguageAPI.setValue("Kick-NoPersonDefined", "Please provide a user to be kicked. ``<PREFIX>kick @User``", "EN");
+
+                LanguageAPI.setValue("Ban-Syntax", "<PREFIX>ban @Member", "EN");
+                LanguageAPI.setValue("Ban-Desc", "This Command lets you ban users from your Discord-Server permanently", "EN");
+                LanguageAPI.setValue("Ban-Without-Reason", "The user '**<USER>**' was banned.", "EN");
+                LanguageAPI.setValue("Ban-With-Reason", "The user '**<USER>**' was banned because of '<REASON>'.", "EN");
+                LanguageAPI.setValue("Ban-NoPersonDefined", "Please provide a user to be banned. ``<PREFIX>ban @User``", "EN");
 
                 LanguageAPI.setValue("Clear-Desc", "You can delete up to 100 Messages at a time with <PREFIX>clear", "EN");
                 LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "EN");
@@ -150,8 +156,14 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Kick-Syntax", "<PREFIX>kick @User", "DE");
                 LanguageAPI.setValue("Kick-Desc", "Dieser Command erlaubt es dir jemanden von deinem Discordserver zu kicken", "DE");
                 LanguageAPI.setValue("Kick-Without-Reason", "Der Benutzer '**<USER>**' wurde erfolgreich vom Server geworfen", "DE");
-                LanguageAPI.setValue("Kick-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund '<REASON>' erfolgreich vom Server geworfen", "DE");
+                LanguageAPI.setValue("Kick-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund von '<REASON>' erfolgreich vom Server geworfen", "DE");
                 LanguageAPI.setValue("Kick-NoPersonDefined", "Bitte gebe einen Benutzer zum kicken an. ``<PREFIX>kick @User``", "DE");
+
+                LanguageAPI.setValue("Ban-Syntax", "<PREFIX>ban @Member", "DE");
+                LanguageAPI.setValue("Ban-Desc", "Dieser Command erlaubt es dir jemanden permanent von deinem Discord-Server zu verbannen.", "DE");
+                LanguageAPI.setValue("Ban-Without-Reason", "Der Benutzer '**<USER>**' wurde gebannt.", "DE");
+                LanguageAPI.setValue("Ban-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund von '<REASON>' gebannt.", "DE");
+                LanguageAPI.setValue("Ban-NoPersonDefined", "Bitte gebe einen Benutzer zum bannen an. ``<PREFIX>ban @User``", "DE");
 
                 LanguageAPI.setValue("Clear-Desc", "Mit <PREFIX>clear kannst du bis zu 100 Nachrichten auf einmal löschen", "DE");
                 LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "DE");

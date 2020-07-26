@@ -33,12 +33,24 @@ public class HelpCommand extends Command {
     @Override
     protected void execute(final CommandEvent event, final MaddoxMember sender, final MaddoxGuild server) {
         if (event.getArguments().isEmpty()) {
-            event.reply(this.maddox.getHelpBuilder().assembleHelp(sender, server.getPrefix(), server.getLanguage()));
+            event.reply(this.maddox.getHelpBuilder().assembleHelp(sender, this.getTruePrefixIfPrefixIsMention(event), server.getLanguage()));
         } else if (event.getArguments().size() > 0 && this.maddox.getCommandHandler().getCommands().containsKey(event.getArguments().get(0).toLowerCase())) {
-            final MessageEmbed messageEmbed = this.maddox.getHelpBuilder().generateCommandHelp(this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0).toLowerCase()), server.getPrefix(), sender, server);
+            final MessageEmbed messageEmbed = this.maddox.getHelpBuilder().generateCommandHelp(this.maddox.getCommandHandler().getCommands().get(event.getArguments().get(0).toLowerCase()), this.getTruePrefixIfPrefixIsMention(event), sender, server);
             if (messageEmbed != null) {
                 event.reply(messageEmbed);
             }
         }
+    }
+
+    private String getTruePrefixIfPrefixIsMention(final CommandEvent event) {
+        String prefix = event.getPrefix();
+        if (prefix.equals("<@" + event.getJDA().getSelfUser().getId() + ">")) {
+            prefix = this.maddox.getCacheManager().getPrefix(event.getServer().getID());
+        }
+
+        if (prefix.equals("<@!" + event.getJDA().getSelfUser().getId() + ">")) {
+            prefix = this.maddox.getCacheManager().getPrefix(event.getServer().getID());
+        }
+        return prefix;
     }
 }
