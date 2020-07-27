@@ -38,7 +38,7 @@ public class BotInfoCommand extends Command {
                 .addField("Programming-Language", "Java 14, LibericaJDK", false)
                 .addField("APIs", "JDA (by DV8FromTheWorld)\nMySQL- & Language-API (by Daschi1)", false)
                 .setFooter("Maddox by ZyonicSoftware.com", "https://i.ibb.co/Jrn6L5Z/zy-128x128-smaller.png")
-                .setDescription("Running on Maddox-V2-1.0.0")
+                .setDescription("Running on Maddox-V2-1.0.1")
                 .build()
         );
     }
