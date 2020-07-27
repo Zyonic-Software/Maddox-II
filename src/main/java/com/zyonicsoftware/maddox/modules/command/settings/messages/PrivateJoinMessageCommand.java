@@ -9,6 +9,7 @@ package com.zyonicsoftware.maddox.modules.command.settings.messages;
 
 import com.zyonicsoftware.maddox.core.engine.handling.command.Command;
 import com.zyonicsoftware.maddox.core.engine.handling.command.CommandEvent;
+import com.zyonicsoftware.maddox.core.engine.helpbuilder.CommandHelpViewPermission;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxGuild;
 import com.zyonicsoftware.maddox.core.engine.objects.MaddoxMember;
 import com.zyonicsoftware.maddox.core.main.Maddox;
@@ -22,6 +23,12 @@ public class PrivateJoinMessageCommand extends Command {
     public PrivateJoinMessageCommand(final Maddox maddox) {
         this.maddox = maddox;
         this.setName("pjoinmessage");
+        this.setSyntax("PrivateJoinMessage-Syntax");
+        this.setDescription("PrivateJoinMessage-Desc");
+        this.setCategory("Settings-Category");
+        this.setAllowExecutionOnMessageEdit(true);
+        this.setGetValuesFromLanguageYAML(true);
+        this.setCommandHelpViewPermission(CommandHelpViewPermission.MANAGE_SERVER);
     }
 
     @Override

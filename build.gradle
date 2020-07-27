@@ -15,7 +15,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 group 'com.zyonic'
-version 'V2-1.0.1'
+version 'V2-1.0.2'
 
 
 repositories {

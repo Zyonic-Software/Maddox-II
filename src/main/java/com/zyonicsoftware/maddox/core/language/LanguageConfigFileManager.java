@@ -62,8 +62,10 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("PrivateJoinMessageArgumentsMissing", "You didn't provide any arguments! please specify an action like this: ``<PREFIX>pjoinmessage set`` , ``<PREFIX>pjoinmessage enable`` or ``<PREFIX>pjoinmessage disable``!", "EN");
                 LanguageAPI.setValue("JoinMessage-Syntax", "``<PREFIX>joinmessage set <Your Mesage>`` | ``<PREFIX>joinmessage setchannel #YourChannel`` | ``<PREFIX>joinmessage enable`` | ``<PREFIX>joinmessage disable``", "EN");
                 LanguageAPI.setValue("LeaveMessage-Syntax", "``<PREFIX>leavemessage set <Your Message>`` | ``<PREFIX>leavemessage setchannel #YourChannel`` | ``<PREFIX>leavemessage enable`` | ``<PREFIX>leavemessage disable``", "EN");
+                LanguageAPI.setValue("PrivateJoinMessage-Syntax", "``<PREFIX>pjoinmessage set <Deine Nachricht>`` | ``<PREFIX>pjoinmessage enabled`` | ``<PREFIX>pjoinmessage disable``", "EN");
                 LanguageAPI.setValue("JoinMessage-Desc", "The Joinmessage commands let you set a message that welcomes new Users to your Discord-Server. If you type <USER> within the Message " + maddox.getName() + " will mention the new Member.", "EN");
                 LanguageAPI.setValue("LeaveMessage-Desc", "The Leavemessage commands let you set a message that bids farewell to users that leave your Discord-Server. If you type <USER> within the Message " + maddox.getName() + " will mention the new Member.", "EN");
+                LanguageAPI.setValue("PrivateJoinMessage-Desc", "This enables you to send a Private Message to users that join your Discord-Server!", "EN");
 
                 LanguageAPI.setValue("Toggle-Syntax", "<PREFIX>toggle <Command>", "EN");
                 LanguageAPI.setValue("Toggle-Desc", "This commands lets you toggle specific commands on and off.", "EN");
@@ -148,8 +150,10 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("PrivateJoinMessageArgumentsMissing", "Du hast keine Argumente angegeben! Bitte gebe entweder ``<PREFIX>pjoinmessage set``, ``<PREFIX>pjoinmessage enable`` oder ``<PREFIX>pjoinmessage disable`` ein!", "DE");
                 LanguageAPI.setValue("JoinMessage-Syntax", "``<PREFIX>joinmessage set <Deine Nachricht>`` | ``<PREFIX>joinmessage setchannel #DeinKanal`` | ``<PREFIX>joinmessage enable`` | ``<PREFIX>joinmessage disable``", "DE");
                 LanguageAPI.setValue("LeaveMessage-Syntax", "``<PREFIX>leavemessage set <Deine Nachricht>`` | ``<PREFIX>leavemessage setchannel #DeinKanal`` | ``<PREFIX>leavemessage enable`` | ``<PREFIX>leavemessage disable``", "DE");
+                LanguageAPI.setValue("PrivateJoinMessage-Syntax", "``<PREFIX>pjoinmessage set <Deine Nachricht>`` | ``<PREFIX>pjoinmessage enabled`` | ``<PREFIX>pjoinmessage disable``", "DE");
                 LanguageAPI.setValue("JoinMessage-Desc", "Der Joinmessage Command lässt dich eine Nachricht erstellen die die User auf deinem Discord willkommen heißt. Indem du in deiner Nachricht <USER> schreibst erwähnst du neue Benutzer", "DE");
                 LanguageAPI.setValue("LeaveMessage-Desc", "Der Leavemessage Command lässt dich eine Nachricht erstellen die die User von deinem Discord verabschiedet. Indem du in deiner Nachricht <USER> schreibst erwähnst du neue Benutzer", "DE");
+                LanguageAPI.setValue("PrivateJoinMessage-Desc", "Diese Funktion ermöglicht es dir eine private Willkommensnachricht an benutzer zu senden, die neu auf deinen Discord joinen!", "DE");
 
                 LanguageAPI.setValue("Toggle-Syntax", "<PREFIX>toggle <Command>", "DE");
                 LanguageAPI.setValue("Toggle-Desc", "Dieser Command lässt dich bestimmte Commands aktivieren oder deaktivieren.", "DE");
