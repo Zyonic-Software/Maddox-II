@@ -36,9 +36,9 @@ public class BotInfoCommand extends Command {
                 .setColor(this.maddox.getDefaultColor())
                 .addField("Developer", "AzraAnimating", false)
                 .addField("Programming-Language", "Java 14, LibericaJDK", false)
-                .addField("APIs", "JDA (by DV8FromTheWorld)\nMysql- & Language-API (by Daschi1)", false)
+                .addField("APIs", "JDA (by DV8FromTheWorld)\nMySQL- & Language-API (by Daschi1)", false)
                 .setFooter("Maddox by ZyonicSoftware.com", "https://i.ibb.co/Jrn6L5Z/zy-128x128-smaller.png")
-                .setDescription("Running on Maddox-V2-A-0.1.2a")
+                .setDescription("Running on Maddox-V2-1.0.0")
                 .build()
         );
     }

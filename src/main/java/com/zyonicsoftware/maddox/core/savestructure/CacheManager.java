@@ -30,6 +30,7 @@ public class CacheManager {
         guildData.put(Datatype.JOINMESSAGE, this.maddox.getMySQLHandler().getJoinMessage(guildID));
         guildData.put(Datatype.LEAVECHANNEL, this.maddox.getMySQLHandler().getLeaveMessageChannel(guildID));
         guildData.put(Datatype.LEAVEMESSAGE, this.maddox.getMySQLHandler().getLeaveMessage(guildID));
+        guildData.put(Datatype.PRIVATE_JOINMESSAGE, this.maddox.getMySQLHandler().getPrivateJoinMessage(guildID));
         guildData.put(Datatype.ENABLED_COMMANDS, this.maddox.getMySQLHandler().getEnabledCommands(guildID));
 
         this.guildMap.put(guildID, guildData);
@@ -46,6 +47,12 @@ public class CacheManager {
         } catch (final Exception ignored) {
             guildToggleData.put(Toggletype.LEAVEMESSAGE, false);
             this.maddox.getMySQLHandler().setLeaveMessageEnabled(false, guildID);
+        }
+        try {
+            guildToggleData.put(Toggletype.PRIVATE_JOINMESSAGE, this.maddox.getMySQLHandler().isPrivateJoinMessageEnabled(guildID));
+        } catch (final Exception ignored) {
+            guildToggleData.put(Toggletype.PRIVATE_JOINMESSAGE, false);
+            this.maddox.getMySQLHandler().setPrivateJoinMessageEnabled(false, guildID);
         }
 
         this.guildToggleMap.put(guildID, guildToggleData);
@@ -206,5 +213,35 @@ public class CacheManager {
         }
         this.guildToggleMap.get(guildID).put(Toggletype.LEAVEMESSAGE, state);
         this.maddox.getMySQLHandler().setLeaveMessageEnabled(true, guildID);
+    }
+
+    public void setPrivateJoinMessage(final String message, final String guildID) {
+        if (!this.guildMap.containsKey(guildID)) {
+            this.registerServerToCache(guildID);
+        }
+        this.guildMap.get(guildID).put(Datatype.PRIVATE_JOINMESSAGE, message);
+        this.maddox.getMySQLHandler().setPrivateJoinMessage(message, guildID);
+    }
+
+    public String getPrivateJoinMessage(final String guildID) {
+        if (!this.guildMap.containsKey(guildID)) {
+            this.registerServerToCache(guildID);
+        }
+        return this.guildMap.get(guildID).get(Datatype.PRIVATE_JOINMESSAGE);
+    }
+
+    public boolean isPrivateJoinMessageEnabled(final String guildID) {
+        if (!this.guildToggleMap.containsKey(guildID)) {
+            this.registerServerToCache(guildID);
+        }
+        return this.guildToggleMap.get(guildID).get(Toggletype.PRIVATE_JOINMESSAGE);
+    }
+
+    public void setPrivateJoinMessageEnabled(final boolean state, final String guildID) {
+        if (!this.guildToggleMap.containsKey(guildID)) {
+            this.registerServerToCache(guildID);
+        }
+        this.guildToggleMap.get(guildID).put(Toggletype.PRIVATE_JOINMESSAGE, state);
+        this.maddox.getMySQLHandler().setPrivateJoinMessageEnabled(true, guildID);
     }
 }

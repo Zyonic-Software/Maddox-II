@@ -21,7 +21,7 @@ public class PrivateMessageReceivedListener extends ListenerAdapter {
 
     @Override
     public void onPrivateMessageReceived(final PrivateMessageReceivedEvent event) {
-        if (event.getAuthor().equals(event.getAuthor().getJDA().getSelfUser())) {
+        if (!event.getAuthor().equals(event.getAuthor().getJDA().getSelfUser())) {
 
             final String prefix = this.maddox.getDefaultPrefix();
 

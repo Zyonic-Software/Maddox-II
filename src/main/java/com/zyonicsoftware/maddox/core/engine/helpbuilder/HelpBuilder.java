@@ -32,7 +32,6 @@ public class HelpBuilder {
         final HashMap<String, ArrayList<Command>> sortedCommands = new HashMap<>();
         final HashMap<String, ArrayList<Command>> sortedSpecefiedPrefixCommands = new HashMap<>();
 
-
         final EmbedBuilder embedBuilder = new EmbedBuilder();
 
         embedBuilder.setTitle("**" + this.maddox.getName() + " Help**").setThumbnail(maddoxMember.getCurrentJDA().getSelfUser().getAvatarUrl());

@@ -52,12 +52,14 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("EventMessage-Set", "The <MESSAGE-TYPE>message was set to <MESSAGE>!", "EN");
                 LanguageAPI.setValue("JoinMessage", "Welcoming", "EN");
                 LanguageAPI.setValue("LeaveMessage", "Leave", "EN");
+                LanguageAPI.setValue("PrivateJoinMessage", "Private welcoming", "EN");
                 LanguageAPI.setValue("MessageEnabled", "The <MESSAGE-TYPE>message was enabled!", "EN");
                 LanguageAPI.setValue("MessageDisabled", "The <MESSAGE-TYPE>message was disabled!", "EN");
                 LanguageAPI.setValue("ChannelSet", "The channel for <MESSAGE-TYPE>messages was set to <CHANNEL> !", "EN");
                 LanguageAPI.setValue("NoMessageProvided", "You didn't provide a message. Please provide a message like this:``<PREFIX><MESSAGE-TYPE>message set Welcome <USER>! Have fun on <SERVER>!``", "EN");
                 LanguageAPI.setValue("NoChannelProvided", "You didn't provide a channel. Please mention a channel like this: ``<PREFIX><MESSAGE-TYPE>message setchannel #ChannelName`` !", "EN");
-                LanguageAPI.setValue("MessageArgumentsMissing", "You didn't provide any arguments! please specify an action like this: ``<PREFIX><MESSAGE-TYPE>message set`` or ``<PREFIX><MESSAGE-TYPE>message setchannel``!", "EN");
+                LanguageAPI.setValue("MessageArgumentsMissing", "You didn't provide any arguments! please specify an action like this: ``<PREFIX><MESSAGE-TYPE>message set`` , ``<PREFIX><MESSAGE-TYPE>message setchannel``!", "EN");
+                LanguageAPI.setValue("PrivateJoinMessageArgumentsMissing", "You didn't provide any arguments! please specify an action like this: ``<PREFIX>pjoinmessage set`` , ``<PREFIX>pjoinmessage enable`` or ``<PREFIX>pjoinmessage disable``!", "EN");
                 LanguageAPI.setValue("JoinMessage-Syntax", "``<PREFIX>joinmessage set <Your Mesage>`` | ``<PREFIX>joinmessage setchannel #YourChannel`` | ``<PREFIX>joinmessage enable`` | ``<PREFIX>joinmessage disable``", "EN");
                 LanguageAPI.setValue("LeaveMessage-Syntax", "``<PREFIX>leavemessage set <Your Message>`` | ``<PREFIX>leavemessage setchannel #YourChannel`` | ``<PREFIX>leavemessage enable`` | ``<PREFIX>leavemessage disable``", "EN");
                 LanguageAPI.setValue("JoinMessage-Desc", "The Joinmessage commands let you set a message that welcomes new Users to your Discord-Server. If you type <USER> within the Message " + maddox.getName() + " will mention the new Member.", "EN");
@@ -78,8 +80,19 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Kick-Syntax", "<PREFIX>kick @Member", "EN");
                 LanguageAPI.setValue("Kick-Desc", "This Commands lets you kick users off your Discord-Server", "EN");
                 LanguageAPI.setValue("Kick-Without-Reason", "The user '**<USER>**' was kicked.", "EN");
-                LanguageAPI.setValue("Kick-With-Reason", "The user '**<USER>**' was kicked because off '<REASON>'.", "EN");
+                LanguageAPI.setValue("Kick-With-Reason", "The user '**<USER>**' was kicked because of '<REASON>'.", "EN");
                 LanguageAPI.setValue("Kick-NoPersonDefined", "Please provide a user to be kicked. ``<PREFIX>kick @User``", "EN");
+
+                LanguageAPI.setValue("Ban-Syntax", "<PREFIX>ban @Member", "EN");
+                LanguageAPI.setValue("Ban-Desc", "This Command lets you ban users from your Discord-Server permanently", "EN");
+                LanguageAPI.setValue("Ban-Without-Reason", "The user '**<USER>**' was banned.", "EN");
+                LanguageAPI.setValue("Ban-With-Reason", "The user '**<USER>**' was banned because of '<REASON>'.", "EN");
+                LanguageAPI.setValue("Ban-NoPersonDefined", "Please provide a user to be banned. ``<PREFIX>ban @User``", "EN");
+
+                LanguageAPI.setValue("UnBan-Syntax", "<PREFIX>unban User#1234", "EN");
+                LanguageAPI.setValue("UnBan-Desc", "This Command unbans a banned user.", "EN");
+                LanguageAPI.setValue("UnBan", "The user '**<USER>**' was unbanned.", "EN");
+                LanguageAPI.setValue("UnBan-NoPersonDefined", "Please provide a user. ``<PREFIX>unban User#1234``", "EN");
 
                 LanguageAPI.setValue("Clear-Desc", "You can delete up to 100 Messages at a time with <PREFIX>clear", "EN");
                 LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "EN");
@@ -123,17 +136,19 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("AutoRole-Response-3", "Bitte gebe die benötigten Argumente an: ", "DE");
 
                 LanguageAPI.setValue("EventMessage-Set", "Die <MESSAGE-TYPE>nachricht wurde auf <MESSAGE> gesetzt!", "DE");
-                LanguageAPI.setValue("JoinMessage", "Wilkommens", "DE");
+                LanguageAPI.setValue("JoinMessage", "Willkommens", "DE");
                 LanguageAPI.setValue("LeaveMessage", "Verabschiedungs", "DE");
+                LanguageAPI.setValue("PrivateJoinMessage", "Private Willkommens", "DE");
                 LanguageAPI.setValue("MessageEnabled", "Die <MESSAGE-TYPE>nachricht wurde aktiviert!", "DE");
                 LanguageAPI.setValue("MessageDisabled", "Die <MESSAGE-TYPE>nachricht wurde deaktiviert!", "DE");
                 LanguageAPI.setValue("ChannelSet", "Der Kanal für <MESSAGE-TYPE>nachrichten wurde auf <CHANNEL> gesetzt!", "DE");
                 LanguageAPI.setValue("NoMessageProvided", "Du hast keine Nachricht angegeben! Bitte gebe eine Nachricht an:``<PREFIX><MESSAGE-TYPE>message set Wilkommen <USER>! Hab Spaß auf <SERVER>!``", "DE");
                 LanguageAPI.setValue("NoChannelProvided", "Du hast keinen Kanal angegeben! Bitte tagge einen Kanal: ``<PREFIX><MESSAGE-TYPE>message setchannel #ChannelName`` !", "DE");
-                LanguageAPI.setValue("MessageArgumentsMissing", "Du hast keine Argumente angegeben! bitte gebe entweder ``<PREFIX><MESSAGE-TYPE>message set`` oder ``<PREFIX><MESSAGE-TYPE>message setchannel`` ein!", "DE");
+                LanguageAPI.setValue("MessageArgumentsMissing", "Du hast keine Argumente angegeben! Bitte gebe entweder ``<PREFIX><MESSAGE-TYPE>message set`` oder ``<PREFIX><MESSAGE-TYPE>message setchannel`` ein!", "DE");
+                LanguageAPI.setValue("PrivateJoinMessageArgumentsMissing", "Du hast keine Argumente angegeben! Bitte gebe entweder ``<PREFIX>pjoinmessage set``, ``<PREFIX>pjoinmessage enable`` oder ``<PREFIX>pjoinmessage disable`` ein!", "DE");
                 LanguageAPI.setValue("JoinMessage-Syntax", "``<PREFIX>joinmessage set <Deine Nachricht>`` | ``<PREFIX>joinmessage setchannel #DeinKanal`` | ``<PREFIX>joinmessage enable`` | ``<PREFIX>joinmessage disable``", "DE");
                 LanguageAPI.setValue("LeaveMessage-Syntax", "``<PREFIX>leavemessage set <Deine Nachricht>`` | ``<PREFIX>leavemessage setchannel #DeinKanal`` | ``<PREFIX>leavemessage enable`` | ``<PREFIX>leavemessage disable``", "DE");
-                LanguageAPI.setValue("JoinMessage-Desc", "Der Joinmessage Command lässt dich eine Nachricht erstellen die die User auf deinem Discord wilkommen heißt. Indem du in deiner Nachricht <USER> schreibst erwähnst du neue Benutzer", "DE");
+                LanguageAPI.setValue("JoinMessage-Desc", "Der Joinmessage Command lässt dich eine Nachricht erstellen die die User auf deinem Discord willkommen heißt. Indem du in deiner Nachricht <USER> schreibst erwähnst du neue Benutzer", "DE");
                 LanguageAPI.setValue("LeaveMessage-Desc", "Der Leavemessage Command lässt dich eine Nachricht erstellen die die User von deinem Discord verabschiedet. Indem du in deiner Nachricht <USER> schreibst erwähnst du neue Benutzer", "DE");
 
                 LanguageAPI.setValue("Toggle-Syntax", "<PREFIX>toggle <Command>", "DE");
@@ -150,8 +165,19 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Kick-Syntax", "<PREFIX>kick @User", "DE");
                 LanguageAPI.setValue("Kick-Desc", "Dieser Command erlaubt es dir jemanden von deinem Discordserver zu kicken", "DE");
                 LanguageAPI.setValue("Kick-Without-Reason", "Der Benutzer '**<USER>**' wurde erfolgreich vom Server geworfen", "DE");
-                LanguageAPI.setValue("Kick-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund '<REASON>' erfolgreich vom Server geworfen", "DE");
+                LanguageAPI.setValue("Kick-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund von '<REASON>' erfolgreich vom Server geworfen", "DE");
                 LanguageAPI.setValue("Kick-NoPersonDefined", "Bitte gebe einen Benutzer zum kicken an. ``<PREFIX>kick @User``", "DE");
+
+                LanguageAPI.setValue("Ban-Syntax", "<PREFIX>ban @Member", "DE");
+                LanguageAPI.setValue("Ban-Desc", "Dieser Command erlaubt es dir jemanden permanent von deinem Discord-Server zu verbannen.", "DE");
+                LanguageAPI.setValue("Ban-Without-Reason", "Der Benutzer '**<USER>**' wurde gebannt.", "DE");
+                LanguageAPI.setValue("Ban-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund von '<REASON>' gebannt.", "DE");
+                LanguageAPI.setValue("Ban-NoPersonDefined", "Bitte gebe einen Benutzer zum bannen an. ``<PREFIX>ban @User``", "DE");
+
+                LanguageAPI.setValue("UnBan-Syntax", "<PREFIX>unban User#1234", "DE");
+                LanguageAPI.setValue("UnBan-Desc", "Mit diesem Command kann du einen gebannten Nutzer entbannen.", "DE");
+                LanguageAPI.setValue("UnBan", "Der Benutzer '**<USER>**' wurde entbannt.", "DE");
+                LanguageAPI.setValue("UnBan-NoPersonDefined", "Bitte gebe einen Benutzer zum entbannen an. ``<PREFIX>unban User#1234``", "DE");
 
                 LanguageAPI.setValue("Clear-Desc", "Mit <PREFIX>clear kannst du bis zu 100 Nachrichten auf einmal löschen", "DE");
                 LanguageAPI.setValue("Clear-Syntax", "<PREFIX>clear 10", "DE");

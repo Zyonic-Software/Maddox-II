@@ -37,6 +37,7 @@ public class MySQLHandler {
             this.mySQL.executeUpdate("INSERT INTO Server_Automatic_Roles(id) VALUES ('" + serverID + "');");
             this.mySQL.executeUpdate("INSERT INTO Server_Join_Messages(id) VALUES ('" + serverID + "');");
             this.mySQL.executeUpdate("INSERT INTO Server_Leave_Messages(id) VALUES ('" + serverID + "');");
+            this.mySQL.executeUpdate("INSERT INTO Private_Join_Message(id) VALUES ('" + serverID + "');");
             this.mySQL.executeUpdate("INSERT INTO Server_Command_Toggle(id) VALUES ('" + serverID + "');");
         } catch (final SQLException e) {
             e.printStackTrace();
@@ -49,6 +50,7 @@ public class MySQLHandler {
             this.mySQL.executeUpdate("DELETE FROM Server_Automatic_Roles WHERE serverid = " + serverID);
             this.mySQL.executeUpdate("DELETE FROM Server_Join_Messages WHERE serverid = " + serverID);
             this.mySQL.executeUpdate("DELETE FROM Server_Join_Messages WHERE serverid = " + serverID);
+            this.mySQL.executeUpdate("DELETE FROM Private_Join_Messages WHERE serverid = " + serverID);
             this.mySQL.executeUpdate("DELETE FROM Server_Command_Toggle WHERE serverid = " + serverID);
         } catch (final Exception e) {
             e.printStackTrace();
@@ -237,6 +239,49 @@ public class MySQLHandler {
     public boolean isLeaveMessageEnabled(final String guildID) {
         try {
             final ResultSet resultSet = this.mySQL.executeQuery("SELECT enabled FROM Server_Leave_Messages WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getBoolean("enabled");
+            }
+        } catch (final Exception e) {
+        }
+        return false;
+    }
+
+    public String getPrivateJoinMessage(final String guildID) {
+        try {
+            final ResultSet resultSet = this.mySQL.executeQuery("SELECT message FROM Private_Join_Message WHERE id = " + guildID + ";");
+            while (resultSet.next()) {
+                return resultSet.getString("message");
+            }
+        } catch (final Exception e) {
+        }
+        return "";
+    }
+
+    public void setPrivateJoinMessage(String message, final String guildID) {
+        message = this.mySQL.removeSQLInjectionPossibility(message);
+        try {
+            this.mySQL.executeUpdate("UPDATE Private_Join_Message SET message = '" + message + "' WHERE id = '" + guildID + "';");
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setPrivateJoinMessageEnabled(final boolean isEnabled, final String guildID) {
+        try {
+            if (isEnabled) {
+                this.mySQL.executeUpdate("UPDATE Private_Join_Message SET enabled = " + 1 + " WHERE id = '" + guildID + "';");
+            } else {
+                this.mySQL.executeUpdate("UPDATE Private_Join_Message SET enabled = " + 0 + " WHERE id = '" + guildID + "';");
+            }
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isPrivateJoinMessageEnabled(final String guildID) {
+        try {
+            final ResultSet resultSet = this.mySQL.executeQuery("SELECT enabled FROM Private_Join_Message WHERE id = " + guildID + ";");
             while (resultSet.next()) {
                 return resultSet.getBoolean("enabled");
             }

@@ -14,12 +14,12 @@ import com.zyonicsoftware.maddox.core.engine.handling.privatemessage.PrivateMess
 import com.zyonicsoftware.maddox.core.engine.helpbuilder.HelpBuilder;
 import com.zyonicsoftware.maddox.core.language.LanguageLoader;
 import com.zyonicsoftware.maddox.core.management.AutomaticRoleManager;
-import com.zyonicsoftware.maddox.core.management.CommandManager;
 import com.zyonicsoftware.maddox.core.management.CommandToggleManager;
 import com.zyonicsoftware.maddox.core.savestructure.CacheManager;
 import com.zyonicsoftware.maddox.core.savestructure.MySQLHandler;
 import com.zyonicsoftware.maddox.core.startup.StartupLoader;
 import com.zyonicsoftware.maddox.modules.listener.*;
+import com.zyonicsoftware.maddox.modules.registration.CommandManager;
 import net.dv8tion.jda.api.sharding.ShardManager;
 
 import java.awt.*;
@@ -86,6 +86,7 @@ public class Maddox {
         this.shardManager = this.initShards(amountShards, config, startupLoader);
 
         this.commandHandler = new CommandHandler(this);
+        this.privateMessageCommandHandler = new PrivateMessageCommandHandler(this);
         this.helpBuilder = new HelpBuilder(this);
 
         final CommandManager commandManager = new CommandManager(this);

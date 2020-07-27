@@ -9,5 +9,6 @@ package com.zyonicsoftware.maddox.core.savestructure;
 
 public enum Toggletype {
     JOINMESSAGE,
-    LEAVEMESSAGE
+    LEAVEMESSAGE,
+    PRIVATE_JOINMESSAGE
 }
