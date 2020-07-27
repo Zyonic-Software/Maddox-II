@@ -223,12 +223,11 @@ public class CacheManager {
         this.maddox.getMySQLHandler().setPrivateJoinMessage(message, guildID);
     }
 
-    public void getPrivateJoinMessage(final String message, final String guildID) {
+    public String getPrivateJoinMessage(final String guildID) {
         if (!this.guildMap.containsKey(guildID)) {
             this.registerServerToCache(guildID);
         }
-        this.guildMap.get(guildID).put(Datatype.PRIVATE_JOINMESSAGE, message);
-        this.maddox.getMySQLHandler().setPrivateJoinMessage(message, guildID);
+        return this.guildMap.get(guildID).get(Datatype.PRIVATE_JOINMESSAGE);
     }
 
     public boolean isPrivateJoinMessageEnabled(final String guildID) {

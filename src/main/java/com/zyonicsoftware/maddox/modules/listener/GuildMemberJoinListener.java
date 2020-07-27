@@ -41,10 +41,19 @@ public class GuildMemberJoinListener extends ListenerAdapter {
     private void sendJoinMessage(final GuildMemberJoinEvent event) {
         if (this.maddox.getCacheManager().isJoinMessageEnabled(event.getGuild().getId())) {
             final String channelID = this.maddox.getCacheManager().getJoinMessageChannel(event.getGuild().getId());
-            if (channelID != null) {
+            if (this.maddox.getCacheManager().isJoinMessageEnabled(event.getGuild().getId()) && channelID != null) {
                 try {
                     Objects.requireNonNull(event.getGuild().getTextChannelById(channelID)).sendMessage(this.maddox.getCacheManager().getJoinMessage(event.getGuild().getId()).replace("<USER>", event.getMember().getAsMention()).replace("<SERVER>", "**" + event.getGuild().getName() + "**")).queue();
                 } catch (final Exception ignored) {
+                }
+            }
+            if (this.maddox.getCacheManager().isPrivateJoinMessageEnabled(event.getGuild().getId())) {
+                final String privateMessage = this.maddox.getCacheManager().getPrivateJoinMessage(event.getGuild().getId());
+                if (privateMessage != null) {
+                    try {
+                        event.getMember().getUser().openPrivateChannel().complete(true).sendMessage(privateMessage.replace("<USER>", event.getMember().getAsMention()).replace("<SERVER>", event.getGuild().getName())).queue();
+                    } catch (final Exception ignored) {
+                    }
                 }
             }
         }

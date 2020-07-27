@@ -86,6 +86,7 @@ public class Maddox {
         this.shardManager = this.initShards(amountShards, config, startupLoader);
 
         this.commandHandler = new CommandHandler(this);
+        this.privateMessageCommandHandler = new PrivateMessageCommandHandler(this);
         this.helpBuilder = new HelpBuilder(this);
 
         final CommandManager commandManager = new CommandManager(this);

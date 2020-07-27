@@ -48,10 +48,11 @@ public class BanCommand extends Command {
                                     .build()
                     );
                 } else {
+                    final String memberName = event.getMentions().get(0).getUsername();
                     event.getMentions().get(0).ban(0).queue();
                     event.reply(
                             new EmbedBuilder()
-                                    .addField("Ban", LanguageAPI.getValue("Ban-Without-Reason").replace("<USER>", event.getMentions().get(0).getMember().getEffectiveName()), false)
+                                    .addField("Ban", LanguageAPI.getValue("Ban-Without-Reason").replace("<USER>", memberName), false)
                                     .setColor(this.maddox.getDefaultColor())
                                     .build()
                     );

@@ -48,10 +48,11 @@ public class KickCommand extends Command {
                                     .build()
                     );
                 } else {
+                    final String memberName = event.getMentions().get(0).getUsername();
                     event.getMentions().get(0).kick().queue();
                     event.reply(
                             new EmbedBuilder()
-                                    .addField("Kick", LanguageAPI.getValue("Kick-Without-Reason").replace("<USER>", event.getMentions().get(0).getMember().getEffectiveName()), false)
+                                    .addField("Kick", LanguageAPI.getValue("Kick-Without-Reason").replace("<USER>", memberName), false)
                                     .setColor(this.maddox.getDefaultColor())
                                     .build()
                     );
