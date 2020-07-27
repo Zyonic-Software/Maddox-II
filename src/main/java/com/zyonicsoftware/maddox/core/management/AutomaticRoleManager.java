@@ -24,9 +24,13 @@ public class AutomaticRoleManager {
     public ArrayList<Role> getRolesForAutomaticAssigning(final MaddoxGuild server) {
         final ArrayList<Role> rolesForAutomaticAssigning = new ArrayList<>();
 
-        final String rolesInString = this.maddox.getCacheManager().getRolesForAutomaticAssigning(server.getID()).replace("null", "");
+        final String rolesInString = this.maddox.getCacheManager().getRolesForAutomaticAssigning(server.getID());
 
-        final String[] roleIDs = rolesInString.split(";");
+        if (rolesInString == null) {
+            return rolesForAutomaticAssigning;
+        }
+
+        final String[] roleIDs = rolesInString.replace("null", "").split(";");
 
         for (final String roleID : roleIDs) {
             if (server.getRolesSortedByIDs().containsKey(roleID)) {
