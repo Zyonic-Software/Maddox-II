@@ -38,7 +38,7 @@ public class MySQLHandler {
             this.mySQL.executeUpdate("INSERT INTO Server_Join_Messages(id) VALUES ('" + serverID + "');");
             this.mySQL.executeUpdate("INSERT INTO Server_Leave_Messages(id) VALUES ('" + serverID + "');");
             this.mySQL.executeUpdate("INSERT INTO Private_Join_Message(id) VALUES ('" + serverID + "');");
-            this.mySQL.executeUpdate("INSERT INTO Server_Command_Toggle(id) VALUES ('" + serverID + "');");
+            this.mySQL.executeUpdate("INSERT INTO Server_Command_Toggle(id,enabled_commands) VALUES ('" + serverID + "','clear;ban;kick');");
         } catch (final SQLException e) {
             e.printStackTrace();
         }
