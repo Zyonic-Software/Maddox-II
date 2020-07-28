@@ -3,7 +3,7 @@
 ## Index
 
 - [What it's for](https://github.com/Zyonic-Software/Maddox-V2#what-its-for)
-- [Why Maddox?](https://github.com/Zyonic-Software/Maddox-V2#why-use-maddox?)
+- [Why Maddox?](https://github.com/Zyonic-Software/Maddox-V2#why-use-maddox)
 - [Developing with Maddox](https://github.com/Zyonic-Software/Maddox-V2#developing-with-maddox)
 
 ## What it's for
