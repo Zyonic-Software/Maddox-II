@@ -222,6 +222,12 @@ You will need **five** Tables with the following Columns:
 - channel
 - enabled
 
+#### Private_Join_Message
+
+- id
+- message
+- enabled
+
 #### Server_Commands_Toggle
 
 - id
