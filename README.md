@@ -1,5 +1,11 @@
 # Maddox V2
 
+## Index
+
+- [What it's for](https://github.com/Zyonic-Software/Maddox-V2#what-its-for)
+- [Why Maddox?](https://github.com/Zyonic-Software/Maddox-V2#why-use-maddox?)
+- [Developing with Maddox](https://github.com/Zyonic-Software/Maddox-V2#developing-with-maddox)
+
 ## What it's for
 
 Maddox is a generic Discord-Moderation bot that is open for anyone to use and Modify.
@@ -18,7 +24,7 @@ You can also just download Maddox and use it as it is for normal Moderation-Purp
 
 ## Developing with Maddox 
 
-### I - Plattform
+### I - Platform
 
 Maddox is written in Java 14 with [Bellsoft's 'Liberica JDK'](https://bell-sw.com/) so I suggest running it on that plattform. It will probably also work with
 other JDK's and Java versions, but it is possible that bugs & problems may accur that I have not accounted for.
