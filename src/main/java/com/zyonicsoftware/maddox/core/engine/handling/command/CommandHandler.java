@@ -231,6 +231,10 @@ public class CommandHandler {
 
     public void handle(final GuildMessageUpdateEvent event, String prefix, String messageContent) {
 
+        if (messageContent.isEmpty()) {
+            return;
+        }
+
         if (messageContent.startsWith(prefix + " ")) {
 
             String[] seperatedStrings = messageContent.substring(prefix.length() + 1).split(" ");
