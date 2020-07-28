@@ -222,6 +222,12 @@ You will need **five** Tables with the following Columns:
 - channel
 - enabled
 
+#### Private_Join_Message
+
+- id
+- message
+- enabled
+
 #### Server_Commands_Toggle
 
 - id
@@ -236,10 +242,6 @@ You will need **five** Tables with the following Columns:
 Simple: Because V1 is almost 2 Years old by now and Discord has changed a lot (Yes V1 is private because I don't want anyone to see my
 *bad* **BAD** code) Also: Discord has changed a lot of Stuff in the meantime, so it was necessary for me to redo my Engine anyways, especially for
 my other Project, Herukan.
-
-### Why do you directly push to the master-Branch?
-I am currently developing the base-structure for the bot and I am also the only developer currently working on Maddox. I will stop upon the first "real" Release of Maddox,
-but you'll always be free to see the beta-branches
 
 ## Credits
 
