@@ -1,5 +1,12 @@
 # Maddox V2
 
+## Index
+
+- [What it's for](https://github.com/Zyonic-Software/Maddox-V2#what-its-for)
+- [Why Maddox?](https://github.com/Zyonic-Software/Maddox-V2#why-use-maddox)
+- [Getting started](https://github.com/Zyonic-Software/Maddox-V2#getting-started)
+- [Developing with Maddox](https://github.com/Zyonic-Software/Maddox-V2#developing-with-maddox)
+
 ## What it's for
 
 Maddox is a generic Discord-Moderation bot that is open for anyone to use and Modify.
@@ -16,9 +23,78 @@ It includes a Custom Command-Event and Guild / Member object optimized for use w
 
 You can also just download Maddox and use it as it is for normal Moderation-Purposes if you like the look of a Bot special to your Server.
 
+## Getting started
+
+### I - Installing the necessary Software
+
+You will need to install the following Pieces of Software to Correctly use Maddox:
+- MySQL
+- Java (14)
+
+### II - Downloading Maddox
+
+To download you will have to navigate to the "Releases" Section which is located [here](https://github.com/Zyonic-Software/Maddox-V2/releases)
+
+
+![Location for Releases](https://image.sv-studios.net/4270aec26507643453471aaddef316edb.png)
+
+
+After that you should see a List of Items to download under the Release's Description. You only need to Download the .jar File.
+
+
+![Location for Jar](https://image.sv-studios.net/4f484cbda2a8b5e7821132593465ab64a.png)
+
+
+After klicking on the File the download should commence automatically.
+Next, navigate to your Downloads-Folder where you should find the .jar File.
+Move the file to a Location where you're comfortable with it Creating various different Files.
+
+### III - Getting up & running
+
+After navigating to your File open a Command promt in the designated location by clicking the address-bar in the Windows-Explorer.
+
+
+![Location-Address Bar](https://image.sv-studios.net/4b34ced850f30946c6fc486fad788e358.png)
+
+
+Enter cmd into this Bar.
+
+
+![cmd](https://image.sv-studios.net/41ee23e069ed5860739d93a1f2f66714e.png)
+
+
+After hitting enter you should see a Command-Promt which should look something like this:
+
+
+![Commandprompt](https://image.sv-studios.net/4d4f6373d819bd549a7ed5b4f41c460a1.png)
+
+
+Enter 'java -jar Maddox-V2-X.X.X.jar' or 'java -Xmx256M -jar Maddox-V2-X.X.X-jar' into the commandpromt. The -Xmx option Caps the RAM that Maddox can use to the specefied value.
+After Executing this Command Maddox Should generate a Config-File called 'config.yml'
+
+
+![ConfigLocation](https://image.sv-studios.net/48f9a9302f4e5234d6786561e14781b67.png)
+
+
+Next, Head to your Discord-Developer Dashboard and get a Bot token by Creating a new Application (or using an exsisting one), creating a Bot and copying the bot-secret.
+Also, enable all Privileged Gateway-Intents.
+
+Paste this token here.
+
+
+![TokenLocation](https://image.sv-studios.net/4d1bf40313494d1fb4d6b7789c26ee100.png)
+
+
+Now enter the same Command as before into your command-promt, and now you should be done!
+
+
+![Done!](https://image.sv-studios.net/48a1e0420d00bf7612a3b174a914d0307.png)
+
+
+
 ## Developing with Maddox 
 
-### I - Plattform
+### I - Platform
 
 Maddox is written in Java 14 with [Bellsoft's 'Liberica JDK'](https://bell-sw.com/) so I suggest running it on that plattform. It will probably also work with
 other JDK's and Java versions, but it is possible that bugs & problems may accur that I have not accounted for.
