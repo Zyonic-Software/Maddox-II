@@ -42,11 +42,20 @@ public class CommandEvent {
         this.server = new MaddoxGuild(updateEvent.getGuild(), prefix);
     }
 
-
+    /**
+     * Returns the Commandobject
+     *
+     * @return
+     */
     public Command getCommand() {
         return this.command;
     }
 
+    /**
+     * Returns the Textchannel in which the Command was triggered
+     *
+     * @return
+     */
     public TextChannel getChannel() {
         if (this.receivedEvent != null) {
             return this.receivedEvent.getChannel();
@@ -55,18 +64,20 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Returns the Category in which the Command was triggered
+     *
+     * @return
+     */
     public Category getCategory() {
         return this.getChannel().getParent();
     }
 
-    public User getUser() {
-        if (this.receivedEvent != null) {
-            return this.receivedEvent.getMember().getUser();
-        } else {
-            return this.updateEvent.getMember().getUser();
-        }
-    }
-
+    /**
+     * Returns MaddoxMember Object
+     *
+     * @return
+     */
     public MaddoxMember getSender() {
         if (this.receivedEvent != null) {
             return new MaddoxMember(this.receivedEvent.getMember());
@@ -75,6 +86,11 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Returns author as User Object
+     *
+     * @return
+     */
     public User getAuthor() {
         if (this.receivedEvent != null) {
             return this.receivedEvent.getAuthor();
@@ -160,6 +176,11 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Returns all Arguments in String form, without the proceeding Command or Prefix
+     *
+     * @return
+     */
     public String getArgumentsAsString() {
         if (!this.getArguments().isEmpty()) {
             if (this.receivedEvent != null) {
@@ -172,6 +193,11 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Returns the Arguments splitted into an ArrayList. Splits between Spaces.
+     *
+     * @return
+     */
     public List<String> getArguments() {
         String arguments;
         if (this.receivedEvent != null) {
@@ -200,6 +226,12 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Returns the Avatar of the Event Author, depending on the specefied Dimension
+     *
+     * @param imageDimension
+     * @return
+     */
     public String getExecutorAvatar(final int imageDimension) {
         if (this.receivedEvent != null) {
             return "https://cdn.discordapp.com/avatars/" + this.receivedEvent.getMember().getId() + "/" + this.receivedEvent.getMember().getUser().getAvatarId() + ".png?size=" + imageDimension;
@@ -208,6 +240,11 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Returns a List of all Mentioned Members as MaddoxMember Objects
+     *
+     * @return
+     */
     public List<MaddoxMember> getMentions() {
         final List<String> memberIDs = new ArrayList<>();
         final List<MaddoxMember> members = new ArrayList<>();
@@ -233,6 +270,11 @@ public class CommandEvent {
         return members;
     }
 
+    /**
+     * Returns UserIDs of mentioned Members
+     *
+     * @return
+     */
     public List<String> getMentionsAsIDs() {
         final List<String> memberIDs = new ArrayList<>();
 
@@ -246,6 +288,11 @@ public class CommandEvent {
         return memberIDs;
     }
 
+    /**
+     * Returns Textchannels that were Mentioned
+     *
+     * @return
+     */
     public List<TextChannel> getTextChannelMentions() {
         final List<String> textChannelIDs = new ArrayList<>();
         final List<TextChannel> textChannels = new ArrayList<>();
@@ -268,6 +315,11 @@ public class CommandEvent {
         return textChannels;
     }
 
+    /**
+     * Returns Roles that were Mentioned
+     *
+     * @return
+     */
     public List<Role> getRoleMentions() {
         final List<String> roleIDs = new ArrayList<>();
         final List<Role> roles = new ArrayList<>();
@@ -292,6 +344,11 @@ public class CommandEvent {
 
     //New Methods
 
+    /**
+     * Replaces 'event.getMessage().getChannel().sendMessage("").queue();' with something much simpler, and just sends the message
+     *
+     * @param pMessage
+     */
     public void reply(final String pMessage) {
         if (this.receivedEvent != null) {
             this.receivedEvent.getChannel().sendMessage(pMessage).queue();
@@ -300,6 +357,11 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Replaces 'event.getMessage().getChannel().sendMessage("").queue();' with something much simpler, and just sends the message
+     *
+     * @param messageEmbed
+     */
     public void reply(final MessageEmbed messageEmbed) {
         if (this.receivedEvent != null) {
             this.receivedEvent.getChannel().sendMessage(messageEmbed).queue();
@@ -308,6 +370,13 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Replaces 'event.getMessage().getChannel().sendMessage("").queue();' with something much simpler, and just sends the message
+     * and returns the Message Object
+     *
+     * @param pMessage
+     * @return
+     */
     public Message returnReply(final String pMessage) {
         if (this.receivedEvent != null) {
             return this.receivedEvent.getChannel().sendMessage(pMessage).complete();
@@ -316,6 +385,13 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Replaces 'event.getMessage().getChannel().sendMessage("").queue();' with something much simpler, and just sends the message
+     * and returns the Message Object
+     *
+     * @param messageEmbed
+     * @return
+     */
     public Message returnReply(final MessageEmbed messageEmbed) {
         if (this.receivedEvent != null) {
             return this.receivedEvent.getChannel().sendMessage(messageEmbed).complete();
@@ -324,6 +400,9 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Deletes the Message that triggered the Command
+     */
     public void deleteEventMessage() {
         if (this.receivedEvent != null) {
             this.receivedEvent.getMessage().delete().queue();
@@ -332,6 +411,11 @@ public class CommandEvent {
         }
     }
 
+    /**
+     * Returns the Guild the Command was Triggered on as a Maddox Guild
+     *
+     * @return
+     */
     public MaddoxGuild getServer() {
         return this.server;
     }
