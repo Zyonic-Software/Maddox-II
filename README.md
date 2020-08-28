@@ -153,7 +153,7 @@ after doing this your Class should look something like this:
 public class TestCommand extends Command {
 
   public TestCommand(){
-    this.name = "test";
+    this.setName("test");
   }
 
   @Override
