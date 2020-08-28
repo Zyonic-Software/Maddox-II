@@ -29,7 +29,11 @@ public class CommandHandler {
         this.specificPrefixCommands = new HashMap<>();
     }
 
-
+    /**
+     * Registers a Command to the Handling-List.
+     *
+     * @param command
+     */
     public void registerCommand(final Command command) {
         if (command.getSpecificPrefix() == null) {
             this.commands.put(command.getName(), command);
@@ -38,6 +42,11 @@ public class CommandHandler {
         }
     }
 
+    /**
+     * Registers multible Commands to the Handling-list at once.
+     *
+     * @param commands
+     */
     public void registerCommands(final Command... commands) {
         for (int i = 0; i < commands.length; i++) {
             final Command command = commands[i];
@@ -49,7 +58,17 @@ public class CommandHandler {
         }
     }
 
-
+    /**
+     * Is used to process the GuildMessageReceivedEvent and filter out the useful info.
+     * <p>
+     * Seperates between different Prefixes and if Prefixes include Spaces or if they are Tags, Executes Command accordingly.
+     * <p>
+     * Chooses from a HashMap with all Command-Objects inside
+     *
+     * @param event
+     * @param prefix
+     * @param messageContent
+     */
     public void handle(final GuildMessageReceivedEvent event, String prefix, String messageContent) {
 
         if (messageContent.isEmpty()) {
@@ -229,6 +248,17 @@ public class CommandHandler {
     }
 
 
+    /**
+     * Is used to process the GuildMessageUpdateEvent and filter out the useful info.
+     * <p>
+     * Seperates between different Prefixes and if Prefixes include Spaces or if they are Tags, Executes Command accordingly.
+     * <p>
+     * Chooses from a HashMap with all Command-Objects inside
+     *
+     * @param event
+     * @param prefix
+     * @param messageContent
+     */
     public void handle(final GuildMessageUpdateEvent event, String prefix, String messageContent) {
 
         if (messageContent.isEmpty()) {
@@ -415,6 +445,11 @@ public class CommandHandler {
         return this.specificPrefixCommands;
     }
 
+    /**
+     * Returns all the different Command-Categorys (Important for automated help-building)
+     *
+     * @return
+     */
     public ArrayList<String> getCategories() {
         final ArrayList<String> categories = new ArrayList<>();
         this.commands.forEach((name, command) -> {

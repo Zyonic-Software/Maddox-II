@@ -90,6 +90,7 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Ban-Without-Reason", "The user '**<USER>**' was banned.", "EN");
                 LanguageAPI.setValue("Ban-With-Reason", "The user '**<USER>**' was banned because of '<REASON>'.", "EN");
                 LanguageAPI.setValue("Ban-NoPersonDefined", "Please provide a user to be banned. ``<PREFIX>ban @User``", "EN");
+                LanguageAPI.setValue("Ban-SWW", "This Person could not be banned.", "EN");
 
                 LanguageAPI.setValue("UnBan-Syntax", "<PREFIX>unban User#1234", "EN");
                 LanguageAPI.setValue("UnBan-Desc", "This Command unbans a banned user.", "EN");
@@ -103,6 +104,8 @@ public class LanguageConfigFileManager {
 
 
                 LanguageAPI.setValue("NoChange", "Nothing was Changed.", "EN");
+                LanguageAPI.setValue("SWW", "Whoops, Something went wrong! Please let my Developers know what happened!", "EN");
+
 
             }
         } catch (final Exception e) {
@@ -177,6 +180,7 @@ public class LanguageConfigFileManager {
                 LanguageAPI.setValue("Ban-Without-Reason", "Der Benutzer '**<USER>**' wurde gebannt.", "DE");
                 LanguageAPI.setValue("Ban-With-Reason", "Der Benutzer '**<USER>**' wurde aufgrund von '<REASON>' gebannt.", "DE");
                 LanguageAPI.setValue("Ban-NoPersonDefined", "Bitte gebe einen Benutzer zum bannen an. ``<PREFIX>ban @User``", "DE");
+                LanguageAPI.setValue("Ban-SWW", "Diese Person konnte nicht gebannt werden.", "DE");
 
                 LanguageAPI.setValue("UnBan-Syntax", "<PREFIX>unban User#1234", "DE");
                 LanguageAPI.setValue("UnBan-Desc", "Mit diesem Command kann du einen gebannten Nutzer entbannen.", "DE");
@@ -190,6 +194,7 @@ public class LanguageConfigFileManager {
 
 
                 LanguageAPI.setValue("NoChange", "Nichts verändert.", "DE");
+                LanguageAPI.setValue("SWW", "Whoops, Irgendetwas ist schief gelaufen... bitte melde dich bei meinen Entwicklern!", "DE");
             }
         } catch (final Exception e) {
             e.printStackTrace();

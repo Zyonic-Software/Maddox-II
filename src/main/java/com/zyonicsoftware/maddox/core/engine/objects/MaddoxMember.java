@@ -24,7 +24,6 @@ import net.dv8tion.jda.api.requests.restaction.AuditableRestAction;
 import javax.annotation.Nonnull;
 import java.awt.*;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.List;
@@ -50,7 +49,7 @@ public class MaddoxMember {
     }
 
     public String getUsername() {
-        return this.member.getEffectiveName();
+        return this.getUser().getName();
     }
 
     public AuditableRestAction<Void> ban(final int deletionDays) {
@@ -113,8 +112,8 @@ public class MaddoxMember {
         return this.member.getJDA();
     }
 
-    public ArrayList<Role> getRoles() {
-        return (ArrayList<Role>) this.member.getRoles();
+    public List<Role> getRoles() {
+        return this.member.getRoles();
     }
 
     public OffsetDateTime getTimeJoined() {
