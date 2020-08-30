@@ -65,9 +65,14 @@ public class Maddox {
             if (mySQLConfig.getPassword() != null && !mySQLConfig.getPassword().equals("maddox_is_cool_please_use_a_safe_password_i_beg_you")) {
                 this.mySQLHandler = new MySQLHandler(this);
                 try {
-                    this.mySQLHandler.connectToMysql(mySQLConfig.getHostname(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUser(), mySQLConfig.getPassword());
-                    System.out.println("MySQL enabled");
-                    this.isMySQL = true;
+                    this.mySQLHandler.connectToMysql(mySQLConfig.getHostname(), mySQLConfig.getPort(), mySQLConfig.getUser(), mySQLConfig.getPassword(), mySQLConfig.getDatabase());
+                    if (this.mySQLHandler.isConnected()) {
+                        System.out.println("MySQL enabled");
+                        this.isMySQL = true;
+                    } else {
+                        System.out.print("MySQL connection failed, aborting");
+                        return;
+                    }
                 } catch (final Exception e) {
                     System.out.println("MySQL connection failed, aborting");
                     return;

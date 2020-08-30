@@ -23,12 +23,19 @@ public class MySQLHandler {
     }
 
 
-    public MySQL connectToMysql(final String hostname, final int port, final String database, final String user, final String password) {
+    public void connectToMysql(final String hostname, final int port, final String user, final String password, final String database) throws SQLException {
         final MySQL mySQL = new MySQL(hostname, port, user, password, database);
-        MySQL.using(mySQL);
+        MySQL.add("0", mySQL);
+        mySQL.openConnection();
         this.mySQL = mySQL;
+    }
 
-        return mySQL;
+    public boolean isConnected() throws SQLException {
+        return this.mySQL.isConnectionOpen();
+    }
+
+    public void disconnect() throws SQLException {
+        this.mySQL.closeConnection();
     }
 
     public void addServerToDatabase(final String serverID, final String prefix, final String language) {
