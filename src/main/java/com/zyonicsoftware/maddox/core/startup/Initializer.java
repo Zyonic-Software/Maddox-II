@@ -10,7 +10,8 @@ package com.zyonicsoftware.maddox.core.startup;
 import com.zyonicsoftware.maddox.config.BaseValueConfig;
 import com.zyonicsoftware.maddox.config.MySQLConfig;
 import com.zyonicsoftware.maddox.core.main.Maddox;
-import de.daschi.core.MySQL;
+
+import java.sql.SQLException;
 
 public class Initializer {
 
@@ -26,14 +27,15 @@ public class Initializer {
 
 
         //ShutdownHook
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                MySQL.disconnect();
-                System.out.println("Shutdown Starting");
-                System.out.println("Application Terminating ...");
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                maddox.getMySQLHandler().disconnect();
+            } catch (final SQLException throwables) {
+                throwables.printStackTrace();
             }
-        });
+            System.out.println("Shutdown Starting");
+            System.out.println("Application Terminating ...");
+        }));
     }
 
 }

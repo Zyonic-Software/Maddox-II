@@ -34,6 +34,10 @@ public class MySQLHandler {
         return this.mySQL.isConnectionOpen();
     }
 
+    public void disconnect() throws SQLException {
+        this.mySQL.closeConnection();
+    }
+
     public void addServerToDatabase(final String serverID, final String prefix, final String language) {
         try {
             this.mySQL.executeUpdate("INSERT INTO Server_Settings(id, prefix, language) VALUES ('" + serverID + "','" + prefix + "','" + language + "');");
