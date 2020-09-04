@@ -40,7 +40,7 @@ public class HelpBuilder {
         //Sorting commands into specefied Categorys
         commands.forEach((name, command) -> {
             if (command.ShowInHelp()) {
-                if (command.getCommandHelpViewPermission() <= maddoxMember.getCommandHelpViewPermissionValue()) {
+                if (command.getCommandHelpViewPermissionValue() <= maddoxMember.getCommandHelpViewPermissionValue()) {
                     if (command.isGetValuesFromLanguageYaml()) {//if Gets Values from Language-Yaml
                         if (sortedCommands.containsKey(LanguageAPI.getValue(command.getCategory(), language))) {
                             sortedCommands.get(LanguageAPI.getValue(command.getCategory(), language)).add(command);
@@ -77,7 +77,7 @@ public class HelpBuilder {
 
         //The same for SpecefiedPrefixCommands
         specefiedPrefixCommands.forEach((name, command) -> {
-            if (command.getCommandHelpViewPermission() <= maddoxMember.getCommandHelpViewPermissionValue()) {
+            if (command.getCommandHelpViewPermissionValue() <= maddoxMember.getCommandHelpViewPermissionValue()) {
                 if (command.isGetValuesFromLanguageYaml()) {//if Gets Values from Language-Yaml
                     if (sortedCommands.containsKey(LanguageAPI.getValue(command.getCategory(), language))) {
                         sortedSpecefiedPrefixCommands.get(LanguageAPI.getValue(command.getCategory(), language)).add(command);

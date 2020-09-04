@@ -37,6 +37,11 @@ public class CommandHandler {
     public void registerCommand(final Command command) {
         if (command.getSpecificPrefix() == null) {
             this.commands.put(command.getName(), command);
+            if (command.getAlias() != null) {
+                for (final String alias : command.getAlias()) {
+                    this.commands.put(alias, command);
+                }
+            }
         } else {
             this.specificPrefixCommands.put(command.getSpecificPrefix() + command.getName(), command);
         }
@@ -52,6 +57,11 @@ public class CommandHandler {
             final Command command = commands[i];
             if (command.getSpecificPrefix() == null) {
                 this.commands.put(command.getName(), command);
+                if (command.getAlias() != null) {
+                    for (final String alias : command.getAlias()) {
+                        this.commands.put(alias, command);
+                    }
+                }
             } else {
                 this.specificPrefixCommands.put(command.getSpecificPrefix() + command.getName(), command);
             }
