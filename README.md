@@ -1,4 +1,5 @@
 # Maddox V2
+![lines of code](https://img.shields.io/tokei/lines/github.com/Zyonic-Software/Maddox-V2?style=for-the-badge)
 
 ## Index
 
